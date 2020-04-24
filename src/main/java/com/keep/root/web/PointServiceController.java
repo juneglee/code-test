@@ -50,7 +50,7 @@ public class PointServiceController {
 
   @GetMapping("trader")
   public void getTrad(Model model, int traderNo) throws Exception {
-    model.addAttribute("list", pointService.getTraderNo(traderNo));
+    model.addAttribute("tarderlist", pointService.getTraderNo(traderNo));
   }
 
 
