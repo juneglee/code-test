@@ -38,10 +38,9 @@ public class PointServiceController {
   }
 
   @GetMapping("detail")
-  public void detail(int no, Model model) throws Exception {
-    model.addAttribute("member", pointService.get(no));
+  public void detail(int userNo, Model model) throws Exception {
+    model.addAttribute("point", pointService.get(userNo));
   }
-
 
 
   @GetMapping("list")

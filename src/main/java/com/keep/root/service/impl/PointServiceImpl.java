@@ -1,10 +1,12 @@
 package com.keep.root.service.impl;
 
 import java.util.List;
+import org.springframework.stereotype.Component;
 import com.keep.root.dao.PointDao;
 import com.keep.root.domain.Point;
 import com.keep.root.service.PointService;
 
+@Component
 public class PointServiceImpl implements PointService {
 
   PointDao pointDao;
