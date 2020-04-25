@@ -28,7 +28,7 @@
      
    </select>
    
-   <select id="findAll" parameterType="int">
+   <select id="findAll" resultMap="PointMap" parameterType="map">
      select 
       p.point_no, p.user_no, p.trader_no, p.point_type, p.content
      from
