@@ -10,7 +10,6 @@
 입출: <input name='pointType' type='text'><br>
 내용: <input name='content' type='text'><br>
 금액: <input name='price' type='text'><br>
-<textarea name='title' rows='5' cols='60'></textarea><br>
 <button>등록</button>
 </form>
 

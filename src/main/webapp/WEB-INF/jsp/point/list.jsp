@@ -14,7 +14,7 @@
     <th>상대 번호</th>
     <th>포인트 분류</th>
     <th>입출금 내용</th>
-    <th>금액</th>
+    <th>포인트 금액</th>
   </tr>
   
 <c:forEach items="${list}" var="item">

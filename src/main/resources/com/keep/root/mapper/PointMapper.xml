@@ -30,7 +30,7 @@
    
    <select id="findAll" resultMap="PointMap" parameterType="map">
      select 
-      p.point_no, p.user_no, p.trader_no, p.point_type, p.content
+      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price
      from
       points p
      where 
