@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
@@ -9,25 +11,26 @@
   <a href='form'>새 글</a><br>
   <table border='1'>
   <tr>
-    <th>포인트 번호</th>
-    <th>유저 번호</th>
-    <th>상대 번호</th>
-    <th>포인트 분류</th>
-    <th>입출금 내용</th>
+    <th>유저번호</th>
+    <th>예금주</th>
+    <th>전화번호</th>
+    <th>은행</th>
+    <th>계좌번호</th>
     <th>금액</th>
   </tr>
   
 <c:forEach items="${list}" var="item">
   <tr>
     <td>${item.no}</td> 
-    <td>${item.userNo}</td> 
-    <td>${item.traderNo}</td> 
-    <td>${item.pointType}</td>
-    <td>${item.content}</td>
-    <td>${item.price}</td>
+    <td>${item.name}</td> 
+    <td>${item.tel}</td> 
+    <td>${item.bank}</td>
+    <td>${item.account}</td>
+    
   </tr>
 </c:forEach>
 
 </table>
 
 <jsp:include page="../footer.jsp"/>
+    
