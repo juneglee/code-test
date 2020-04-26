@@ -5,12 +5,10 @@ import com.keep.root.domain.Point;
 
 public interface PointDao {
   int insert(Point point) throws Exception;
-  
+
   List<Point> findAll() throws Exception;
 
-  List<Point> findOutputByUserNo(int userNo) throws Exception;
-
-  Point findByUserNo(int userNo) throws Exception;
+  Point findByNo(int userNo) throws Exception;
 
   Point findBytraderNo(int traderNo) throws Exception;
 

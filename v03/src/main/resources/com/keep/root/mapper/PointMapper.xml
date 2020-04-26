@@ -15,15 +15,6 @@
 	    <result column="point_type"   property="pointType"/>
 	    <result column="content"   property="content"/>
 	    <result column="price"   property="price"/>
-	    
-	    <association property="user" javaType="User">
-      <id column="user_no"   property="no"/>
-      <result column="user_name"  property="name"/>
-      <result column="phone_number"  property="tel"/>
-      <result column="account"  property="account"/>
-      <result column="bank"  property="bank"/>
-      
-    </association>
     </resultMap>
    
    <select id="insert" parameterType="Point">
@@ -46,39 +37,7 @@
       point_no 
    </select>
    
-   <select id="findAllByUserNo" resultMap="PointMap" parameterType="int">
-     select 
-      p.user_no,
-      p.trader_no,
-      u.user_name, 
-      u.phone_number,
-      u.account,
-      u.bank
-     from
-      points p
-      inner join users u on 
-      (p.user_no=u.user_no and p.trader_no=u.user_no) 
-     where 
-      p.point_no=#{no}
-      
-      <!-- 
-     select 
-      p.user_no,
-      p.trader_no,
-      u.user_name, 
-      u.phone_number,
-      u.account,
-      u.bank
-     from
-      points p
-      inner join users u on 
-      (p.user_no=u.user_no and p.trader_no=u.user_no) 
-     where 
-      p.point_no=1;
-       -->
-   </select>
-   
-   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="int">
+   <select id="findByNo" parameterType="int">
      select 
       p.user_no
      from
@@ -88,7 +47,7 @@
       p.point_no=#{no}
    </select>
    
-   <select id="findBytraderNo" resultMap="PointMap" parameterType="int">
+   <select id="findBytraderNo" parameterType="int">
      select
        p.trader_no 
      from

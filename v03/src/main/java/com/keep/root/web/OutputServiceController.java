@@ -39,6 +39,11 @@ public class OutputServiceController {
 	  public void list(Model model) throws Exception {
 	    model.addAttribute("list", outputService.findAllByUser());
 	  }
+	  
+	  @GetMapping("userlist")
+	  public void userlist(Model model) throws Exception {
+	    model.addAttribute("list", outputService.findOutListByUserNo());
+	  }
 
 	  @GetMapping("detail")
 	  public void detail(int no, Model model) throws Exception {

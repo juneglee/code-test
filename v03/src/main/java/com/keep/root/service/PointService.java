@@ -10,14 +10,12 @@ public interface PointService {
   int add(Point point) throws Exception;
 
   List<Point> list() throws Exception;
-  
-  List<Point> findOutputByUserNo(int userNo) throws Exception;
 
-  Point getUser(int userNo) throws Exception;
+  Point get(int userNo) throws Exception;
 
   // getUserNo() - list 연결
 
-  Point getTrader(int traderNo) throws Exception;
+  Point getTraderNo(int traderNo) throws Exception;
 
   int update(Point point) throws Exception;
 

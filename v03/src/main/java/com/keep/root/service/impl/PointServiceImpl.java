@@ -28,13 +28,13 @@ public class PointServiceImpl implements PointService {
   }
 
   @Override
-  public Point getUser(int userNo) throws Exception {
-    return pointDao.findByUserNo(userNo);
+  public Point get(int userNo) throws Exception {
+    return pointDao.findByNo(userNo);
 
   }
 
   @Override
-  public Point getTrader(int traderNo) throws Exception {
+  public Point getTraderNo(int traderNo) throws Exception {
     return pointDao.findBytraderNo(traderNo);
   }
 
@@ -47,11 +47,5 @@ public class PointServiceImpl implements PointService {
   public int delete(int no) throws Exception {
     return pointDao.delete(no);
   }
-
-@Override
-public List<Point> findOutputByUserNo(int userNo) throws Exception {
-	return pointDao.findOutputByUserNo(userNo);
-}
-
 
 }
