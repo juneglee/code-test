@@ -26,6 +26,23 @@ public class Point implements Serializable {
  // 유저에서 출력
  // 예금주, 전화번호, 은행명, 계좌번호 , 유저번호
  // 얼마 출금할지??
+ 
+ public Point() {}
+ 
+ public Point(int userNo) {
+	 this.userNo=userNo;
+ }
+ 
+ public Point(User user, int userNo) {
+	 this.user = user;
+	 this.userNo = userNo;
+ }
+
+ public Point(User user, int userNo, int traderNo) {
+	 this.user = user;
+	 this.userNo = userNo;
+	 this.traderNo = traderNo;
+ }
 
  
  @Override
