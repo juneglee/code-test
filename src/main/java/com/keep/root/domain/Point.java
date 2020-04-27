@@ -1,13 +1,11 @@
 package com.keep.root.domain;
 
 import java.io.Serializable;
-import java.util.List;
-
 import org.apache.ibatis.type.Alias;
 
 @Alias("Point")
 public class Point implements Serializable {
-	  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
   // points
 
   int no; // point_no
@@ -17,127 +15,126 @@ public class Point implements Serializable {
   int pointType; // point_type / 입출금 분류
   int content; // content / 입출금 내용
   int price; // price /금액 // 입금 금액인지 출금금액인지
-  
- User user;
- 
- // 포인에서 출력
- // 포유포인트, 출금 금액 ,
+  User user;
 
- // 유저에서 출력
- // 예금주, 전화번호, 은행명, 계좌번호 , 유저번호
- // 얼마 출금할지??
+  // 포인에서 출력
+  // 포유포인트, 출금 금액 ,
 
- 
- @Override
- public String toString() {
-	 return "Point [no=" + no + ", userNo=" + userNo + ", traderNo=" + traderNo + ", pointType=" + pointType
-			 + ", content=" + content + ", price=" + price + ", user=" + user + "]";
- }
- 
- 
- 
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + content;
-	result = prime * result + no;
-	result = prime * result + pointType;
-	result = prime * result + price;
-	result = prime * result + traderNo;
-	result = prime * result + ((user == null) ? 0 : user.hashCode());
-	result = prime * result + userNo;
-	return result;
-}
+  // 유저에서 출력
+  // 예금주, 전화번호, 은행명, 계좌번호 , 유저번호
+  // 얼마 출금할지??
+
+
+  @Override
+  public String toString() {
+    return "Point [no=" + no + ", userNo=" + userNo + ", traderNo=" + traderNo + ", pointType="
+        + pointType + ", content=" + content + ", price=" + price + ", user=" + user + "]";
+  }
 
 
 
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Point other = (Point) obj;
-	if (content != other.content)
-		return false;
-	if (no != other.no)
-		return false;
-	if (pointType != other.pointType)
-		return false;
-	if (price != other.price)
-		return false;
-	if (traderNo != other.traderNo)
-		return false;
-	if (user == null) {
-		if (other.user != null)
-			return false;
-	} else if (!user.equals(other.user))
-		return false;
-	if (userNo != other.userNo)
-		return false;
-	return true;
-}
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + content;
+    result = prime * result + no;
+    result = prime * result + pointType;
+    result = prime * result + price;
+    result = prime * result + traderNo;
+    result = prime * result + ((user == null) ? 0 : user.hashCode());
+    result = prime * result + userNo;
+    return result;
+  }
 
 
 
-public int getNo() {
-	return no;
-}
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Point other = (Point) obj;
+    if (content != other.content)
+      return false;
+    if (no != other.no)
+      return false;
+    if (pointType != other.pointType)
+      return false;
+    if (price != other.price)
+      return false;
+    if (traderNo != other.traderNo)
+      return false;
+    if (user == null) {
+      if (other.user != null)
+        return false;
+    } else if (!user.equals(other.user))
+      return false;
+    if (userNo != other.userNo)
+      return false;
+    return true;
+  }
 
 
-public void setNo(int no) {
-	this.no = no;
-}
 
-public int getUserNo() {
-	return userNo;
-}
+  public int getNo() {
+    return no;
+  }
 
-public void setUserNo(int userNo) {
-	this.userNo = userNo;
-}
 
-public int getTraderNo() {
-	return traderNo;
-}
+  public void setNo(int no) {
+    this.no = no;
+  }
 
-public void setTraderNo(int traderNo) {
-	this.traderNo = traderNo;
-}
+  public int getUserNo() {
+    return userNo;
+  }
 
-public int getPointType() {
-	return pointType;
-}
+  public void setUserNo(int userNo) {
+    this.userNo = userNo;
+  }
 
-public void setPointType(int pointType) {
-	this.pointType = pointType;
-}
+  public int getTraderNo() {
+    return traderNo;
+  }
 
-public int getContent() {
-	return content;
-}
+  public void setTraderNo(int traderNo) {
+    this.traderNo = traderNo;
+  }
 
-public void setContent(int content) {
-	this.content = content;
-}
+  public int getPointType() {
+    return pointType;
+  }
 
-public int getPrice() {
-	return price;
-}
+  public void setPointType(int pointType) {
+    this.pointType = pointType;
+  }
 
-public void setPrice(int price) {
-	this.price = price;
-}
+  public int getContent() {
+    return content;
+  }
 
-public User getUser() {
-	return user;
-}
+  public void setContent(int content) {
+    this.content = content;
+  }
 
-public void setUser(User user) {
-	this.user = user;
-}
+  public int getPrice() {
+    return price;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
 }

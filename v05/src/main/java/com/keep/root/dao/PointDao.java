@@ -5,7 +5,7 @@ import com.keep.root.domain.Point;
 
 public interface PointDao {
   int insert(Point point) throws Exception;
-
+  
   List<Point> findAll() throws Exception;
 
   List<Point> findOutputByUserNo(int userNo) throws Exception;
@@ -17,5 +17,7 @@ public interface PointDao {
   int update(Point point) throws Exception;
 
   int delete(int no) throws Exception;
+
+
 
 }

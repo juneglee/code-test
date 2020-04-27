@@ -5,9 +5,9 @@
 
 <jsp:include page="../header.jsp"/>
 
-  <h1>출금 리스트</h1>
-  강의번호 <input name='userNo' type='text' value='${user.no}' readonly><br>
-  
+  <h>출금 리스트</h1>
+  <input name='userNo' type='text' value='${user.no}' readonly><br>
+  <form action='output' method='get' enctype='multipart/form-data'>
   <table border='1'>
   <tr>
     <th>유저 번호</th>

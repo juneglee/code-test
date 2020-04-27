@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public int delete(int no) throws Exception {
     return userDao.delete(no);
+
   }
 
 }
