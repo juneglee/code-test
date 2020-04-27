@@ -28,7 +28,6 @@ public class PointServiceImpl implements PointService {
   @Override
   public Point getUser(int userNo) throws Exception {
     return pointDao.findByUserNo(userNo);
-
   }
 
   @Override
@@ -50,6 +49,11 @@ public class PointServiceImpl implements PointService {
   public List<Point> findOutputByUserNo(int userNo) throws Exception {
     return pointDao.findOutputByUserNo(userNo);
   }
+
+@Override
+public Point get(int no) throws Exception {
+	return pointDao.find(no);
+}
 
 
 }

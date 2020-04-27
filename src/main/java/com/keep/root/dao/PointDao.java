@@ -9,6 +9,8 @@ public interface PointDao {
   List<Point> findAll() throws Exception;
 
   List<Point> findOutputByUserNo(int userNo) throws Exception;
+  
+  Point find(int no) throws Exception;
 
   Point findByUserNo(int userNo) throws Exception;
 

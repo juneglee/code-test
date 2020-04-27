@@ -1,12 +1,15 @@
 package com.keep.root.web;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.keep.root.domain.Point;
 import com.keep.root.domain.User;
 import com.keep.root.service.PointService;
@@ -27,7 +30,7 @@ public class PointServiceController {
   UserService userService;
 
 
-
+  
   @GetMapping("form")
   public void form() {}
 
@@ -51,14 +54,13 @@ public class PointServiceController {
   }
 
   @GetMapping("output")
-  public void listOutput(int userNo, Model model) throws Exception {
-
-    User user = userService.get(userNo);
-    if (user == null) {
-      throw new Exception("번호가 유효하지 않습니다.");
-    }
-    model.addAttribute("user", user);
-    model.addAttribute("output", pointService.findOutputByUserNo(userNo));
+  public void listOutput(User user, Model model, int no) throws Exception {
+	if(user != null) { 
+		model.addAttribute("user", user);
+	} else {
+		throw new Exception("객체가 유효하지 않습니다.");
+	}
+    model.addAttribute("output", pointService.findOutputByUserNo(user.getNo()));
   }
 
   @GetMapping("trader")
@@ -82,6 +84,7 @@ public class PointServiceController {
 
   @PostMapping("update")
   public String update(Point point) throws Exception {
+	 // Point point = pointService.get(no);
     return null;
   }
 
