@@ -46,7 +46,7 @@
       point_no 
    </select>
    
-   <select id="findAllByUserNo" resultMap="PointMap" parameterType="map">
+   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="map">
      select 
       p.user_no,
       p.trader_no,
@@ -55,13 +55,16 @@
       u.account,
       u.bank
      from
-      points p
-      inner join users u on 
+      points p , users u
+     where
       (p.user_no=u.user_no and p.trader_no=u.user_no) 
+      
+      <!-- 
+      inner join users u on 
+      
      where 
       p.point_no=#{no}
       
-      <!-- 
      select 
       p.user_no,
       p.trader_no,
@@ -72,18 +75,33 @@
      from
       points p
       inner join users u on 
-      (p.user_no=u.user_no and p.trader_no=u.user_no) 
+      (p.user_no=u.user_no) 
      where 
       p.point_no=1;
        -->
    </select>
    
-   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="int">
+    <select id="find" resultMap="PointMap" parameterType="int">
      select 
-      p.user_no
+      p.point_no,
+      p.trader_no,
+      p.user_no,
+      p.content
      from
       points p
-      inner join users u on p.user_no=u.user_no
+     where 
+      p.point_no=#{no}
+   </select>
+   
+   <select id="findByUserNo" resultMap="PointMap" parameterType="map">
+     select 
+      p.point_no,
+      p.trader_no,
+      p.user_no,
+      p.content
+     from
+      points p
+      inner join users u on p.user_no=u.user_no 
      where 
       p.point_no=#{no}
    </select>
@@ -116,6 +134,10 @@
    <delete id="delete" parameterType="int">
     delete from points
     where point_no=#{no}
+    <!-- 
+    delete from points
+    where point_no=8
+     -->
    </delete>
    
    </mapper>
