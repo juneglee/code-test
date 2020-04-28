@@ -1,10 +1,13 @@
 package com.keep.root.service.impl;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 import com.keep.root.dao.PointDao;
 import com.keep.root.domain.Point;
 import com.keep.root.service.PointService;
+
 
 @Component
 public class PointServiceImpl implements PointService {
@@ -24,6 +27,11 @@ public class PointServiceImpl implements PointService {
   public List<Point> list() throws Exception {
     return pointDao.findAll();
   }
+  
+  @Override
+  public List<Point> findOutputByUserNo(int userNo) throws Exception {
+	  return pointDao.findOutputByUserNo(userNo);
+  }
 
   @Override
   public Point get(int no) throws Exception {
@@ -31,12 +39,12 @@ public class PointServiceImpl implements PointService {
   }
 
   @Override
-  public Point getUser(String userNo) throws Exception {
-    return pointDao.findByUserNo(userNo);
+  public Point getUser(int userNo, int traderNo) throws Exception {
+    return pointDao.findByUserNo(userNo, traderNo);
   }
 
   @Override
-  public Point getTrader(String traderNo) throws Exception {
+  public Point getTrader(int traderNo) throws Exception {
     return pointDao.findBytraderNo(traderNo);
   }
 
@@ -49,12 +57,5 @@ public class PointServiceImpl implements PointService {
   public int delete(int no) throws Exception {
     return pointDao.delete(no);
   }
-
-  @Override
-  public List<Point> findOutputByUserNo() throws Exception {
-    return pointDao.findOutputByUserNo();
-  }
-
-
 
 }

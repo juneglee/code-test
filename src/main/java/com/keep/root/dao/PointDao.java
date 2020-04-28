@@ -8,13 +8,13 @@ public interface PointDao {
 
   List<Point> findAll() throws Exception;
 
-  List<Point> findOutputByUserNo() throws Exception;
+  List<Point> findOutputByUserNo(int userNo) throws Exception;
 
   Point find(int no) throws Exception;
 
-  Point findByUserNo(String userNo) throws Exception;
+  Point findByUserNo(int userNo, int traderNo) throws Exception;
 
-  Point findBytraderNo(String traderNo) throws Exception;
+  Point findBytraderNo(int traderNo) throws Exception;
 
   int update(Point point) throws Exception;
 

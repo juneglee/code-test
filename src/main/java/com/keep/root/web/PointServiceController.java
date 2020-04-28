@@ -42,7 +42,7 @@ public class PointServiceController {
   }
 
   @GetMapping("user")
-  public void getUser(String userNo, Model model) throws Exception {
+  public void getUser(int userNo, Model model) throws Exception {
     model.addAttribute("point", pointService.getUser(userNo));
   }
 
@@ -74,6 +74,16 @@ public class PointServiceController {
   @GetMapping("list")
   public void list(Model model) throws Exception {
     model.addAttribute("list", pointService.list());
+  }
+  
+  @GetMapping("listbyuser")
+  public void findOutputByUserNo(Model model, int userNo) throws Exception {
+	User user = userService.get(userNo);
+	  if (user == null) {
+	      throw new Exception("유효하지 않습니다.");
+	    }
+	model.addAttribute("user", user);
+    model.addAttribute("list", pointService.findOutputByUserNo(userNo));
   }
 
   @GetMapping("delete")
