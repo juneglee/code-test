@@ -42,8 +42,8 @@ public class PointServiceController {
   }
 
   @GetMapping("user")
-  public void getUser(int userNo, Model model) throws Exception {
-    model.addAttribute("point", pointService.getUser(userNo));
+  public void getUser(int userNo, int traderNo, Model model) throws Exception {
+    model.addAttribute("point", pointService.getUser(userNo, traderNo));
   }
 
   @GetMapping("detail")
@@ -57,7 +57,7 @@ public class PointServiceController {
 
     User user = (User) session.getAttribute("user");
     if (user != null) {
-      Point point = pointService.getUser(userNo);
+      Point point = pointService.getTrader(userNo);
       view.setViewName("output");
       view.addObject("point", point);
     } else {
@@ -75,14 +75,14 @@ public class PointServiceController {
   public void list(Model model) throws Exception {
     model.addAttribute("list", pointService.list());
   }
-  
+
   @GetMapping("listbyuser")
   public void findOutputByUserNo(Model model, int userNo) throws Exception {
-	User user = userService.get(userNo);
-	  if (user == null) {
-	      throw new Exception("유효하지 않습니다.");
-	    }
-	model.addAttribute("user", user);
+    User user = userService.get(userNo);
+    if (user == null) {
+      throw new Exception("유효하지 않습니다.");
+    }
+    model.addAttribute("user", user);
     model.addAttribute("list", pointService.findOutputByUserNo(userNo));
   }
 
