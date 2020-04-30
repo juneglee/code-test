@@ -43,7 +43,8 @@ public class PointServiceController {
 
   @GetMapping("user")
   public void getUser(int userNo, int traderNo, Model model) throws Exception {
-    model.addAttribute("point", pointService.getUser(userNo, traderNo));
+    model.addAttribute("getUserNo", pointService.getUser(userNo));
+    model.addAttribute("getTraderNo", pointService.getUser(traderNo));
   }
 
   @GetMapping("detail")
