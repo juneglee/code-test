@@ -11,7 +11,7 @@ public interface PointDao {
   List<Point> findAll() throws Exception;
 
   // 입력 번호와 상대 번호를 비교하기 위함
-  List<Point> findOutputByUserNo() throws Exception;
+  List<Point> findOutputByUserNo(int userNo) throws Exception;
 
   // detail(point) : pointType, content, price
   // detail(output): outputList check
@@ -20,10 +20,10 @@ public interface PointDao {
   Point find(int no) throws Exception;
 
   // userNo
-  Point findByUserNo(String userNo) throws Exception;
+  Point findByUserNo(int userNo) throws Exception;
 
   // 카운딩된 상대 번호 확인하기 위함
-  Point findBytraderNo(String traderNo) throws Exception;
+  Point findBytraderNo(int traderNo) throws Exception;
 
   int update(Point point) throws Exception;
 

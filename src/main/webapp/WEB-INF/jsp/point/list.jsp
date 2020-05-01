@@ -6,7 +6,6 @@
 <jsp:include page="../header.jsp"/>
 
   <h1>리스트</h1>
-  <a href='form'>새 글</a><br>
   <table border='1'>
   <tr>
     <th>포인트 번호</th>

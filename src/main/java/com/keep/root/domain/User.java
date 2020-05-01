@@ -26,13 +26,6 @@ public class User implements Serializable {
   // int point; // setter 아직 정의 안함.
 
 
-  @Override
-  public String toString() {
-    return "User [no=" + no + ", name=" + name + ", birth=" + birth + ", gender=" + gender
-        + ", email=" + email + ", password=" + password + ", tel=" + tel + ", zipCode=" + zipCode
-        + ", basicAddr=" + basicAddr + ", detailAddr=" + detailAddr + ", photo=" + photo
-        + ", nickName=" + nickName + ", account=" + account + ", bank=" + bank + "]";
-  }
 
   @Override
   public int hashCode() {
@@ -53,6 +46,14 @@ public class User implements Serializable {
     result = prime * result + ((tel == null) ? 0 : tel.hashCode());
     result = prime * result + zipCode;
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "User [no=" + no + ", name=" + name + ", birth=" + birth + ", gender=" + gender
+        + ", email=" + email + ", password=" + password + ", tel=" + tel + ", zipCode=" + zipCode
+        + ", basicAddr=" + basicAddr + ", detailAddr=" + detailAddr + ", photo=" + photo
+        + ", nickName=" + nickName + ", account=" + account + ", bank=" + bank + "]";
   }
 
   @Override
@@ -133,12 +134,12 @@ public class User implements Serializable {
     this.no = no;
   }
 
-  public String getName() {
-    return name;
-  }
-
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getName() {
+    return name;
   }
 
   public Date getBirth() {

@@ -15,24 +15,21 @@ public class PointServiceImpl implements PointService {
     this.pointDao = pointDao;
   }
 
-  // insert
   @Override
   public int add(Point point) throws Exception {
     return pointDao.insert(point);
   }
 
-  // PointList
+
   @Override
   public List<Point> list() throws Exception {
     return pointDao.findAll();
   }
 
-  // User 연결
   @Override
-  public List<Point> findOutputByUserNo() throws Exception {
-    return pointDao.findOutputByUserNo();
+  public List<Point> findOutputByUserNo(int userNo) throws Exception {
+    return pointDao.findOutputByUserNo(userNo);
   }
-
 
   @Override
   public Point get(int no) throws Exception {
@@ -40,12 +37,12 @@ public class PointServiceImpl implements PointService {
   }
 
   @Override
-  public Point getUser(String userNo) throws Exception {
+  public Point getUser(int userNo) throws Exception {
     return pointDao.findByUserNo(userNo);
   }
 
   @Override
-  public Point getTrader(String traderNo) throws Exception {
+  public Point getTrader(int traderNo) throws Exception {
     return pointDao.findBytraderNo(traderNo);
   }
 

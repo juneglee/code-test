@@ -6,6 +6,9 @@
 <jsp:include page="../header.jsp"/>
 
 <h1>Detail</h1>
+<c:if test="${point.userNo == point.traderNo}">
+  <p> error : 유저와 상대 번호가 동일하여 에러!!! </p><br>
+</c:if>
 포인트 번호 : ${point.no} <br>
 유저 번호 : ${point.userNo} <br>
 상대 번호 : ${point.traderNo} <br>

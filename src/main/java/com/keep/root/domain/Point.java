@@ -9,8 +9,8 @@ public class Point implements Serializable {
   // points
 
   int no; // point_no
-  String userNo; // user_no
-  String traderNo; // trader_no
+  int userNo; // user_no
+  int traderNo; // trader_no
   // 상대 번호도 받아야함 (user_no)로 받아야함.
   int pointType; // point_type / 입출금 분류
   int content; // content / 입출금 내용
@@ -25,19 +25,19 @@ public class Point implements Serializable {
     this.no = no;
   }
 
-  public String getUserNo() {
+  public int getUserNo() {
     return userNo;
   }
 
-  public void setUserNo(String userNo) {
+  public void setUserNo(int userNo) {
     this.userNo = userNo;
   }
 
-  public String getTraderNo() {
+  public int getTraderNo() {
     return traderNo;
   }
 
-  public void setTraderNo(String traderNo) {
+  public void setTraderNo(int traderNo) {
     this.traderNo = traderNo;
   }
 
@@ -73,6 +73,7 @@ public class Point implements Serializable {
     this.user = user;
   }
 
+
   // 포인에서 출력
   // 포유포인트, 출금 금액 ,
 
@@ -81,5 +82,7 @@ public class Point implements Serializable {
   // 얼마 출금할지??
 
   // 출금 domain 필요
+
+
 
 }

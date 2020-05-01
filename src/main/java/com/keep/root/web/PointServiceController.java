@@ -1,14 +1,12 @@
 package com.keep.root.web;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import com.keep.root.domain.Point;
 import com.keep.root.domain.User;
 import com.keep.root.service.PointService;
@@ -42,8 +40,14 @@ public class PointServiceController {
   }
 
   @GetMapping("user")
-  public void getUser(String userNo, Model model) throws Exception {
+  public void getUser(int userNo, Model model) throws Exception {
     model.addAttribute("point", pointService.getUser(userNo));
+  }
+
+
+  @GetMapping("list")
+  public void list(Model model) throws Exception {
+    model.addAttribute("list", pointService.list());
   }
 
   @GetMapping("detail")
@@ -53,28 +57,18 @@ public class PointServiceController {
   }
 
   @GetMapping("output")
-  public ModelAndView listOutput(String userNo, Model model, HttpSession session) throws Exception {
-    ModelAndView view = new ModelAndView();
-
-    User user = (User) session.getAttribute("user");
-    if (user != null) {
-      Point point = pointService.getUser(userNo);
-      view.setViewName("output");
-      view.addObject("point", point);
-    } else {
-      view.setViewName("point/list");
+  public void listOutput(int userNo, Model model) throws Exception {
+    User user = userService.get(userNo);
+    if (user == null) {
+      throw new Exception("error");
     }
-    return view;
+    model.addAttribute("user", user);
+    model.addAttribute("output", pointService.findOutputByUserNo(userNo));
   }
 
   @GetMapping("trader")
-  public void getTrader(Model model, String traderNo) throws Exception {
+  public void getTrader(Model model, int traderNo) throws Exception {
     model.addAttribute("tarder", pointService.getTrader(traderNo));
-  }
-
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("list", pointService.list());
   }
 
   @GetMapping("delete")

@@ -15,16 +15,18 @@
     <th>출금 계좌</th>
     <th>출금 은행</th>
   </tr>
-  <c:if test="${not empty point.no}">
-  <tr>
-    <td>유저 번호: ${userNo}</td> 
-    <td>상대 번호: ${tarderNo}</td> 
-    <td>유저 이름: ${user.name}</td> 
-    <td>전화 번호: ${user.tel}</td>
-    <td>출금 계좌: ${user.account}</td>
-    <td>촐금 은행: ${user.bank}</td>
-  </tr>
-</c:if>
+  <c:forEach items="${output}" var="point">
+    <c:forEach  items="${user}" var="user">
+		  <tr>
+		    <td> ${point.userNo}</td> 
+		    <td> ${point.tarderNo}</td> 
+		    <td> ${user.name}</td> 
+		    <td> ${user.tel}</td>
+		    <td> ${user.account}</td>
+		    <td> ${user.bank}</td>
+		  </tr>
+	  </c:forEach>
+  </c:forEach>
 </table>
 
 <jsp:include page="../footer.jsp"/>
