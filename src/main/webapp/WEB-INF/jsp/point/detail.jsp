@@ -5,21 +5,26 @@
 
 <jsp:include page="../header.jsp"/>
 
-<h1>content</h1>
-<c:if test="${not empty point}">
-<form action='update' method='post'>
-번호: <input name='no' readonly type='text' value='${no}'><br>
-유저 번호: <input name='userNO' type='text' value='${userNo}'><br>
-상대 번호: <input name='traderNo' type='text' value='${traderNo}'><br>
-분류: <input name='content' type='text' value='${content}'><br>
-<p>
-</p>
-</form>
-</c:if>
+<h1>Detail</h1>
+포인트 번호 : ${point.no} <br>
+유저 번호 : ${point.userNo} <br>
+상대 번호 : ${point.traderNo} <br>
+포인트 타입 : ${point.pointType} <br>
+분류 : ${point.content} <br>
 
-<c:if test="${empty point}">
-<p>해당 포인트가 없습니다.</p>
-</c:if>
+<c:choose>
+  <c:when test="${point.content == 1}">
+    <p> content 1 입니다.</p>
+  </c:when>
+  <c:when test="${point.content == 2}">
+    <p> content 2 입니다.</p>
+  </c:when>
+  <c:otherwise>
+    <p> content 3 입니다.</p> 
+  </c:otherwise>
+</c:choose>
+
+
 
 <jsp:include page="../footer.jsp"/>
     

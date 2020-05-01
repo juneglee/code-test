@@ -48,15 +48,19 @@
    
    <select id="findOutputByUserNo" resultMap="PointMap" parameterType="map">
      select 
-      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price
+      p.user_no,
+      p.trader_no,
+      u.user_name, 
+      u.phone_number,
+      u.account,
+      u.bank
      from
-      points p 
-      inner join users u on 
-      (p.user_no=u.user_no and p.trader_no=u.user_no) 
+      points p , users u
      where
-      u.user_no=#{no}
+      (p.user_no=u.user_no and p.trader_no=u.user_no) 
       
       <!-- 
+      inner join users u on 
       
      where 
       p.point_no=#{no}
@@ -64,10 +68,8 @@
      select 
       p.user_no,
       p.trader_no,
-      u.user_name, 
-      u.phone_number,
-      u.account,
-      u.bank
+      u.user_no,
+      u.user_no
      from
       points p
       inner join users u on 
@@ -77,17 +79,23 @@
        -->
    </select>
    
-    <select id="find" resultMap="PointMap" parameterType="int">
+   <select id="find" resultMap="PointMap" parameterType="map">
      select 
       p.point_no,
       p.trader_no,
       p.user_no,
+      p.point_type,
       p.content
      from
       points p
-     where 
+     where
       p.point_no=#{no}
    </select>
+   
+   <!--  
+     where 
+      p.point_no=#{no}
+    -->
    
    <select id="findByUserNo" resultMap="PointMap" parameterType="map">
      select 

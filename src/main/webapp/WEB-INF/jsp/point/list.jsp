@@ -28,6 +28,13 @@
   </tr>
 </c:forEach>
 
+<%--
+<c:if test="${userNo == traderNo}">
+  <p>해당번호가 동일할 수 없습니다.</p>
+</c:if>
+ --%>
+ 
+ <%-- --%>
 </table>
 
 <jsp:include page="../footer.jsp"/>
