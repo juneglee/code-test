@@ -19,7 +19,7 @@
 <c:forEach items="${list}" var="item">
   <tr>
     <td>${item.no}</td> 
-    <td>${item.userNo}</td> 
+    <td><a href='output?no=${item.userNo}'>${item.userNo}</td> 
     <td>${item.traderNo}</td> 
     <td>${item.pointType}</td>
     <td><a href='detail?no=${item.no}'>${item.content}</td>

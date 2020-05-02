@@ -60,7 +60,7 @@ public class PointServiceController {
   public void listOutput(int userNo, Model model) throws Exception {
     User user = userService.get(userNo);
     if (user == null) {
-      throw new Exception("error");
+      throw new Exception("해당 번호가 없습니다.");
     }
     model.addAttribute("user", user);
     model.addAttribute("output", pointService.findOutputByUserNo(userNo));

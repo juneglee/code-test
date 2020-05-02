@@ -15,17 +15,15 @@
     <th>출금 계좌</th>
     <th>출금 은행</th>
   </tr>
-  <c:forEach items="${output}" var="point">
-    <c:forEach  items="${user}" var="user">
+  <c:forEach items="${output}" var="out">
 		  <tr>
-		    <td> ${point.userNo}</td> 
-		    <td> ${point.tarderNo}</td> 
-		    <td> ${user.name}</td> 
-		    <td> ${user.tel}</td>
-		    <td> ${user.account}</td>
-		    <td> ${user.bank}</td>
+		    <td> ${out.point.userNo}</td> 
+		    <td> ${out.point.tarderNo}</td> 
+		    <td> ${out.user.name}</td> 
+		    <td> ${out.user.tel}</td>
+		    <td> ${out.user.account}</td>
+		    <td> ${out.user.bank}</td>
 		  </tr>
-	  </c:forEach>
   </c:forEach>
 </table>
 
