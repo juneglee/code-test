@@ -16,60 +16,68 @@ public class Point implements Serializable {
   int content; // content / 입출금 내용
   int price; // price /금액 // 입금 금액인지 출금금액인지
   User user;
-  
-  
-  
+
+
+  // 포인트에서 출력
+  // 보유포인트, 출금 금액 ,
+
+  // 유저에서 출력
+  // 예금주, 전화번호, 은행명, 계좌번호 , 유저번호
+  // 얼마 출금할지??
+
+  // 출금 domain 필요
+
 
   @Override
-public String toString() {
-	return "Point [no=" + no + ", userNo=" + userNo + ", traderNo=" + traderNo + ", pointType=" + pointType
-			+ ", content=" + content + ", price=" + price + ", user=" + user + "]";
-}
+  public String toString() {
+    return "Point [no=" + no + ", userNo=" + userNo + ", traderNo=" + traderNo + ", pointType="
+        + pointType + ", content=" + content + ", price=" + price + ", user=" + user + "]";
+  }
 
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + content;
-	result = prime * result + no;
-	result = prime * result + pointType;
-	result = prime * result + price;
-	result = prime * result + traderNo;
-	result = prime * result + ((user == null) ? 0 : user.hashCode());
-	result = prime * result + userNo;
-	return result;
-}
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + content;
+    result = prime * result + no;
+    result = prime * result + pointType;
+    result = prime * result + price;
+    result = prime * result + traderNo;
+    result = prime * result + ((user == null) ? 0 : user.hashCode());
+    result = prime * result + userNo;
+    return result;
+  }
 
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Point other = (Point) obj;
-	if (content != other.content)
-		return false;
-	if (no != other.no)
-		return false;
-	if (pointType != other.pointType)
-		return false;
-	if (price != other.price)
-		return false;
-	if (traderNo != other.traderNo)
-		return false;
-	if (user == null) {
-		if (other.user != null)
-			return false;
-	} else if (!user.equals(other.user))
-		return false;
-	if (userNo != other.userNo)
-		return false;
-	return true;
-}
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Point other = (Point) obj;
+    if (content != other.content)
+      return false;
+    if (no != other.no)
+      return false;
+    if (pointType != other.pointType)
+      return false;
+    if (price != other.price)
+      return false;
+    if (traderNo != other.traderNo)
+      return false;
+    if (user == null) {
+      if (other.user != null)
+        return false;
+    } else if (!user.equals(other.user))
+      return false;
+    if (userNo != other.userNo)
+      return false;
+    return true;
+  }
 
-public int getNo() {
+  public int getNo() {
     return no;
   }
 
@@ -124,17 +132,6 @@ public int getNo() {
   public void setUser(User user) {
     this.user = user;
   }
-
-
-  // 포인에서 출력
-  // 포유포인트, 출금 금액 ,
-
-  // 유저에서 출력
-  // 예금주, 전화번호, 은행명, 계좌번호 , 유저번호
-  // 얼마 출금할지??
-
-  // 출금 domain 필요
-
 
 
 }

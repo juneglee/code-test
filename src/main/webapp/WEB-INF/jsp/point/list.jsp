@@ -18,8 +18,9 @@
   
 <c:forEach items="${list}" var="item">
   <tr>
+  <!-- <a href='output?no=${item.no}'> -->
     <td>${item.no}</td> 
-    <td><a href='output?no=${item.userNo}'>${item.userNo}</td> 
+    <td>${item.userNo}</td> 
     <td>${item.traderNo}</td> 
     <td>${item.pointType}</td>
     <td><a href='detail?no=${item.no}'>${item.content}</td>

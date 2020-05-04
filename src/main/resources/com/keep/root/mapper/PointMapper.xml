@@ -44,14 +44,20 @@
       points p
      where
       point_no
-      <!-- p.trader_no!=p.user_no and  -->
+      <!-- 
+      and
+      <if test="p.user_no != p.trader_no">
+       p.user_no like #{p.user_no}
+       and p.trader_no like #{p.trader_no}
+      </if>
+      p.trader_no!=p.user_no and  
+      -->
    </select>
    
-   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="int">
+   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="map">
      select 
       p.user_no,
       p.trader_no,
-      u.user_no,
       u.user_name, 
       u.phone_number,
       u.account,
@@ -60,9 +66,9 @@
       points p 
       inner join users u on (p.user_no=u.user_no) 
       where
-      u.user_no=#{no}
-      
+      u.user_no
       <!-- 
+      
      from
       points p , users u 
      where
@@ -106,14 +112,17 @@
    <select id="findByUserNo" resultMap="PointMap" parameterType="map">
      select 
       p.point_no,
-      p.trader_no,
       p.user_no,
-      p.content
+      p.trader_no,
+      u.user_name, 
+      u.phone_number,
+      u.account,
+      u.bank
      from
       points p
       inner join users u on p.user_no=u.user_no 
      where 
-      p.point_no=#{no}
+      p.user_no=#{no}
    </select>
    
    <select id="findBytraderNo" resultMap="PointMap" parameterType="int">

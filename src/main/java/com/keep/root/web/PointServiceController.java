@@ -39,9 +39,14 @@ public class PointServiceController {
     }
   }
 
-  @GetMapping("user")
+  @GetMapping("outputdetail")
   public void getUser(int userNo, Model model) throws Exception {
-    model.addAttribute("point", pointService.getUser(userNo));
+    User user = userService.get(userNo);
+    if (user == null) {
+      throw new Exception("해당 번호의 정보가 없습니다.");
+    }
+    model.addAttribute("user", user);
+    model.addAttribute("outputdetail", pointService.getUser(userNo));
   }
 
 
@@ -57,13 +62,8 @@ public class PointServiceController {
   }
 
   @GetMapping("output")
-  public void listOutput(int userNo, Model model) throws Exception {
-    User user = userService.get(userNo);
-    if (user == null) {
-      throw new Exception("해당 번호가 없습니다.");
-    }
-    model.addAttribute("user", user);
-    model.addAttribute("output", pointService.findOutputByUserNo(userNo));
+  public void listOutput(Model model) throws Exception {
+    model.addAttribute("output", pointService.findOutputByUserNo());
   }
 
   @GetMapping("trader")

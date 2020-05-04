@@ -11,7 +11,7 @@ public interface PointDao {
   List<Point> findAll() throws Exception;
 
   // 입력 번호와 상대 번호를 비교하기 위함
-  List<Point> findOutputByUserNo(int userNo) throws Exception;
+  List<Point> findOutputByUserNo() throws Exception;
 
   // detail(point) : pointType, content, price
   // detail(output): outputList check

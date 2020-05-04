@@ -11,7 +11,7 @@ public interface PointService {
 
   List<Point> list() throws Exception;
 
-  List<Point> findOutputByUserNo(int userNo) throws Exception;
+  List<Point> findOutputByUserNo() throws Exception;
 
   Point get(int no) throws Exception;
 
