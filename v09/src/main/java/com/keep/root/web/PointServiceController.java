@@ -61,23 +61,10 @@ public class PointServiceController {
     model.addAttribute("point", point);
   }
 
-
   @GetMapping("output")
   public void listOutput(Model model) throws Exception {
     model.addAttribute("output", pointService.findOutputByUserNo());
   }
-
-  // @GetMapping
-  // public ModelAndView listOutput(//
-  // HttpServletRequest request, //
-  // @RequestParam("user") User user) throws Exception {
-  // ModelAndView mv = new ModelAndView();
-  // mv.addObject("out", pointService.findOutputByUserNo());
-  // mv.addObject("user", user);
-  // mv.setViewName("output");
-  // return mv;
-  // }
-  // model
 
   @GetMapping("trader")
   public void getTrader(Model model, int traderNo) throws Exception {

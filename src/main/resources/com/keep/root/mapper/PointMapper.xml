@@ -148,6 +148,11 @@ select distinct user_no from users;
       price=#{price}
      where point_no=#{no}
      <!-- 
+     <set>
+      <if test="pointType != null and pointType != ''">point_type=#{pointType},</if>
+      <if test="content != null and content != ''">content=#{content},</if> 
+      <if test="price != null and price != ''">price=#{price}</if>
+    </set>
      update points set
       point_type=2,
       content=2,

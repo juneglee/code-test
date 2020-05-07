@@ -6,6 +6,8 @@
 <jsp:include page="../header.jsp"/>
 
   <h1>출금 리스트</h1>
+  ${name}<br>
+  ${user.name}<br>
   <table border='1'>
   <tr>
     <th>유저 번호</th>
@@ -15,14 +17,18 @@
     <th>출금 계좌</th>
     <th>출금 은행</th>
   </tr>
+  <c:forEach items="${output}" var="out"  varStatus="status">
+    <c:forEach items="${user}" var="in">
 		  <tr>
-		    <td> ${point.userNo}</td> 
-		    <td> ${point.traderNo}</td> 
-		    <td> ${user.name}</td> 
-		    <td> ${user.tel}</td>
-		    <td> ${user.account}</td>
-		    <td> ${user.user.bank}</td>
+		    <td> ${out.points.userNo}</td> 
+		    <td> ${out.traderNo}</td> 
+		    <td> ${in.name}</td> 
+		    <td> ${in.tel}</td>
+		    <td> ${in.account}</td>
+		    <td> ${in.user.bank}</td>
 		  </tr>
+		</c:forEach>  
+  </c:forEach>
 </table>
 
 <jsp:include page="../footer.jsp"/>

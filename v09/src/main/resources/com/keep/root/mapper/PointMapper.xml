@@ -26,16 +26,18 @@
       
     </resultMap>
    
-   <select id="insert" parameterType="Point">
+   <insert id="insert" parameterType="Point"
+   useGeneratedKeys="true" keyColumn="point_no" keyProperty="no">
      insert into points
        user_no, trader_no, point_type, content, price
-     values(#{userNo}, #{traderNo}, #{pointType}, #{content}, #{price})
+     values(#{user.no}, #{user.no}, #{pointType}, #{content}, #{price})
+     
      <!-- 
     insert into points (user_no, trader_no, point_type, content,  price )
        values( 4, 2, 2, 2, 20000);
+     where user_no != trader_no
       -->
-     
-   </select>
+   </insert>
    
    <select id="findAll" resultMap="PointMap" parameterType="map">
      select 
@@ -44,6 +46,7 @@
       points p
      where
       point_no
+      and p.user_no != p.trader_no
       <!-- 
       and
       <if test="p.user_no != p.trader_no">
@@ -54,7 +57,7 @@
       -->
    </select>
    
-   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="map">
+   <select id="findOutputByUserNo" resultMap="PointMap" parameterType="int">
      select 
       p.user_no,
       p.trader_no,
@@ -66,7 +69,8 @@
       points p 
       inner join users u on (p.user_no=u.user_no) 
       where
-      u.user_no
+      u.user_no=#{userNo}
+      and p.user_no != p.trader_no
       <!-- 
       
      from
@@ -142,22 +146,16 @@ select distinct user_no from users;
     -->
    
    <update id="update" parameterType="Point">
-     update points set
-      point_type=#{pointType},
-      content=#{content},
-      price=#{price}
+     update points p set
+      p.price=#{price}
      where point_no=#{no}
      <!-- 
-     <set>
-      <if test="pointType != null and pointType != ''">point_type=#{pointType},</if>
-      <if test="content != null and content != ''">content=#{content},</if> 
-      <if test="price != null and price != ''">price=#{price}</if>
-    </set>
-     update points set
-      point_type=2,
-      content=2,
-      price=80000
-     where point_no=2
+     update points p, users u set
+      p.user_no=1,
+      p.trader_no=2,
+      p.price=3000,
+      u.user_name=2222
+     where u.user_no=1;
       -->
    </update>
    
