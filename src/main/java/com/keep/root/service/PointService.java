@@ -1,17 +1,15 @@
 package com.keep.root.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
 import com.keep.root.domain.Point;
 
-@Service
 public interface PointService {
 
   int add(Point point) throws Exception;
 
   List<Point> list() throws Exception;
 
-  List<Point> findOutputByUserNo(int userNo) throws Exception;
+  List<Point> findOutputByUserNo() throws Exception;
 
   Point get(int no) throws Exception;
 

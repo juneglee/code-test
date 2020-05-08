@@ -27,7 +27,7 @@ public class PointServiceImpl implements PointService {
   }
 
   @Override
-  public List<Point> findOutputByUserNo(int userNo) throws Exception {
+  public List<Point> findOutputByUserNo() throws Exception {
     return pointDao.findOutputByUserNo();
   }
 

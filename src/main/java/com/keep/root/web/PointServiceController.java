@@ -1,6 +1,8 @@
 package com.keep.root.web;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,13 +32,31 @@ public class PointServiceController {
   @GetMapping("form")
   public void form() {}
 
-  @GetMapping("add")
-  public String add(Point point) throws Exception {
-    if (pointService.add(point) > 0) {
-      return "redirect:list";
-    } else {
-      throw new Exception("추가할 수 없습니다.");
-    }
+
+  @PostMapping("add")
+  public String add(//
+      String name, //
+      String tel, //
+      String account, //
+      String bank, //
+      int price, //
+      int no, HttpServletResponse response, //
+      HttpSession session, //
+      Model model) throws Exception {
+    // Point nolist = pointService.get(no);
+    // model.addAttribute("nolist", nolist);
+
+    Point point = (Point) session.getAttribute("point");
+    point.setPrice(price);
+
+    User user = (User) session.getAttribute("user");
+    user.setTel(tel);
+    user.setAccount(Integer.valueOf(account));
+    user.setName(name);
+    user.setBank(bank);
+
+
+    return "/WEB-INF/jsp/form.jsp";
   }
 
   @GetMapping("outputdetail")

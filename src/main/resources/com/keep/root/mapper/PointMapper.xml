@@ -16,13 +16,13 @@
 	    <result column="content"   property="content"/>
 	    <result column="price"   property="price"/>
 	    
-	    <association property="user" javaType="User">
+	    <collection property="user" javaType="User">
       <id column="user_no"   property="no"/>
       <result column="user_name"  property="name"/>
       <result column="phone_number"  property="tel"/>
       <result column="account"  property="account"/>
       <result column="bank"  property="bank"/>
-      </association>
+      </collection>
       
     </resultMap>
    
@@ -32,7 +32,7 @@
      values(#{userNo}, #{traderNo}, #{pointType}, #{content}, #{price})
      <!-- 
     insert into points (user_no, trader_no, point_type, content,  price )
-       values( 4, 2, 2, 2, 20000);
+       values( 4, 3, 3, 2, 20000);
       -->
      
    </select>
@@ -70,12 +70,12 @@
       <!-- 
       
      from
-      points p , users u 
+      points p, users u 
      where
       u.user_no=#{no}
       (p.user_no=u.user_no and p.trader_no!=u.user_no) 
-  - inner 조인을 하지 않았을 경우, 해당 번호에 대한 값이 실행되지 않았음.
-  - 즉, 해당 번호가 반복되었음. 
+      - inner 조인을 하지 않았을 경우, 해당 번호에 대한 값이 실행되지 않았음.
+      - 즉, 해당 번호가 반복되었음. 
       
      select 
       p.user_no,
@@ -136,28 +136,42 @@
    </select>
    
    <!-- 
-   select distinct user_no from points
-union 
-select distinct user_no from users;
+    select distinct user_no from points
+		union 
+		select distinct user_no from users;
     -->
    
    <update id="update" parameterType="Point">
-     update points set
-      point_type=#{pointType},
-      content=#{content},
-      price=#{price}
-     where point_no=#{no}
+   update points p set
+   <if test="price != null and price != ''"> p.price=#{price}</if>
+   where p.point_no=#{no}
+     
+     
+   
      <!-- 
+     update points p, users u
      <set>
-      <if test="pointType != null and pointType != ''">point_type=#{pointType},</if>
-      <if test="content != null and content != ''">content=#{content},</if> 
-      <if test="price != null and price != ''">price=#{price}</if>
-    </set>
-     update points set
-      point_type=2,
-      content=2,
-      price=80000
-     where point_no=2
+      <if test="account != null and account != ''"> u.account=#{account},</if>
+      <if test="bank != null and bank != ''"> u.bank=#{bank},</if>
+      <if test="tel != null and tel != ''"> u.phone_number=#{tel},</if>
+      <if test="price != null and price != ''"> p.price=#{price},</if>
+      <if test="content != null and content != ''"> p.content=#{content}</if>
+     </set>
+     where p.point_no=#{no} and u.user_no#{userNo}
+
+     
+    update points p, users u
+     set
+      u.account=11,
+      u.bank='하나',
+      u.phone_number=010-4444-6666,
+      p.price=10000,
+      p.content=3
+     where p.point_no=2 and u.user_no=1
+     
+       <if test="price != null and price != ''"> p.price=3000</if>
+   where p.point_no=7
+      
       -->
    </update>
    

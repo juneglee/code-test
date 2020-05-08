@@ -69,7 +69,7 @@
       points p 
       inner join users u on (p.user_no=u.user_no) 
       where
-      u.user_no=#{userNo}
+      u.user_no
       and p.user_no != p.trader_no
       <!-- 
       
