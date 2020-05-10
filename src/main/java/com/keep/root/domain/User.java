@@ -1,129 +1,31 @@
 package com.keep.root.domain;
 
-import java.io.Serializable;
 import java.sql.Date;
-import org.apache.ibatis.type.Alias;
 
-@Alias("User")
-public class User implements Serializable {
-  private static final long serialVersionUID = 1L;
+public class User {
 
-  // users
-  int no; // user_no
-  String name; // user_name
-  Date birth; // birthday
-  int gender; // gender
-  String email; // email
-  String password; // password
-  String tel; // phone_number
-  int zipCode; // zip_code
-  String basicAddr; // basic_address
-  String detailAddr; // detail_address
-  String photo; // photo
-  String nickName; // nickname
-  int account; // account
-  String bank; // bank
-  // int point; // setter 아직 정의 안함.
-
-
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + account;
-    result = prime * result + ((bank == null) ? 0 : bank.hashCode());
-    result = prime * result + ((basicAddr == null) ? 0 : basicAddr.hashCode());
-    result = prime * result + ((birth == null) ? 0 : birth.hashCode());
-    result = prime * result + ((detailAddr == null) ? 0 : detailAddr.hashCode());
-    result = prime * result + ((email == null) ? 0 : email.hashCode());
-    result = prime * result + gender;
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + ((nickName == null) ? 0 : nickName.hashCode());
-    result = prime * result + no;
-    result = prime * result + ((password == null) ? 0 : password.hashCode());
-    result = prime * result + ((photo == null) ? 0 : photo.hashCode());
-    result = prime * result + ((tel == null) ? 0 : tel.hashCode());
-    result = prime * result + zipCode;
-    return result;
-  }
+  int no;
+  String email;
+  String password;
+  String name;
+  Date birth;
+  int gender;
+  String tel;
+  int zipCode;
+  String basicAddr;
+  String detailAddr;
+  String photo;
+  String nickName;
+  int account;
+  String bank;
+  int point; // setter 아직 정의 안함.
 
   @Override
   public String toString() {
-    return "User [no=" + no + ", name=" + name + ", birth=" + birth + ", gender=" + gender
-        + ", email=" + email + ", password=" + password + ", tel=" + tel + ", zipCode=" + zipCode
-        + ", basicAddr=" + basicAddr + ", detailAddr=" + detailAddr + ", photo=" + photo
-        + ", nickName=" + nickName + ", account=" + account + ", bank=" + bank + "]";
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    User other = (User) obj;
-    if (account != other.account)
-      return false;
-    if (bank == null) {
-      if (other.bank != null)
-        return false;
-    } else if (!bank.equals(other.bank))
-      return false;
-    if (basicAddr == null) {
-      if (other.basicAddr != null)
-        return false;
-    } else if (!basicAddr.equals(other.basicAddr))
-      return false;
-    if (birth == null) {
-      if (other.birth != null)
-        return false;
-    } else if (!birth.equals(other.birth))
-      return false;
-    if (detailAddr == null) {
-      if (other.detailAddr != null)
-        return false;
-    } else if (!detailAddr.equals(other.detailAddr))
-      return false;
-    if (email == null) {
-      if (other.email != null)
-        return false;
-    } else if (!email.equals(other.email))
-      return false;
-    if (gender != other.gender)
-      return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    if (nickName == null) {
-      if (other.nickName != null)
-        return false;
-    } else if (!nickName.equals(other.nickName))
-      return false;
-    if (no != other.no)
-      return false;
-    if (password == null) {
-      if (other.password != null)
-        return false;
-    } else if (!password.equals(other.password))
-      return false;
-    if (photo == null) {
-      if (other.photo != null)
-        return false;
-    } else if (!photo.equals(other.photo))
-      return false;
-    if (tel == null) {
-      if (other.tel != null)
-        return false;
-    } else if (!tel.equals(other.tel))
-      return false;
-    if (zipCode != other.zipCode)
-      return false;
-    return true;
+    return "User [no=" + no + ", name=" + name + ", birth=" + birth + ", gender=" + gender + ", email=" + email
+        + ", password=" + password + ", tel=" + tel + ", zipCode=" + zipCode + ", basicAddr=" + basicAddr
+        + ", detailAddr=" + detailAddr + ", photo=" + photo + ", nickName=" + nickName + ", account=" + account
+        + ", bank=" + bank + "]";
   }
 
   public int getNo() {
@@ -134,12 +36,12 @@ public class User implements Serializable {
     this.no = no;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public Date getBirth() {
@@ -238,4 +140,10 @@ public class User implements Serializable {
     this.bank = bank;
   }
 
+  public int getPoint() {
+    return point;
+  }
+
+  public void setPoint(int point) {
+  }
 }

@@ -29,7 +29,7 @@ DROP TABLE IF EXISTS review_place_photo RESTRICT;
 -- 인포 사진 모음
 DROP TABLE IF EXISTS info_photo RESTRICT;
 
-
+-- select * from 
 ------------------------------------------------------------------------------------------------
 
 -- 유저 Data

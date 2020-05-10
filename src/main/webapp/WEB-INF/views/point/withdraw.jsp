@@ -29,20 +29,18 @@
   // 결제 시스템 연동 API
   // - 아임포트, 부트페이, 이니시스 
  -->
-<jsp:include page="../header.jsp"/>
 
-<form action='update' method='post' enctype='multipart/form-data'>
-보유포인트 : <input id="p1" name="price" type="text"> <br>
+<form action='add' method='post' >
+보유포인트 : <input id="p1" name="inprice" type="text" "${point.price}" readonly> <br>
 
 예금주 : <input name="name" type="text" value= "${user.name}" readonly> <br>
 전화번호 : <input name="tel" type="text" > <br>
 은행명 : <input name="bank" type="text" > <br>
 계좌번호 : <input name="account" type="text" > <br>
-출금금액 : <input id="p2" name="price" type="text"><br>
+출금금액 : <input id="p2" name="outprice" type="text"><br>
 <button>제출</button>
 </form>
 
 <script type="text/javascript">
 </script>
 
-<jsp:include page="../footer.jsp"/>
