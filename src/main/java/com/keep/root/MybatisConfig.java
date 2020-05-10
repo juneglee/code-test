@@ -1,7 +1,6 @@
 package com.keep.root;
 
 import javax.sql.DataSource;
-
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
@@ -34,7 +33,8 @@ public class MybatisConfig {
   // 이 메서드를 호출하고 그 리턴 값을 보관한다.
 
   @Bean
-  public SqlSessionFactory sqlSessionFactory(DataSource dataSource, // DB 커넥션풀
+  public SqlSessionFactory sqlSessionFactory(//
+      DataSource dataSource, // DB 커넥션풀
       ApplicationContext appCtx // Spring IoC 컨테이너
   ) throws Exception {
 
@@ -52,3 +52,5 @@ public class MybatisConfig {
     return sqlSessionFactoryBean.getObject();
   }
 }
+
+

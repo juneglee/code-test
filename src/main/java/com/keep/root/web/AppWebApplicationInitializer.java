@@ -1,19 +1,17 @@
 package com.keep.root.web;
 
 import javax.servlet.Filter;
-
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
 import com.keep.root.AppConfig;
 
-public class AppWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppWebApplicationInitializer
+    extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   // String uploadTmpDir;
   //
   // public AppWebApplicationInitializer() {
-  // uploadTmpDir = new
-  // File(System.getProperty("java.io.tmpdir")).getAbsolutePath();
+  // uploadTmpDir = new File(System.getProperty("java.io.tmpdir")).getAbsolutePath();
   // System.out.println("업로드 임시 폴더: " + uploadTmpDir);
   // }
 
@@ -24,7 +22,7 @@ public class AppWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
   @Override
   protected Class<?>[] getServletConfigClasses() {
-    return new Class<?>[] { AppConfig.class };
+    return new Class<?>[] {AppConfig.class};
   }
 
   @Override
@@ -36,13 +34,14 @@ public class AppWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
   @Override
   protected String[] getServletMappings() {
-    return new String[] { "/app/*" };
+    return new String[] {"/app/*"};
   }
 
   @Override
   protected String getServletName() {
     return "app1";
   }
+
 
   // @Override
   // protected void customizeRegistration( //
@@ -70,3 +69,5 @@ public class AppWebApplicationInitializer extends AbstractAnnotationConfigDispat
   // }
 
 }
+
+

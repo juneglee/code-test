@@ -18,6 +18,7 @@ public class Point implements Serializable {
   User user;
 
 
+
   // 포인트에서 출력
   // 보유포인트, 출금 금액 ,
 
