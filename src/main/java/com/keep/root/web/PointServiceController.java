@@ -30,29 +30,49 @@ public class PointServiceController {
 
 
   @GetMapping("form")
-  public void form() {}
+  public void form(String name, //
+      String tel, //
+      String account, //
+      String bank, //
+      Model model) throws Exception {
+    User user = userService.get(name, tel, account, bank);
+    if (user == null) {
+      throw new Exception("해당 유저 정보가 없습니다.");
+    }
+    model.addAttribute("user", user);
+
+  }
+
 
 
   @PostMapping("add")
-  public String add(//
+  public void add(HttpSession session, int price) throws Exception {
+    Point point = new Point();
+    point.setPrice(price);
+  }
+
+  @PostMapping("withdraw")
+  public String withdraw(//
       String name, //
       String tel, //
       String account, //
       String bank, //
       int price, //
-      int no, HttpServletResponse response, //
+      int no, //
+      HttpServletResponse response, //
       HttpSession session, //
       Model model) throws Exception {
-    // Point nolist = pointService.get(no);
-    // model.addAttribute("nolist", nolist);
 
-	User user = userService.get(name, tel, account, bank);
-	if (user == null) {
-	      throw new Exception("해당 번호의 정보가 없습니다.");
-	}
-	model.addAttribute("user", user);
+    User user = userService.get(name, tel, account, bank);
+    if (user == null) {
+      throw new Exception("해당 유저 정보가 없습니다.");
+    }
+    model.addAttribute("user", user);
+
     Point point = (Point) session.getAttribute("point");
-    point.setPrice(price);
+    point.getPrice();
+
+    pointService.update(point);
 
     return "/WEB-INF/jsp/point/form.jsp";
     // return "/WEB-INF/view/point/withdraw.jsp";
@@ -73,6 +93,14 @@ public class PointServiceController {
   public void list(Model model) throws Exception {
     model.addAttribute("list", pointService.list());
   }
+  // int tarderNo, //
+  // int userNo, //
+  // Point tn = pointService.getTrader(tarderNo);
+  // Point un = pointService.getUser(userNo);
+  //
+  // if (tn == un) {
+  // throw new Exception("동일한 정보를 입력 받을 수 없습니다.");
+  // }
 
   @GetMapping("detail")
   public void detail(int no, Model model) throws Exception {
@@ -103,21 +131,21 @@ public class PointServiceController {
     model.addAttribute("tarder", pointService.getTrader(traderNo));
   }
 
-  @GetMapping("delete")
-  public String delete(int no) throws Exception {
-    if (pointService.delete(no) > 0) {
-      return "redirect:list";
-    } else {
-      throw new Exception("삭제할 게시물 번호가 유효하지 않습니다.");
-    }
-  }
-
   @PostMapping("update")
   public String update(Point point) throws Exception {
     if (pointService.update(point) > 0) {
       return "redirect:list";
     } else {
       throw new Exception("변경할 수 없습니다.");
+    }
+  }
+
+  @GetMapping("delete")
+  public String delete(int no) throws Exception {
+    if (pointService.delete(no) > 0) {
+      return "redirect:list";
+    } else {
+      throw new Exception("삭제할 게시물 번호가 유효하지 않습니다.");
     }
   }
 }

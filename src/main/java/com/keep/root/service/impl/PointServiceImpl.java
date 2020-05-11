@@ -1,11 +1,7 @@
 package com.keep.root.service.impl;
 
 import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.keep.root.dao.PointDao;
 import com.keep.root.domain.Point;
 import com.keep.root.service.PointService;
@@ -14,16 +10,20 @@ import com.keep.root.service.PointService;
 public class PointServiceImpl implements PointService {
 
   PointDao pointDao;
-  
+
   public PointServiceImpl(PointDao pointDao) {
     this.pointDao = pointDao;
   }
 
   @Override
-  public void add(Point point) throws Exception {
-	  pointDao.insert(point);
+  public int add(Point point) throws Exception {
+    return pointDao.insert(point);
   }
 
+  @Override
+  public void withdraw(Point point) throws Exception {
+    pointDao.insert(point);
+  }
 
   @Override
   public List<Point> list() throws Exception {

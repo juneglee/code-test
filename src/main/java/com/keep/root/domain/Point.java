@@ -28,7 +28,6 @@ public class Point implements Serializable {
 
   // 출금 domain 필요
 
-
   @Override
   public String toString() {
     return "Point [no=" + no + ", userNo=" + userNo + ", traderNo=" + traderNo + ", pointType="

@@ -174,5 +174,20 @@
       email=#{email} 
       and password=password(#{password})
   </select>
+  
+  <select id="findForWithdraw" 
+    resultMap="UserMap" 
+    parameterType="map">
+    select
+    email,
+    user_name,
+    phone_number,
+    account,
+    bank
+    from user
+    where 
+      email=#{email} 
+      and password=password(#{password})
+  </select>
 </mapper>
 

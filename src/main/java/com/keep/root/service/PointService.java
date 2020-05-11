@@ -5,7 +5,9 @@ import com.keep.root.domain.Point;
 
 public interface PointService {
 
-  void add(Point point) throws Exception;
+  int add(Point point) throws Exception;
+
+  void withdraw(Point point) throws Exception;
 
   List<Point> list() throws Exception;
 

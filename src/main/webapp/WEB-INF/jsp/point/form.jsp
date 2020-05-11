@@ -31,13 +31,12 @@
  -->
 <jsp:include page="../header.jsp"/>
 
-<form action='add' method='post' >
-보유포인트 : ${point.price} <br>
-예금주 : ${user.name} <br>
-전화번호 : <input name="tel" type="text" > <br>
-은행명 : <input name="bank" type="text" > <br>
-계좌번호 : <input name="account" type="text" > <br>
-출금금액 : <input id="p2" name="outprice" type="text"><br>
+<form action='add' method='post'>
+보유포인트 : <input name="price" type="text" > <br><!--출금할 수 있는 보유 잔량  -->
+예금주 : <input name="name" type="text" value='${user.name}'> <br> 
+전화번호 : <input name="tel" type="text" value='${user.tel}'> <br> <!-- 인증 -->
+은행명 : <input name="bank" type="text" value="${user.bank}"> <br>
+계좌번호 : <input name="account" type="text"  value="${user.account}"> <br> 
 <button>제출</button>
 </form>
 

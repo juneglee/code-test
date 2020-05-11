@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../header.jsp"/>
-
   <h1>리스트</h1>
   <table border='1'>
   <tr>
@@ -15,6 +14,7 @@
     <th>입출금 내용</th>
     <th>포인트 금액</th>
   </tr>
+
   
 <c:forEach items="${list}" var="item">
   <tr>

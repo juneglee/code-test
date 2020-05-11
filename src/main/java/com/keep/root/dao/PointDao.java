@@ -5,7 +5,7 @@ import com.keep.root.domain.Point;
 
 public interface PointDao {
   // output add form : session
-  void insert(Point point) throws Exception;
+  int insert(Point point) throws Exception;
 
   // List : 입력 받은 후에 저장된 리스트
   List<Point> findAll() throws Exception;
@@ -28,5 +28,5 @@ public interface PointDao {
   int update(Point point) throws Exception;
 
   int delete(int no) throws Exception;
-  
+
 }
