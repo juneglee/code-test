@@ -5,7 +5,7 @@
 
 <jsp:include page="../header.jsp"/>
 
-<h1>Detail</h1>
+<h1>포인트 리스트 입출금 상태</h1>
 <c:if test="${point.userNo == point.traderNo}">
   <p> error : 유저와 상대 번호가 동일하여 잘못된 정보 입니다. </p><br>
   

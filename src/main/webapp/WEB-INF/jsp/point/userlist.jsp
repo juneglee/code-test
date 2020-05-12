@@ -4,7 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../header.jsp"/>
-  <h1>관리자용 포인트 리스트</h1>
+  <h1>사용자별 포인트 리스트</h1>
+  <td>${user.name} 의 출금 리스트 </td>
+  <!-- get으로 가져와야함 -->>
   <table border='1'>
   <tr>
     <th>포인트 번호</th>
@@ -16,9 +18,8 @@
   </tr>
 
   
-<c:forEach items="${list}" var="item">
+<c:forEach items="${userlist}" var="item">
   <tr>
-  <!-- <a href='output?no=${item.no}'> -->
     <td>${item.no}</td> 
     <td>${item.userNo}</td> 
     <td>${item.traderNo}</td> 
@@ -35,4 +36,4 @@
  --%>
 </table>
 
-
+<jsp:include page="../footer.jsp"/>

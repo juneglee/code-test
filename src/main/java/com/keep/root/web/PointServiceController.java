@@ -28,27 +28,32 @@ public class PointServiceController {
   @Autowired
   UserService userService;
 
-
   @GetMapping("form")
-  public void form(String name, //
-      String tel, //
-      String account, //
-      String bank, //
-      Model model) throws Exception {
-    User user = userService.get(name, tel, account, bank);
-    if (user == null) {
-      throw new Exception("해당 유저 정보가 없습니다.");
-    }
-    model.addAttribute("user", user);
-
+  public void form(int userNo, Model model) throws Exception {
+    model.addAttribute("user", userService.get(userNo));
+    model.addAttribute("point", pointService.get(userNo));
   }
 
-
-
   @PostMapping("add")
-  public void add(HttpSession session, int price) throws Exception {
+  public String add(//
+      int userNo, //
+      int tarderNo, //
+      int pointType, //
+      int content, //
+      int price) throws Exception {
+    User user = userService.get(userNo);
+    if (user == null) {
+      throw new Exception("없음");
+    }
+
     Point point = new Point();
+    point.setTraderNo(tarderNo);
+    point.setContent(content);
+    point.setPointType(pointType);
     point.setPrice(price);
+    point.setUser(user);
+
+    return "redirect:list?userNo=" + userNo;
   }
 
   @PostMapping("withdraw")
@@ -65,12 +70,12 @@ public class PointServiceController {
 
     User user = userService.get(name, tel, account, bank);
     if (user == null) {
-      throw new Exception("해당 유저 정보가 없습니다.");
+      throw new Exception("정보가 일치하지 않습니다.");
     }
     model.addAttribute("user", user);
 
     Point point = (Point) session.getAttribute("point");
-    point.getPrice();
+    point.setPrice(price);
 
     pointService.update(point);
 
@@ -93,14 +98,11 @@ public class PointServiceController {
   public void list(Model model) throws Exception {
     model.addAttribute("list", pointService.list());
   }
-  // int tarderNo, //
-  // int userNo, //
-  // Point tn = pointService.getTrader(tarderNo);
-  // Point un = pointService.getUser(userNo);
-  //
-  // if (tn == un) {
-  // throw new Exception("동일한 정보를 입력 받을 수 없습니다.");
-  // }
+
+  @GetMapping("userlist")
+  public void list(int userNo, Model model) throws Exception {
+    model.addAttribute("userlist", pointService.list(userNo));
+  }
 
   @GetMapping("detail")
   public void detail(int no, Model model) throws Exception {

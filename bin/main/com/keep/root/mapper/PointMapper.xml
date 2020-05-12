@@ -34,7 +34,6 @@
     insert into points (user_no, trader_no, point_type, content,  price )
        values( 4, 3, 3, 2, 20000);
       -->
-     
    </select>
    
    <select id="findAll" resultMap="PointMap" parameterType="map">
@@ -43,16 +42,34 @@
      from
       points p
      where
-      point_no
-      <!-- 
-      and
-      <if test="p.user_no != p.trader_no">
-       p.user_no like #{p.user_no}
-       and p.trader_no like #{p.trader_no}
-      </if>
-      p.trader_no!=p.user_no and  
-      -->
+	     not p.user_no = p.trader_no 
+	     and point_no
    </select>
+   
+   <select id="findAllByUser" resultMap="PointMap" parameterType="map">
+     select 
+      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price,
+      u.user_name, u.phone_number, u.user_no, u.account, u.bank
+     from
+      points p
+      inner join users u on (p.user_no=u.user_no)  
+     where
+      not p.user_no = p.trader_no
+      and p.user_no=${userNo}
+ 
+      <!-- 
+     select 
+      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price,
+      u.user_name, u.phone_number, u.user_no, u.account, u.bank
+     from
+      points p
+      inner join users u on (p.user_no=u.user_no) // inner join은 from
+     where
+      not p.user_no = p.trader_no 
+      and p.user_no=1;
+
+       -->
+    </select>
    
    <select id="findOutputByUserNo" resultMap="PointMap" parameterType="map">
      select 
@@ -68,26 +85,8 @@
       where
       u.user_no
       <!-- 
-      
-     from
-      points p, users u 
-     where
-      u.user_no=#{no}
-      (p.user_no=u.user_no and p.trader_no!=u.user_no) 
       - inner 조인을 하지 않았을 경우, 해당 번호에 대한 값이 실행되지 않았음.
       - 즉, 해당 번호가 반복되었음. 
-      
-     select 
-      p.user_no,
-      p.trader_no,
-      u.user_no,
-      u.user_no
-     from
-      points p
-      inner join users u on 
-      (p.user_no=u.user_no) 
-     where 
-      p.point_no=1;
        -->
    </select>
    
@@ -135,19 +134,11 @@
       p.point_no=#{no}
    </select>
    
-   <!-- 
-    select distinct user_no from points
-		union 
-		select distinct user_no from users;
-    -->
-   
    <update id="update" parameterType="Point">
    update points p set
    <if test="price != null and price != ''"> p.price=#{price}</if>
    where p.point_no=#{no}
      
-     
-   
      <!-- 
      update points p, users u
      <set>
@@ -171,7 +162,6 @@
      
        <if test="price != null and price != ''"> p.price=3000</if>
    where p.point_no=7
-      
       -->
    </update>
    

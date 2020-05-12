@@ -24,7 +24,7 @@
   </resultMap>
   
   <insert id="insert" parameterType="User">
-    insert into user(
+    insert into users (
     email,
     password,
     user_name,
@@ -72,7 +72,7 @@
     account,
     bank
     from 
-      user
+      users
   </select>
 
   
@@ -93,13 +93,13 @@
     account,
     bank
     from 
-      user
+      users
     where 
       user_no=#{no}
   </select>
   
   <update id="update" parameterType="User">
-    update user
+    update users
     <set>
       <if test="email != null and email != ''">email=#{email},</if> 
       <if test="password != null and password != ''">password=password(#{password}),</if>
@@ -120,7 +120,7 @@
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from user
+    delete from users
     where user_no=#{no}
   </delete>
   
@@ -144,7 +144,7 @@
     account,
     bank
     from 
-      user
+      users
     where 
       user_name like #{keywordPattern}
       or email like #{keywordPattern}
@@ -169,7 +169,7 @@
     nickname,
     account,
     bank
-    from user
+    from users
     where 
       email=#{email} 
       and password=password(#{password})
@@ -184,7 +184,7 @@
     phone_number,
     account,
     bank
-    from user
+    from users
     where 
       email=#{email} 
       and password=password(#{password})

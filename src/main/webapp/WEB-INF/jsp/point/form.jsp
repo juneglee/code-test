@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>출금 시스템 addForm</title>
+
 <!-- 
 - 자바스크립트로 addForm으로 입력을 받고 session에 저장한다. (price만 업데이트)
 - 각 해당 입력 받은 값을 통해서 결과 페이지까지 출력 (list 저장 가능>?)
@@ -30,17 +26,27 @@
   // - 아임포트, 부트페이, 이니시스 
  -->
 <jsp:include page="../header.jsp"/>
+<p>보유 포인트 : <input name="price" type="text" value='${point.price}' readonly> </p>
 
+예금주 : <input name="name" type="text" value="${user.name}" readonly> <br> 
+전화번호 : <input name="tel" type="text" value='${user.tel}' readonly> <br> <!-- 인증 -->
+은행명 : <input name="bank" type="text" value="${user.bank}" readonly> <br>
+계좌번호 : <input name="account" type="text" value="${user.account}" readonly> <br>
+ 
 <form action='add' method='post'>
-보유포인트 : <input name="price" type="text" > <br><!--출금할 수 있는 보유 잔량  -->
-예금주 : <input name="name" type="text" value='${user.name}'> <br> 
-전화번호 : <input name="tel" type="text" value='${user.tel}'> <br> <!-- 인증 -->
-은행명 : <input name="bank" type="text" value="${user.bank}"> <br>
-계좌번호 : <input name="account" type="text"  value="${user.account}"> <br> 
+유저 번호 : <input name="userNo" type="text" value='${point.userNo}' readonly}><br>
+상대 번호 : <input name="traderNo" type="text"><br>
+<!-- <스크랩시에만사용>  -->
+입출금 분류 : <input name="pointType" type="text" > <br>
+입출금 내용 : <input name="content" type="text"> <br>
+출금 포인트 : <input name="price" type="text"><br>
 <button>제출</button>
 </form>
 
-<script type="text/javascript">
-</script>
+<a href='/WEB-INF/jsp/point/payment.jsp'>충전하기</a></p>
+
+<!-- 출금할 수 있는 보유 잔량(유저 번호를 통해서 모든 값을 더한다.)  -->
+<!-- 입출금 분류, 입출금 내용 제어문-->
+<!-- 출금 가능한 default 값 -->
 
 <jsp:include page="../footer.jsp"/>

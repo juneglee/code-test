@@ -17,6 +17,10 @@ public class Point implements Serializable {
   int price; // price /금액 // 입금 금액인지 출금금액인지
   User user;
 
+  // 출금한 날짜
+  // 스크랩 카운팅
+  //
+
 
 
   // 포인트에서 출력

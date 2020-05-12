@@ -9,7 +9,7 @@ public class User implements Serializable {
   private static final long serialVersionUID = 1L;
 
   // users
-  int no; // user_no
+  private int no; // user_no
   String name; // user_name
   Date birth; // birthday
   int gender; // gender
@@ -25,14 +25,14 @@ public class User implements Serializable {
   String bank; // bank
   // int point; // setter 아직 정의 안함.
 
-  public User(int no, String name, String tel, int account, String bank ) {
-	  this.no = no;
-	  this.name = name;
-	  this.tel = tel;
-	  this.account = account;
-	  this.bank = bank;
+  public User(int no, String name, String tel, int account, String bank) {
+    this.no = no;
+    this.name = name;
+    this.tel = tel;
+    this.account = account;
+    this.bank = bank;
   }
- 
+
 
   @Override
   public int hashCode() {
