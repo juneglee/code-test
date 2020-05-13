@@ -12,6 +12,8 @@ public interface UserService {
 
   User get(String name, String tel, String account, String bank) throws Exception;
 
+  User get(String email, String password) throws Exception;
+
   int update(User user) throws Exception;
 
   int delete(int no) throws Exception;

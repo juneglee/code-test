@@ -18,5 +18,5 @@ public interface UserDao {
 
   int delete(int no) throws Exception;
 
-
+  User findByEmailAndPassword(Map<String, Object> params) throws Exception;
 }

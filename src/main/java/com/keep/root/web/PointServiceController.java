@@ -32,6 +32,13 @@ public class PointServiceController {
   public void form(int userNo, Model model) throws Exception {
     model.addAttribute("user", userService.get(userNo));
     model.addAttribute("point", pointService.get(userNo));
+
+    // return "redirect:form?userNo=" + userNo;
+  }
+
+  @GetMapping("payment")
+  public String payment() throws Exception {
+    return "/point/payment";
   }
 
   @PostMapping("add")
@@ -46,6 +53,8 @@ public class PointServiceController {
       throw new Exception("없음");
     }
 
+    // tarderNo은 Scarp을 당할때 저장되는 번호
+    //
     Point point = new Point();
     point.setTraderNo(tarderNo);
     point.setContent(content);
@@ -101,6 +110,7 @@ public class PointServiceController {
 
   @GetMapping("userlist")
   public void list(int userNo, Model model) throws Exception {
+    model.addAttribute("user", userService.get(userNo));
     model.addAttribute("userlist", pointService.list(userNo));
   }
 

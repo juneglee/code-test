@@ -32,6 +32,14 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public User get(String email, String password) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("email", email);
+    params.put("password", password);
+    return userDao.findByEmailAndPassword(params);
+  }
+
+  @Override
   public User get(String name, String tel, String account, String bank) throws Exception {
     HashMap<String, Object> params = new HashMap<>();
     params.put("name", name);

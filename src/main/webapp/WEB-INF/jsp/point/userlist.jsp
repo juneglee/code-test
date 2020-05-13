@@ -6,7 +6,7 @@
 <jsp:include page="../header.jsp"/>
   <h1>사용자별 포인트 리스트</h1>
   <td>${user.name} 의 출금 리스트 </td>
-  <!-- get으로 가져와야함 -->>
+  
   <table border='1'>
   <tr>
     <th>포인트 번호</th>
