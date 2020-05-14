@@ -65,7 +65,7 @@ function price() {
 }
 
 </script>
-<input name="userNo" type="text" value='${point.userNo}' readonly}><br>
+<input name="userNo" type="text" value='${point.userNo}' readonly}><br>\
 <input name="traderNo" type="text"><br>
 <input name="pointType" type="text" > <br>
 <input name="content" type="text"> <br>

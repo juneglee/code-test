@@ -4,9 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../header.jsp"/>
-  <h1>사용자별 포인트 리스트</h1>
-  <td>${user.name} 의 출금 리스트 </td>
-  
+  <h1>관리자용 포인트 리스트</h1>
   <table border='1'>
   <tr>
     <th>포인트 번호</th>
@@ -18,8 +16,9 @@
   </tr>
 
   
-<c:forEach items="${userlist}" var="item">
+<c:forEach items="${list}" var="item">
   <tr>
+  <!-- <a href='output?no=${item.no}'> -->
     <td>${item.no}</td> 
     <td>${item.userNo}</td> 
     <td>${item.traderNo}</td> 
@@ -30,9 +29,12 @@
 </c:forEach>
 
 <%--
- - pointType :  0 입금, 1 출금
- - content : 0 
+<c:if test="${userNo == traderNo}">
+  <p>해당번호가 동일할 수 없습니다.</p>
+</c:if>
  --%>
 </table>
 
 <jsp:include page="../footer.jsp"/>
+
+
