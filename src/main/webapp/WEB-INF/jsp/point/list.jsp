@@ -7,12 +7,12 @@
   <h1>관리자용 포인트 리스트</h1>
   <table border='1'>
   <tr>
-    <th>포인트 번호</th>
-    <th>유저 번호</th>
-    <th>상대 번호</th>
-    <th>포인트 분류</th>
-    <th>입출금 내용</th>
-    <th>포인트 금액</th>
+    <th scope="col">포인트 번호</th>
+    <th scope="col">유저 번호</th>
+    <th scope="col">상대 번호</th>
+    <th scope="col">포인트 분류</th>
+    <th scope="col">입출금 내용</th>
+    <th scope="col">포인트 금액</th>
   </tr>
 
   

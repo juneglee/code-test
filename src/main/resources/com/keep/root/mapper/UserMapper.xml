@@ -172,29 +172,7 @@
     from users
     where 
       email=#{email} 
-      and password=#{password}
-   <!-- 
-       select
-    user_no, 
-    email,
-    password,
-    user_name,
-    birthday,
-    gender,
-    phone_number,
-    zip_code,
-    basic_address,
-    detail_address,
-    photo,
-    nickname,
-    account,
-    bank
-    from users
-    where 
-      email="test5@gmail.com"
-      and password=1234
-   
-    -->
+      and password=password(#{password})
   </select>
   
   <select id="findForWithdraw" 

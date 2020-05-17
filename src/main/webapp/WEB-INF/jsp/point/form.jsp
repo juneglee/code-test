@@ -26,28 +26,37 @@
   // - 아임포트, 부트페이, 이니시스 
  -->
 <jsp:include page="../header.jsp"/>
-<p> ${user.name} 의 보유 포인트는 ${point.price} 포인트 입니다.  </p>
+ 
+<p> ${user.name} 의 보유 포인트는 ${point.price} 포인트 입니다. </p>
 
 예금주 : <input name="name" type="text" value="${user.name}" > <br> 
 전화번호 : <input name="tel" type="text" value='${user.tel}' > <br> <!-- 인증 -->
 은행명 : <input name="bank" type="text" value="${user.bank}" > <br>
 계좌번호 : <input name="account" type="text" value="${user.account}" > <br>
 출금 포인트 : <input name="price" type="text"><br>
+
  
 <form action='add' method='post'>
-<script type="text/javascript">
- <input name="userNo" type="text" value='${point.userNo}' readonly}><br>\
+  <div>
 <!-- 유저 번호 : users에 no값과 비교  -->
-상대 번호 : <input name="traderNo" type="text"><br>
+   <input name="userNo" type="hidden" value='${point.userNo}' readonly}><br>
+  </div>
+ <div> 
+   <input id="traderNo" name="traderNo" type="hidden"><br>
+ </div>
 <!-- 
 - 스크랩시 카운팅된 번호일때는 상대방 번호를 사용하고, 
 - price 값이 증가되지 않을 때는 0을 만든다.
 -->
-입출금 분류 : <input name="pointType" type="text" > <br>
-
-입출금 내용 : <input name="content" type="text"> <br>
-출금 포인트 : <input name="price" type="text"><br>
-</script>
+ <div>
+   <input id="pointType" name="pointType" type="hidden" > <br>
+ </div>
+ <div>
+   <input id="content" name="content" type="hidden"> <br>
+ </div>
+  <div>
+   <input id="price" name="price" type="hidden"><br>
+ </div>
 </form>
 <button type="button" onclick="location.href='payment.jsp' ">충전하기</button>
 <!-- 충전을 취소했을 때 되돌아가기 -->
