@@ -39,7 +39,7 @@
    
    <select id="findAll" resultMap="PointMap" parameterType="map">
      select 
-      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price
+      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date
      from
       points p
      where
@@ -49,7 +49,7 @@
    
    <select id="findAllByUser" resultMap="PointMap" parameterType="map">
      select 
-      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price,
+      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date,
       u.user_name, u.phone_number, u.user_no, u.account, u.bank
      from
       points p
@@ -97,7 +97,8 @@
       p.trader_no,
       p.user_no,
       p.point_type,
-      p.content
+      p.content, 
+      p.create_date
      from
       points p
      where

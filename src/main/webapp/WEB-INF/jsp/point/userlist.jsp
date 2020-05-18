@@ -5,8 +5,20 @@
 
 <jsp:include page="../header.jsp"/>
 <div class="wrap">
+  <div class="snb">
+    <div id="sub" class="profile _root">
+    <strong>${user.name}</strong>
+    </div>
+  </div>
 	
 	<div class='container'>
+	<div id="content" class="subpg _root">
+	   <div class="sub_tmenu">
+		  <ul>
+		    <li class="on"><span>전체</span></li>
+		    <li class="t2_2"><span>충전</span></li>
+		  </ul>
+		</div>
 	  <div class="table">
 		  <h1>사용자별 포인트 리스트</h1>
 		  <td>${user.name} 의 출금 리스트 <br></td>
@@ -14,6 +26,7 @@
 		  <table border='1'>
 		  <tr>
 		    <th scope="col">포인트 번호</th>
+		    <th scope="col">등록날짜</th>
 		    <th scope="col">유저 번호</th>
 		    <th scope="col">상대 번호</th>
 		    <th scope="col">포인트 분류</th>
@@ -24,6 +37,7 @@
 		<c:forEach items="${userlist}" var="item">
 		  <tr>
 		    <td>${item.no}</td> 
+		    <td>${item.createdDate}</td> 
 		    <td>${item.userNo}</td> 
 		    <td>${item.traderNo}</td> 
 		    <td>
@@ -47,83 +61,33 @@
 		</table>
 		</div>
 	
-	
-	<div class="sub">
-	${user.name}
-	</div>
-	
-	<div class="sub_tmenu">
-	</div>
-	
 	<c:forEach items="${userlist}" var="item">
 	<div class="list_point">
 	    <div class="point_userlist">
 	       <div class="userlist">
+	       <span> #이미지 삽입# </span>
 	        <a href="#" class="item_content">
 	            <div class="point_no">
 	                <span class="state _statusName">${item.no}</span>
 	                <strong class="title click _titleName">스크랩</strong>
-	            </div>
+	                <span class="point">${item.price}가 적립 되었습니다.</span>
+	            </div>   
 	        </a>
 	        </div>
 	
 	        <div class="amount_space">
 	            <div class="amount_inner">
-	                <span class="point">${item.price}</span>
-	                <a href=='delete?no=${item.no}' class="point delete">내역삭제</a> 
+	                <a href=='delete?no=${item.no}' class="point delete"><button>내역삭제</button></a> 
 	            </div>
 	        </div>
 	    </div>
 	 </div>
 	</c:forEach>
 	</div>
+	</div>
 </div>
 
 <script type="text/javascript" >
-if(typeof layout == 'undefined'){
-	  layout = {};
-	}
-
-	layout.snb = {
-	    initialize : function() {
-	    }
-	};
-
-	layout.snb.initialize();
-
-	var oRolling1 = new jindo.Rolling(jindo.$("rolling1"), {
-	  nDuration : 400
-	});
-
-	var beforeIndex = 0;
-	var afterIndex = 1;
-
-	oRolling1.attach('afterMove', function(oCustomEvt) {
-	  beforeIndex = afterIndex;
-	});
-
-	jindo.$Fn(function(e) {
-	  e.stop($Event.CANCEL_DEFAULT);
-	  if(!oRolling1.isMoving() && oRolling1.moveBy(-1)){
-	    afterIndex = beforeIndex - 1;
-	  }
-	}).attach(jindo.$$('._prev_btn'), 'click');
-
-	jindo.$Fn(function(e) {
-	  e.stop($Event.CANCEL_DEFAULT);
-	  if(!oRolling1.isMoving() && oRolling1.moveBy(1)){
-	    afterIndex = beforeIndex + 1;
-	  }
-	}).attach(jindo.$$('._next_btn'), 'click');
-
-	jindo.$Fn(function(e) {
-	  e.stop($Event.CANCEL_DEFAULT);
-	  jindo.$$.getSingle('._snb_bank_charge_tooltop').style.display='none';
-	}).attach(jindo.$$('._snb_bank_charge_tooltop_btn'), 'click');
-
-	function releaseDormancy(releaseUrl){
-	  location.href = releaseUrl + "?rurl=" + encodeURIComponent(location.href);
-	}
 
 </script>
 
