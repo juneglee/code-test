@@ -51,6 +51,9 @@
  <div>
    <input id="pointType" name="pointType" type="hidden" > <br>
  </div>
+<!-- 
+-
+ -->
  <div>
    <input id="content" name="content" type="hidden"> <br>
  </div>

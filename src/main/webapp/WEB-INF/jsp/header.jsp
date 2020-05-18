@@ -15,11 +15,44 @@
 body {
   background-color: LightGray;
 }
+
 div.container {
   background: white;
   border: 1px solid gray;
-  width: 600px;
+  border-left:100px;
+  width: 800px;
 }
+
+div.list_point{
+  background-color: white;
+  width: 700px;
+  height: 50px;
+}
+div.userlist{
+  float: left;
+  width: 400px;
+}
+
+div.amount_space{
+  float: left;
+}
+
+
+div.sub_tmenu{
+overflow:hidden;
+position:relative;
+z-index:10; 
+padding-right:1px;
+background:#4f5c74;
+}
+
+#sub {
+ background: blue;
+ 
+ float:left;
+ width:840px
+}
+
 </style>
 </head>
 <body>
@@ -55,4 +88,3 @@ div.container {
 </c:if> 
 </div>
 </nav>
-<div class='container'>

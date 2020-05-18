@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.keep.root.domain.Point;
 import com.keep.root.domain.User;
 import com.keep.root.service.PointService;
+import com.keep.root.service.ScrapDayService;
+import com.keep.root.service.ScrapPlaceService;
 import com.keep.root.service.UserService;
 
 @Controller
@@ -24,6 +26,12 @@ public class PointServiceController {
 
   @Autowired
   PointService pointService;
+  
+  @Autowired
+  ScrapDayService scrapDayService;
+
+  @Autowired
+  ScrapPlaceService scrapPlaceService;
 
   @Autowired
   UserService userService;
@@ -113,6 +121,17 @@ public class PointServiceController {
     model.addAttribute("user", userService.get(userNo));
     model.addAttribute("userlist", pointService.list(userNo));
   }
+  
+  @GetMapping("scraplist")
+  public void list(HttpSession session, Model model) throws Exception {
+    User user = (User) session.getAttribute("loginUser");
+    if (user == null) {
+      throw new Exception("로그인이 필요합니다.");
+    }
+    model.addAttribute("day", scrapDayService.list(user.getNo()));
+    model.addAttribute("place", scrapPlaceService.list(user.getNo()));
+  }
+
 
   @GetMapping("detail")
   public void detail(int no, Model model) throws Exception {
@@ -125,18 +144,6 @@ public class PointServiceController {
   public void listOutput(Model model) throws Exception {
     model.addAttribute("output", pointService.findOutputByUserNo());
   }
-
-  // @GetMapping
-  // public ModelAndView listOutput(//
-  // HttpServletRequest request, //
-  // @RequestParam("user") User user) throws Exception {
-  // ModelAndView mv = new ModelAndView();
-  // mv.addObject("out", pointService.findOutputByUserNo());
-  // mv.addObject("user", user);
-  // mv.setViewName("output");
-  // return mv;
-  // }
-  // model
 
   @GetMapping("trader")
   public void getTrader(Model model, int traderNo) throws Exception {
