@@ -37,32 +37,88 @@
 
  
 <form action='add' method='post'>
-  <div>
-<!-- 유저 번호 : users에 no값과 비교  -->
-   <input name="userNo" type="hidden" value='${point.userNo}' readonly}><br>
+  <div class="userNo">
+   <!-- 스크랩 파일에 저장된 유저번호 -->
+   <!-- 로그인 세션의 넘버 -->
+   <!-- 스크랩을 한 사람 -->
+   <input class="usernos" name="userNo" type="hidden" value='#'><br>
   </div>
- <div> 
-   <input id="traderNo" name="traderNo" type="hidden"><br>
+	<div class="traderNo"> 
+	  <!-- 
+	  스크랩.리뷰 데이 no
+	  스크랩.리뷰 장소 no 
+	  에서 장소 or 데이 대한 카운팅이 올라갈 때 유저 번호를 확인 가져온다.
+	    -->
+	  <!-- 리뷰의 넘버 -->
+	  <!-- 스크랩을 당한 사람-->
+	  <input class="tradernos" name="traderNo" type="hidden"><br>
+	</div>
+	<!-- 
+		- 스크랩시 카운팅된 번호일때는 상대방 번호를 사용하고, 
+		- price 값이 증가되지 않을 때는 0을 만든다.
+	-->
+	 <div class="pointType">
+	   <input class="types" name="pointType" type="hidden" > <br>
+	 </div>
+	<!-- 
+		- 입금 : 0일 때 - 스크랩 적립, 결제 충전
+		- 출금 : 1일 때 - 출금 요청 
+	 -->
+ <div class="content">
+   <input class="contents" name="content" type="hidden"> <br>
+  <!-- 
+  // 1. 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때 
+        - 스크랩을 했을 때 userNo와 traderNo
+        - 스크랩을 당했을 때 tarderNo와 userNo 
+  // 2. 충전 결제 - 충전이 완료되었을때 
+  // 3. 출금 - 출금이 정상적으로 처리 되었을 때 (마이너스값)
+   --> 
  </div>
-<!-- 
-- 스크랩시 카운팅된 번호일때는 상대방 번호를 사용하고, 
-- price 값이 증가되지 않을 때는 0을 만든다.
--->
- <div>
-   <input id="pointType" name="pointType" type="hidden" > <br>
- </div>
-<!-- 
--
- -->
- <div>
-   <input id="content" name="content" type="hidden"> <br>
- </div>
-  <div>
-   <input id="price" name="price" type="hidden"><br>
+  <div class="price">
+   <input class="prices" name="price" type="hidden"><br>
+   <!-- 
+    // pointType, content, price, trader로 확인하여 변경
+  // pointType의 값이 0 일 때  - 입금된값 (plus function) (content 1,2 일 때)
+  // pointType의 값이 1 일 때  - 출금된값 (minus funcion) (content 1,2 일 때)
+   
+    -->
  </div>
 </form>
 <button type="button" onclick="location.href='payment.jsp' ">충전하기</button>
 <!-- 충전을 취소했을 때 되돌아가기 -->
+
+<script type="text/javascript">
+"use strict"
+ var f1 = document.getElemnetByClassName("usernos");
+ var f2 = document.getElemnetByClassName("tradernos");
+ var f3 = document.getElemnetByClassName("types");
+ var f4 = document.getElemnetByClassName("contents");
+ var f5 = document.getElemnetByClassName("prices");
+ 
+function unos() {
+	if (f1 != f2 || f1=="") {
+		console.log("아래의 게시물로는 적립을 할 수 없습니다.");
+	} else {
+		return "${user.no}";
+	}
+	  
+	function con(f1,f2,f3,f4) {
+		if (f4 == 1) {
+			if (f3 == 0) {
+				// userno 는 session no값으로 한다
+				// tarderNo는 스크랩.리뷰 데이.userno or 스크랩.리뷰 장소 userno
+				
+			} else (f3==1){
+				// 위와 반대 
+			}
+		} else if (f4 == 1)
+			
+	}
+	
+}
+ 
+
+</script>
 
 
 <jsp:include page="../footer.jsp"/>

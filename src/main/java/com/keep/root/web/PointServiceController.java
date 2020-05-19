@@ -26,7 +26,7 @@ public class PointServiceController {
 
   @Autowired
   PointService pointService;
-  
+
   @Autowired
   ScrapDayService scrapDayService;
 
@@ -98,6 +98,23 @@ public class PointServiceController {
 
     return "/WEB-INF/jsp/point/form.jsp";
     // return "/WEB-INF/view/point/withdraw.jsp";
+
+    //
+    // 스크랩 카운팅 되었을때 상대방의 번호도 같이 입력
+    // 스크랩으로 증가된 경우가 아닐 경우에는 기본값을 0으로 만들어 입력하도록 만든다
+    // 스크랩을 했을 때 insert
+    //
+    // 0일 때 입금
+    // 1일 때 출금
+    //
+    // 1. 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때
+    // 2. 충전 결제 - 충전이 완료되었을때
+    // 3. 출금 (계좌출금) - 출금이 정상적으로 처리 되었을 때 (마이너스값)
+    // 4. 출금 (포인트 사용)
+    //
+    // pointType, content, price, trader로 확인하여 변경
+    // pointType의 값이 0 일 때 - 입금된값 (plus function) (content 1,2 일 때)
+    // pointType의 값이 1 일 때 - 출금된값 (minus function) (content 1,2 일 때)
   }
 
   @GetMapping("outputdetail")
@@ -121,7 +138,7 @@ public class PointServiceController {
     model.addAttribute("user", userService.get(userNo));
     model.addAttribute("userlist", pointService.list(userNo));
   }
-  
+
   @GetMapping("scraplist")
   public void list(HttpSession session, Model model) throws Exception {
     User user = (User) session.getAttribute("loginUser");

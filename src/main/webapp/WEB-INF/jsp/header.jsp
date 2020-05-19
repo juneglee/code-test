@@ -13,88 +13,96 @@
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>
 
 <style>
-body, p,
-h1, h2, h3, h4, h5, h6,
-ul, ol, li,
-dl, dt, dd,
-table, th, td,
-form, fieldset, legend, input, textarea, button, select {
-    margin: 0;
-    padding: 0;
-    font-family: '나눔고딕',NanumGothic,'맑은고딕',MalgunGothic,'돋움',Dotum,Helvetica,sans-serif;
-}
-
-body,input,textarea,select,button,table {font-size: 12px;}
-
-img,fieldset {
-    border: 0;
-}
-
-ul, ol {
-    list-style: none;
-}
-
-em, address {
-    font-style: normal;
-}
-
-a {
-    text-decoration: none;
-}
-
-
 body {
-  background-color: white;
+display: block;
+margin: 0;
+padding: 0;
 }
 
-#snb {width:300px;margin:0 auto}
-.profile{
-  background-color: LightGray;
-  position:relative;
-  float:left;
-  margin-left:300px;
-  width:250px;
-  padding:100px;
+#container {
+    width: 1100px;
+    margin: 0 auto;
 }
 
+.t_sction {
+    background: #fff
+}
 
-#container{width:1100px;margin:0 auto}
-.subpg{background-color:LightGray;float:left;position:relative;width:840px;margin-left:90px;}
+.snb {
+  float: left;
+    width: 220px;
+    margin-left:200px;
+    margin-right: 40px;
+    padding-bottom: 50px;
+    background-color: #f3f4f5;
+}
 
+.snb .member_sc{
+position: relative;
+    padding: 24px 0;
+    border: 1px solid #4e5a72;
+    background-color: #525f78;
+    text-align: center;
+}
 
-.content .date .d_bx .ico
-{position:absolute;top:0;left:0;z-index:20;width:100%;height:100%;background:white}
+.my_setting {
+  overflow: hidden;
+    background-color: #aaa;
+}
 
-/* 서브 탭메뉴 */
-.sub_tmenu{overflow:hidden;position:relative;z-index:10;padding-right:1px;background:#4f5c74}
+#content .date .d_bx .ico
+{position:absolute;top:0;left:0;z-index:20;width:100%;height:100%;background:white;}
+
+.subpg{float:left;position:relative;width:840px}
+
+.sub_tmenu{
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    padding-right: 1px;
+    background: #4f5c74;
+}
+
 .sub_tmenu ul{display:table;*overflow:hidden;width:100%;font-size:12px;table-layout:fixed}
 .sub_tmenu li{display:table-cell;*display:inline-block;*float:left;width:auto;*width:33.1%;height:45px;padding:1px 0 1px 1px;text-align:center}
+.sub_tmenu li a{display:block;width:100%;padding:15px 0;background-color:#606e89;color:#fff;text-decoration:none}
+.sub_tmenu li.on a{background-color:#525f78}
 
-
-div.list_point{
-  border: 1px solid gray;
-  background-color: white;
-  padding: 5px;
-  width: 840px;
-  height: 50px;
-}
-div.userlist{
-  float: left;
-  width: 600px;
+.point_spot{
+    position: relative;
+    z-index: 30;
+    margin-top: -1px;
+    padding: 31px 0 30px;
+    border: 1px solid #dadddf;
+    background-color: #edeff2;
 }
 
-div.amount_space{
-  float: left;
+}
+._listRoot{
+  border: 1px solid black;
+}
+
+._listRoot .ask_sc {
+    position: relative;
+    z-index: 20;
+    margin: -1px 0 46px;
+    padding: 18px 27px;
+    border: 1px solid #dadddf;
+    background-color: #edeff2;
+}
+
+._listRoot .dsk_sc {
+    position: relative;
+    z-index: 10;
+    padding: 0 0 30px;
+    background-color: #fff;
+}
+
+._listRoot .dsk_sc .list_point {
+    border: 1px solid black;
 }
 
 
-div.sub_tmenu{
-overflow:hidden;
-position:relative;
-z-index:10; 
-padding-right:1px;
-background:#4f5c74;
-}
 
 </style>
 </head>

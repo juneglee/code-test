@@ -24,6 +24,9 @@
   //
   // 결제 시스템 연동 API
   // - 아임포트, 부트페이, 이니시스 
+  
+  //  출금 시스템 opent API
+  //오픈 뱅킹 공동업무 
  -->
 <jsp:include page="../header.jsp"/>
 <p> ${user.name} 의 보유 포인트는 ${point.price} 포인트 입니다.  </p>
@@ -37,10 +40,6 @@
 <form action='add' method='post'>
 
 <script type="text/javascript">
-function userNo(){
-	// 로그인된 번호와 일치하게 만들어야 함
-}
-
 
 function traderNo(){
 	// 스크랩 카운팅 되었을때 상대방의 번호도 같이 입력
@@ -53,9 +52,10 @@ function pointType(){
 }
 
 function content(){
-	// 1. 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때 
-	// 2. 충전 결제 - 충전이 완료되었을때 
-	// 3. 출금 - 출금이 정상적으로 처리 되었을 때 (마이너스값)
+	// 1. 입금(0) 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때 
+	// 2. 입금(0) 충전 결제 - 충전이 완료되었을때 
+	// 3. 출금(1) (계좌출금) - 출금이 정상적으로 처리 되었을 때 (마이너스값)
+	// 4. 출금(1) (포인트 사용)
 }
 
 function price() {
@@ -65,6 +65,8 @@ function price() {
 }
 
 </script>
+
+
 <input name="userNo" type="text" value='${point.userNo}' readonly}><br>
 <input name="traderNo" type="text"><br>
 <input name="pointType" type="text" > <br>
