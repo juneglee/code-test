@@ -35,13 +35,15 @@
 계좌번호 : <input name="account" type="text" value="${user.account}" > <br>
 출금 포인트 : <input name="price" type="text"><br>
 
+스크랩. 데이 리뷰 번호: ${reviewDay.no}<br>
+스크랩. 장소 리뷰 번호: ${reviewPlace.no}<br>
  
 <form action='add' method='post'>
   <div class="userNo">
    <!-- 스크랩 파일에 저장된 유저번호 -->
    <!-- 로그인 세션의 넘버 -->
    <!-- 스크랩을 한 사람 -->
-   <input class="usernos" name="userNo" type="hidden" value='#'><br>
+   <input class="usernos" name="userNo" type="hidden" value='#'>
   </div>
 	<div class="traderNo"> 
 	  <!-- 
@@ -51,21 +53,21 @@
 	    -->
 	  <!-- 리뷰의 넘버 -->
 	  <!-- 스크랩을 당한 사람-->
-	  <input class="tradernos" name="traderNo" type="hidden"><br>
+	  <input class="tradernos" name="traderNo" type="hidden">
 	</div>
 	<!-- 
 		- 스크랩시 카운팅된 번호일때는 상대방 번호를 사용하고, 
 		- price 값이 증가되지 않을 때는 0을 만든다.
 	-->
 	 <div class="pointType">
-	   <input class="types" name="pointType" type="hidden" > <br>
+	   <input class="types" name="pointType" type="hidden" > 
 	 </div>
 	<!-- 
 		- 입금 : 0일 때 - 스크랩 적립, 결제 충전
 		- 출금 : 1일 때 - 출금 요청 
 	 -->
  <div class="content">
-   <input class="contents" name="content" type="hidden"> <br>
+   <input class="contents" name="content" type="hidden"> 
   <!-- 
   // 1. 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때 
         - 스크랩을 했을 때 userNo와 traderNo
@@ -75,7 +77,7 @@
    --> 
  </div>
   <div class="price">
-   <input class="prices" name="price" type="hidden"><br>
+   <input class="prices" name="price" type="hidden">
    <!-- 
     // pointType, content, price, trader로 확인하여 변경
   // pointType의 값이 0 일 때  - 입금된값 (plus function) (content 1,2 일 때)
@@ -83,6 +85,7 @@
    
     -->
  </div>
+ <button> 제출 </button>
 </form>
 <button type="button" onclick="location.href='payment.jsp' ">충전하기</button>
 <!-- 충전을 취소했을 때 되돌아가기 -->

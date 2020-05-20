@@ -1,7 +1,6 @@
 package com.keep.root.web;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.keep.root.domain.Point;
+import com.keep.root.domain.ScrapDay;
+import com.keep.root.domain.ScrapPlace;
 import com.keep.root.domain.User;
 import com.keep.root.service.PointService;
 import com.keep.root.service.ScrapDayService;
@@ -37,9 +38,16 @@ public class PointServiceController {
   UserService userService;
 
   @GetMapping("form")
-  public void form(int userNo, Model model) throws Exception {
+  public void form(int userNo, HttpSession session, Model model) throws Exception {
+    User user = (User) session.getAttribute("loginUser");
+    if (user == null) {
+      throw new Exception("로그인이 필요합니다.");
+    }
+
     model.addAttribute("user", userService.get(userNo));
     model.addAttribute("point", pointService.get(userNo));
+    model.addAttribute("scrapDay", scrapDayService.list(userNo));
+    model.addAttribute("scrapPlace", scrapPlaceService.list(userNo));
 
     // return "redirect:form?userNo=" + userNo;
   }
@@ -49,6 +57,25 @@ public class PointServiceController {
     return "/point/payment";
   }
 
+
+  //
+  // 스크랩 카운팅 되었을때 상대방의 번호도 같이 입력
+  // 스크랩으로 증가된 경우가 아닐 경우에는 기본값을 0으로 만들어 입력하도록 만든다
+  // 스크랩을 했을 때 insert
+  // map에 담아서 list 전달
+
+  //
+  // 0일 때 입금
+  // 1일 때 출금
+  //
+  // 1. 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때
+  // 2. 충전 결제 - 충전이 완료되었을때
+  // 3. 출금 (계좌출금) - 출금이 정상적으로 처리 되었을 때 (마이너스값)
+  // 4. 출금 (포인트 사용)
+  //
+  // pointType, content, price, trader로 확인하여 변경
+  // pointType의 값이 0 일 때 - 입금된값 (plus function) (content 1,2 일 때)
+  // pointType의 값이 1 일 때 - 출금된값 (minus function) (content 1,2 일 때)
   @PostMapping("add")
   public String add(//
       int userNo, //
@@ -58,64 +85,29 @@ public class PointServiceController {
       int price) throws Exception {
     User user = userService.get(userNo);
     if (user == null) {
-      throw new Exception("없음");
+      throw new Exception("해당 번호의 정보가 없습니다.");
     }
 
-    // tarderNo은 Scarp을 당할때 저장되는 번호
-    //
-    Point point = new Point();
-    point.setTraderNo(tarderNo);
-    point.setContent(content);
-    point.setPointType(pointType);
-    point.setPrice(price);
-    point.setUser(user);
+    ScrapDay scrapDay = (ScrapDay) scrapDayService.list(userNo);
+    ScrapPlace scrapPlace = (ScrapPlace) scrapPlaceService.list(userNo);
+
+    Point pointDay = new Point();
+    // no는 session의 값으로 저장
+    pointDay.setTraderNo(scrapDay.getReviewDay().getNo());
+    pointDay.setContent(content);
+    pointDay.setPointType(pointType);
+    pointDay.setPrice(price);
+
+    Point pointPlace = new Point();
+    pointPlace.setTraderNo(scrapPlace.getReviewPlace().getNo());
+    pointPlace.setContent(content);
+    pointPlace.setPointType(pointType);
+    pointPlace.setPrice(price);
+
 
     return "redirect:list?userNo=" + userNo;
   }
 
-  @PostMapping("withdraw")
-  public String withdraw(//
-      String name, //
-      String tel, //
-      String account, //
-      String bank, //
-      int price, //
-      int no, //
-      HttpServletResponse response, //
-      HttpSession session, //
-      Model model) throws Exception {
-
-    User user = userService.get(name, tel, account, bank);
-    if (user == null) {
-      throw new Exception("정보가 일치하지 않습니다.");
-    }
-    model.addAttribute("user", user);
-
-    Point point = (Point) session.getAttribute("point");
-    point.setPrice(price);
-
-    pointService.update(point);
-
-    return "/WEB-INF/jsp/point/form.jsp";
-    // return "/WEB-INF/view/point/withdraw.jsp";
-
-    //
-    // 스크랩 카운팅 되었을때 상대방의 번호도 같이 입력
-    // 스크랩으로 증가된 경우가 아닐 경우에는 기본값을 0으로 만들어 입력하도록 만든다
-    // 스크랩을 했을 때 insert
-    //
-    // 0일 때 입금
-    // 1일 때 출금
-    //
-    // 1. 스크랩 포인트 - 스크랩에서 카운팅이 올라갔을 때
-    // 2. 충전 결제 - 충전이 완료되었을때
-    // 3. 출금 (계좌출금) - 출금이 정상적으로 처리 되었을 때 (마이너스값)
-    // 4. 출금 (포인트 사용)
-    //
-    // pointType, content, price, trader로 확인하여 변경
-    // pointType의 값이 0 일 때 - 입금된값 (plus function) (content 1,2 일 때)
-    // pointType의 값이 1 일 때 - 출금된값 (minus function) (content 1,2 일 때)
-  }
 
   @GetMapping("outputdetail")
   public void getUser(int userNo, Model model) throws Exception {
@@ -179,7 +171,7 @@ public class PointServiceController {
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     if (pointService.delete(no) > 0) {
-      return "redirect:list";
+      return "redirect:userlist";
     } else {
       throw new Exception("삭제할 게시물 번호가 유효하지 않습니다.");
     }

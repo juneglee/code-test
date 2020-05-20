@@ -9,7 +9,5 @@ public interface ScrapDayService {
 
   List<ScrapDay> list(int userNo) throws Exception;
 
-  ScrapDay get(int reviewDayNo) throws Exception;
-
   int delete(int reviewDayNo) throws Exception;
 }
