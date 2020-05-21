@@ -19,4 +19,7 @@ public interface ReviewPlacePhotoDao {
   int update(ReviewPlacePhoto reviewPlacePhoto) throws Exception;
 
   int delete(int no) throws Exception;
+  
+  //
+  ReviewPlacePhoto findAll() throws Exception;
 }

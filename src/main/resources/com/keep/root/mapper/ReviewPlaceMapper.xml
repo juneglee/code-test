@@ -62,6 +62,22 @@
       p.review_place_no=#{no}
   </select>
   
+    <select id="findAll" resultMap="ReviewPlaceMap">
+    select 
+      p.review_place_no,
+      p.place_name,
+      p.place_basic_address,
+      p.place_detail_address,
+      p.place_review,
+      p.main_photo,
+      p.status
+      d.review_day_no
+    from review_place p
+      inner join review_days d on p.review_day_no=d.review_day_no
+    where 
+      p.review_place_no
+  </select>
+  
   <delete id="delete" parameterType="int">
     delete from review_place
     where review_place_no=#{no}

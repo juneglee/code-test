@@ -19,6 +19,12 @@
     
     <collection property="reviewPlace" ofType="ReviewPlace">
       <id column="review_place_no"   property="no"/>
+      <result column="place_name"    property="name"/>
+	    <result column="place_basic_address"    property="basicAddr"/>
+	    <result column="place_detail_address"    property="detailAddr"/>
+	    <result column="place_review"    property="placeReview"/>
+	    <result column="main_photo"    property="mainPhoto"/>
+	    <result column="status"    property="status"/>
     </collection>
   </resultMap>
   
@@ -56,10 +62,93 @@
       p.review_place_no
     from review_days d
       inner join reviews r on d.review_no=r.review_no
-      left outer join review_places p on d.review_day_no=p.review_day_no
+      left outer join review_place p on d.review_day_no=p.review_day_no
     where 
       d.review_day_no=#{no}
   </select>
+  
+  <select id="findAll" resultMap="ReviewDayMap" >
+    select 
+      d.review_day_no,
+      d.title,
+      d.day_date,
+      d.day_review,
+      d.main_photo,
+      d.status,
+      r.review_no,
+      p.review_place_no,
+      p.place_name,
+      p.place_basic_address as basicAddr,
+      p.place_detail_address as detailAddr,
+      p.place_review,
+      p.main_photo,
+      p.status
+    from review_days d
+      inner join reviews r on d.review_no=r.review_no
+      left outer join review_place p on d.review_day_no=p.review_day_no
+    where 
+      d.review_day_no
+  </select>
+  
+    <select id="findByKeyword" resultMap="ReviewDayMap" parameterType="string">
+    <bind name="keywordPattern" value="'%' + _parameter + '%'"/>
+      select 
+      d.review_day_no,
+      d.title,
+      d.day_date,
+      d.day_review,
+      d.main_photo,
+      d.status,
+      r.review_no,
+      p.review_place_no,
+      p.place_name,
+      p.place_basic_address as basicAddr,
+      p.place_detail_address as detailAddr,
+      p.place_review,
+      p.main_photo,
+      p.status
+    from review_days d
+      inner join reviews r on d.review_no=r.review_no
+      left outer join review_place p on d.review_day_no=p.review_day_no
+    where 
+      d.title like #{keywordPattern}
+      or d.day_review like #{keywordPattern}
+      or p.place_name like #{keywordPattern}
+      or p.place_basic_address like #{keywordPattern}
+      or p.place_detail_address like #{keywordPattern}
+      or p.place_review like #{keywordPattern}
+  </select>
+  
+  <!-- 
+      select 
+      d.review_day_no,
+      d.title,
+      d.day_date,
+      d.day_review,
+      d.main_photo,
+      d.status,
+      r.review_no,
+      p.review_place_no,
+      p.place_name,
+      p.place_basic_address as basicAddr,
+      p.place_detail_address  as detailAddr,
+      p.place_review,
+      p.main_photo,
+      p.status
+    from review_days d
+      inner join reviews r on d.review_no=r.review_no
+      left outer join review_place p on d.review_day_no=p.review_day_no
+    where 
+      d.title like "%홍대%"
+      or d.day_review like "%홍대%"
+      or p.place_name like "%홍대%"
+      or p.place_basic_address like "%홍대%"
+      or p.place_detail_address like  "%홍대%"
+      or p.place_review like "%홍대%"
+      
+   -->
+  
+  
   
   <update id="update" parameterType="ReviewDay">
     update review_days

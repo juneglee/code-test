@@ -43,6 +43,18 @@
       t.photo_no=#{no}
   </select>
   
+    <select id="findAll" resultMap="ReviewPlacePhotoMap">
+    select 
+      t.photo_no,
+      t.photo_file,
+      p.review_place_no
+    from review_place_photo t
+      inner join review_place p on t.review_place_no=p.review_place_no
+    where 
+      t.photo_no
+  </select>
+  
+  
   <delete id="delete" parameterType="int">
     delete from review_place_photo
     where photo_no=#{no}

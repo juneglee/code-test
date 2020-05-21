@@ -16,6 +16,11 @@
     
     <collection property="reviewDay" ofType="ReviewDay">
       <id column="review_day_no"   property="no"/>
+      <result column="title"    property="title"/>
+	    <result column="day_date"    property="dayDate"/>
+	    <result column="day_review"    property="mainReview"/>
+	    <result column="main_photo"    property="mainPhoto"/>
+	    <result column="status"    property="status"/>
     </collection>
   </resultMap>
   
@@ -54,6 +59,20 @@
       r.review_no=#{no}
   </select>
   
+    <select id="findAll" resultMap="ReviewMap">
+    select 
+      r.review_no,
+      r.create_date,
+      r.status,
+      u.user_no,
+      d.review_day_no
+    from reviews r
+      inner join users u on r.user_no=u.user_no
+      left outer join review_days d on r.review_no=d.review_no
+    where 
+      r.review_no
+  </select>
+   
   <delete id="delete" parameterType="int">
     delete from reviews
     where review_no=#{no}

@@ -19,4 +19,7 @@ public interface ReviewPlaceDao {
   int update(ReviewPlace reviewPlace) throws Exception;
 
   int delete(int no) throws Exception;
+  
+  //
+  ReviewPlace findAll() throws Exception;
 }

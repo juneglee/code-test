@@ -23,6 +23,16 @@
       <id column="review_no"  property="no"/>
     </association>
     
+    <association property="Point"  javaType="Review">
+      <id column="point_no"   property="no"/>
+      <result column="user_no"   property="userNo"/>
+      <result column="trader_no"   property="traderNo"/>
+      <result column="point_type"   property="pointType"/>
+      <result column="content"   property="content"/>
+      <result column="price"   property="price"/>
+    
+    </association>
+    
   </resultMap>
   
   
