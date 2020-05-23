@@ -34,11 +34,11 @@
        content, 
        price
     ) values(
-	    #{userNo}, 
-	    #{reviewUserNo}, 
-	    #{pointType}, 
-	    #{content}, 
-	    #{price}
+      #{userNo}, 
+      #{reviewUserNo}, 
+      #{pointType}, 
+      #{content}, 
+      #{price}
     )
      <!-- 
      // 1. 포인트 적립

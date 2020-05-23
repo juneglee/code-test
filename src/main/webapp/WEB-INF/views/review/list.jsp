@@ -26,9 +26,5 @@
   </c:forEach>
     </tbody>
 </table>
-
-            <form action='search' method='get'>
-                      검색어: <input name='keyword' type='text'>
-            <button>검색</button>
 </body>
 

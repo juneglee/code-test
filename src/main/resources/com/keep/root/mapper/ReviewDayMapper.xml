@@ -90,7 +90,7 @@
       d.review_day_no
   </select>
   
-    <select id="findByKeyword" resultMap="ReviewDayMap" parameterType="string">
+    <select id="findByKeyword" resultMap="ReviewDayMap" parameterType="map">
     <bind name="keywordPattern" value="'%' + _parameter + '%'"/>
       select 
       d.review_day_no,
@@ -118,37 +118,6 @@
       or p.place_detail_address like #{keywordPattern}
       or p.place_review like #{keywordPattern}
   </select>
-  
-  <!-- 
-      select 
-      d.review_day_no,
-      d.title,
-      d.day_date,
-      d.day_review,
-      d.main_photo,
-      d.status,
-      r.review_no,
-      p.review_place_no,
-      p.place_name,
-      p.place_basic_address as basicAddr,
-      p.place_detail_address  as detailAddr,
-      p.place_review,
-      p.main_photo,
-      p.status
-    from review_days d
-      inner join reviews r on d.review_no=r.review_no
-      left outer join review_place p on d.review_day_no=p.review_day_no
-    where 
-      d.title like "%홍대%"
-      or d.day_review like "%홍대%"
-      or p.place_name like "%홍대%"
-      or p.place_basic_address like "%홍대%"
-      or p.place_detail_address like  "%홍대%"
-      or p.place_review like "%홍대%"
-      
-   -->
-  
-  
   
   <update id="update" parameterType="ReviewDay">
     update review_days

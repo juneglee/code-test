@@ -49,11 +49,8 @@
               </td>
               <td>${item.price}</td>
               <c:set var= "sum" value="${sum + item.price}"/>
-            </tr>
           </c:forEach>
-          <tr>
-           - ${user.name}의 총 포인트는 <c:out value="${sum}"/> 입니다
-          </tr>
+                   총 포인트는 <c:out value="${sum}"/>
           </table>
        </div>
             
@@ -65,14 +62,20 @@
               <div class="list_point">
                   <div class="point_userlist">
                      <div class="userlist">
-                     <span> #이미지 삽입# </span>
-                      <a href="#" class="item_content">
-                          <div class="point_no">
-                              <span class="state _statusName">${item.no}</span>
-                              <strong class="title click _titleName">스크랩</strong>
+                        <div class="userlist_img">
+		                     <span> #이미지 삽입# </span>
+		                    </div>
+                        <div class="userlist_item.no">
+                         <span class="state _statusName">${item.no}</span>
+                        </div>
+                        <div class="userlist_titleName">
+                         <strong class="title click _titleName">스크랩</strong>
+                         </div>
+                        <div class="userlist_price">
+                           <a href="#" class="item_content">
                               <span class="point">${item.price}가 적립 되었습니다.</span>
-                          </div>   
-                      </a>
+		                      </a>
+                         </div>   
                       </div>
                       <div class="amount_space">
                           <div class="amount_inner">

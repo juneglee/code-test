@@ -78,18 +78,12 @@
 	<div class="row">
            <div id="custom-search-input">
                             <div class="input-group col-md-12">
-                             <input id='inputSearch' type="text" name='keyword' class="search-query form-control" placeholder="Search" />
-                            <!-- 검색 form
-                                <form id='search' action='http://localhost:9999/Root_Project/app/review/search.jsp' method='get'>
-                                <input id='inputSearch' type="text" name='keyword' class="search-query form-control" placeholder="Search" />
-                             -->    
-                            
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
+                                <form action='http://localhost:8080/Root_Project/app/review/search' method='get'>
+                                <input type="text" name='keyword' class="search-query form-control" placeholder="Search" />
+                                    <button class="btn btn-danger">
                                         <span class=" glyphicon glyphicon-search"></span>
                                     </button>
-                                </span>
-                                
+                                </form>
                             </div>
                         </div>
 	</div>
@@ -102,20 +96,7 @@
     </div>
 
   </section><!-- End Hero -->
-  <!-- 
-  <script>
-  
-"use strict"
-var ta = document.querySelector("#input");
-document.querySelector("#search").onclick = () => {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:9999/Root_Project/app/review/search", true); 
-    xhr.send();
-    input.value = xhr.responseText;
-};
 
-</script>
- -->
   <main id="main">
 
     <!-- ======= About Section ======= -->

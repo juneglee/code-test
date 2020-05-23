@@ -134,12 +134,18 @@ public class ReviewController {
     return "redirect:list?userNo=" + userNo;
   }
 
+  // 로그인 or 모두 공개 
+  // 초안 : 로그인을 통해서 공개 
   @GetMapping("search")
   public void search(String keyword, HttpSession session, Model model) throws Exception {
-    //
+	User user = (User) session.getAttribute("loginUser");
+	if (user == null) {
+	  throw new Exception("로그인이 필요합니다.");
+	}
+	model.addAttribute("review", reviewService.list(user.getNo()));
     model.addAttribute("reviewDay", reviewDayService.list());
     model.addAttribute("reviewPlace", reviewPlaceService.list());
     model.addAttribute("searchlist", reviewDayService.search(keyword));
-    // model.addAttribute("placelist", reviewService.search(keyword));
+    // model.addAttribute("searchlist", reviewDayService.search(keyword));
   }
 }
