@@ -48,9 +48,14 @@ public class ReviewPlacePhotoServiceImpl implements ReviewPlacePhotoService {
     return reviewPlacePhotoDao.delete(no);
   }
 
+  // 
   @Override
-  public ReviewPlace list() throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+  public List<ReviewPlacePhoto> listGet(int no) throws Exception {
+	  return reviewPlacePhotoDao.findAll(no);
   }
+
+	@Override
+	public ReviewPlacePhoto searchPhotoGet(int no) throws Exception {
+		return reviewPlacePhotoDao.find(no);
+	}
 }

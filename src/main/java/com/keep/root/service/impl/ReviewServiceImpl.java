@@ -136,8 +136,28 @@ public class ReviewServiceImpl implements ReviewService {
     return reviewDao.delete(no);
   }
 
-  @Override
-  public List<Review> search(String keyword) throws Exception {
-    return reviewDao.findByKeyword(keyword);
-  }
+@Override
+public List<Review> list() throws Exception {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+//@Override
+//public List<Review> list() throws Exception {
+//    List<Review> reviews = reviewDao.findAll();
+//    for (Review review : reviews) {
+//      List<ReviewDay> reviewDays = reviewDayDao.findAll();
+//      for (ReviewDay reviewDay : reviewDays) {
+//        List<ReviewPlace> reviewPlaces = reviewPlaceDao.findAll();
+//        for (ReviewPlace reviewPlace : reviewPlaces) {
+//          reviewPlace.setReviewPlacePhotos(
+//              reviewPlacePhotoDao.findAll());
+//        }
+//        reviewDay.setReviewPlace(reviewPlaceDao.findAll());
+//      }
+//      review.setReviewDay(reviewDayDao.findAll());
+//    }
+//	return reviews;
+//}
+
 }

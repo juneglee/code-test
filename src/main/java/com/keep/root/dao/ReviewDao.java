@@ -19,8 +19,6 @@ public interface ReviewDao {
 
   int delete(int no) throws Exception;
 
-  //
-  Review findAll() throws Exception;
-
-  List<Review> findByKeyword(String keyword) throws Exception;
+  //search
+  List<Review> findAll() throws Exception;
 }

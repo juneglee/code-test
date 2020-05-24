@@ -20,6 +20,9 @@ public interface ReviewPlacePhotoDao {
 
   int delete(int no) throws Exception;
 
-  //
-  ReviewPlace findAll() throws Exception;
+  //search
+  List<ReviewPlacePhoto> findAll(int no) throws Exception;
+  
+  ReviewPlacePhoto find(int no) throws Exception;
+  
 }

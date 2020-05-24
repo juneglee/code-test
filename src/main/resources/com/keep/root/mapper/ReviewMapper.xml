@@ -38,6 +38,18 @@
     order by
       review_no asc
   </select>
+  
+   <select id="findAll" resultMap="ReviewMap" parameterType="Map">
+    select 
+      review_no,
+      create_date,
+      status
+    from reviews
+    where
+      user_no
+    order by
+      review_no asc
+  </select>
 
   
   <select id="findByNo" resultMap="ReviewMap" parameterType="int">
@@ -58,7 +70,6 @@
     delete from reviews
     where review_no=#{no}
   </delete>
-  
 </mapper>
 
 

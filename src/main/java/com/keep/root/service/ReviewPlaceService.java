@@ -16,5 +16,10 @@ public interface ReviewPlaceService {
 
   int delete(int no) throws Exception;
 
-  ReviewPlacePhoto list() throws Exception;
+  // search
+  List<ReviewPlace> list() throws Exception;
+  
+  ReviewPlace searchPlaceGet(int no) throws Exception;
+  
+  List<ReviewPlace> search(String keyword) throws Exception;
 }

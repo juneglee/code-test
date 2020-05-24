@@ -5,20 +5,26 @@ import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.keep.root.domain.Review;
 import com.keep.root.domain.ReviewDay;
 import com.keep.root.domain.ReviewPlace;
 import com.keep.root.domain.ReviewPlacePhoto;
 import com.keep.root.domain.User;
 import com.keep.root.service.ReviewDayService;
+import com.keep.root.service.ReviewPlacePhotoService;
 import com.keep.root.service.ReviewPlaceService;
 import com.keep.root.service.ReviewService;
 import com.keep.root.service.UserService;
@@ -26,6 +32,8 @@ import com.keep.root.service.UserService;
 @Controller
 @RequestMapping("/review")
 public class ReviewController {
+	
+	static Logger logger = LogManager.getLogger(ReviewController.class);
 
   @Autowired
   ServletContext servletContext;
@@ -38,6 +46,10 @@ public class ReviewController {
 
   @Autowired
   ReviewPlaceService reviewPlaceService;
+  
+  @Autowired
+  ReviewPlacePhotoService reviewPlacePhotoService;
+
 
   @Autowired
   UserService userService;
@@ -134,18 +146,30 @@ public class ReviewController {
     return "redirect:list?userNo=" + userNo;
   }
 
-  // 로그인 or 모두 공개 
-  // 초안 : 로그인을 통해서 공개 
+  // 로그인 공개 or 모두 공개 
+  // 초안 : 모두 공개
   @GetMapping("search")
   public void search(String keyword, HttpSession session, Model model) throws Exception {
-	User user = (User) session.getAttribute("loginUser");
-	if (user == null) {
-	  throw new Exception("로그인이 필요합니다.");
-	}
-	model.addAttribute("review", reviewService.list(user.getNo()));
-    model.addAttribute("reviewDay", reviewDayService.list());
-    model.addAttribute("reviewPlace", reviewPlaceService.list());
-    model.addAttribute("searchlist", reviewDayService.search(keyword));
+    model.addAttribute("searchDayList", reviewDayService.search(keyword));
+    model.addAttribute("searchPlaceList", reviewPlaceService.search(keyword));
     // model.addAttribute("searchlist", reviewDayService.search(keyword));
+    logger.info(model);
+    logger.debug(model);
+  }
+  
+  @GetMapping("searchDayDetail")
+  public void searchDayDetail(int no, Model model) throws Exception {
+    model.addAttribute("searchDay", reviewDayService.searchDayGet(no));
+    model.addAttribute("searchPlace", reviewPlaceService.searchPlaceGet(no));
+    logger.info(model);
+    logger.debug(model);
+  }
+  
+  @GetMapping("searchPlaceDetail")
+  public void searchPlaceDetail(int no, Model model) throws Exception {
+    model.addAttribute("placeDetail", reviewPlaceService.searchPlaceGet(no));
+    model.addAttribute("placePhotoDetail", reviewPlacePhotoService.listGet(no));
+    logger.info(model);
+    logger.debug(model);
   }
 }

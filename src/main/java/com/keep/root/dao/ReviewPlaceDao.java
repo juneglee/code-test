@@ -1,8 +1,8 @@
 package com.keep.root.dao;
 
 import java.util.List;
+
 import com.keep.root.domain.ReviewPlace;
-import com.keep.root.domain.ReviewPlacePhoto;
 
 // 데이터를 저장하고 꺼내는 방식(파일, 클라우드저장소, DB 등)에 상관없이
 // DAO 사용법을 통일하기 위해
@@ -20,6 +20,10 @@ public interface ReviewPlaceDao {
 
   int delete(int no) throws Exception;
 
-  //
-  ReviewPlacePhoto findAll() throws Exception;
+  //search
+  List<ReviewPlace> findAll() throws Exception;
+  
+  ReviewPlace find(int no) throws Exception;
+  
+  List<ReviewPlace> findByKeyword(String keyword) throws Exception;
 }

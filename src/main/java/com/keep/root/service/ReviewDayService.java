@@ -17,6 +17,8 @@ public interface ReviewDayService {
 
   // search day
   List<ReviewDay> search(String keyword) throws Exception;
+  
+  ReviewDay searchDayGet(int no) throws Exception;
 
-  ReviewDay list() throws Exception;
+  List<ReviewDay> list() throws Exception;
 }

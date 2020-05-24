@@ -14,6 +14,8 @@ public interface ReviewService {
   int update(Review review) throws Exception;
 
   int delete(int no) throws Exception;
+  
+  //search
+  List<Review> list() throws Exception;
 
-  List<Review> search(String keyword) throws Exception;
 }

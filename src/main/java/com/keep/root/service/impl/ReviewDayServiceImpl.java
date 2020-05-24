@@ -8,6 +8,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.keep.root.dao.ReviewDayDao;
 import com.keep.root.dao.ReviewPlaceDao;
 import com.keep.root.dao.ReviewPlacePhotoDao;
+import com.keep.root.domain.Review;
 import com.keep.root.domain.ReviewDay;
 import com.keep.root.domain.ReviewPlace;
 import com.keep.root.domain.ReviewPlacePhoto;
@@ -107,14 +108,36 @@ public class ReviewDayServiceImpl implements ReviewDayService {
     return reviewDayDao.delete(no);
   }
 
+  
+  // search
+//  @Transactional
+//  @Override
+//  public List<ReviewDay> list() throws Exception {
+//    List<ReviewDay> reviewDays = reviewDayDao.findAll();
+//    for (ReviewDay reviewDay : reviewDays) {
+//      List<ReviewPlace> reviewPlaces = reviewPlaceDao.findAll();
+//      for (ReviewPlace reviewPlace : reviewPlaces) {
+//        reviewPlace
+//            .setReviewPlacePhotos(reviewPlacePhotoDao.findAll());
+//      }
+//      reviewDay.setReviewPlace(reviewPlaceDao.findAll());
+//    }
+//    return reviewDays;
+//  }
+  
   @Override
   public List<ReviewDay> search(String keyword) throws Exception {
     return reviewDayDao.findByKeyword(keyword);
   }
-
+  
   @Override
-  public ReviewDay list() throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+  public ReviewDay searchDayGet(int no) throws Exception {
+    return reviewDayDao.find(no);
   }
+
+@Override
+public List<ReviewDay> list() throws Exception {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

@@ -19,8 +19,10 @@ public interface ReviewDayDao {
 
   int delete(int no) throws Exception;
 
-  //
-  ReviewDay findAll() throws Exception;
+  //search
+  List<ReviewDay> findAll() throws Exception;
+  
+  ReviewDay find(int no) throws Exception;
 
   List<ReviewDay> findByKeyword(String keyword) throws Exception;
 }
