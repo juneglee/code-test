@@ -3,6 +3,16 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+
+
 <style>
 
 div.info {
@@ -109,7 +119,12 @@ div.point_no {
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
       <div class="card-body">
+      
         <p class="text-white m-0">기간 조회</p>
+          <input id="startDate" type="text" name="date" id="date3" size="12" />
+          <input id="endDate" type="text" name="date" id="date3" size="12" />
+          <input id="calendar" type="button" value="달력" onclick="$('#date3').datepicker('show');" />
+  
       </div>
     </div>
 
@@ -128,11 +143,11 @@ div.point_no {
                           </div>
                             <div class="userlist_titleName">
                                  <c:choose>
-								                  <c:when test="${item.content == 1}"> 포인트 적립</c:when>
-								                  <c:when test="${item.content == 2}"> 포인트 사용</c:when>
-								                  <c:when test="${item.content == 3}"> 충전 결제 </c:when>
-								                  <c:otherwise> 출금 </c:otherwise>
-								                </c:choose>
+                                  <c:when test="${item.content == 1}"> 포인트 적립</c:when>
+                                  <c:when test="${item.content == 2}"> 포인트 사용</c:when>
+                                  <c:when test="${item.content == 3}"> 충전 결제 </c:when>
+                                  <c:otherwise> 출금 </c:otherwise>
+                                </c:choose>
                              </div>
                           <div class="userlist_price">
                              <a href="#" class="item_content">
@@ -154,6 +169,82 @@ div.point_no {
     <!-- /.row -->
 
   </div>
+  
+
+  
+  <script>
+  $(function(){
+
+     $("#date1").datepicker();
+
+  });
+  
+  $(function(){
+
+      $("#date2").datepicker({
+
+          showOn: "both",
+
+          buttonImage: "images/calendar.gif",
+
+          buttonImageOnly: true,
+
+          buttonText: "Select date"
+
+      });
+
+  });
+  
+  $(function(){
+
+      $("#date3").datepicker({
+
+          onSelect:function(dateText, inst) {
+
+              console.log(dateText);
+
+          }
+
+      });
+
+  });
+  
+  ( function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+
+      // AMD. Register as an anonymous module.
+      define( [ "../widgets/datepicker" ], factory );
+    } else {
+
+      // Browser globals
+      factory( jQuery.datepicker );
+    }
+  }( function( datepicker ) {
+
+  datepicker.regional.ko = {
+    closeText: "닫기",
+    prevText: "이전달",
+    nextText: "다음달",
+    currentText: "오늘",
+    monthNames: [ "1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월" ],
+    monthNamesShort: [ "1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월" ],
+    dayNames: [ "일요일","월요일","화요일","수요일","목요일","금요일","토요일" ],
+    dayNamesShort: [ "일","월","화","수","목","금","토" ],
+    dayNamesMin: [ "일","월","화","수","목","금","토" ],
+    weekHeader: "주",
+    dateFormat: "yy-mm-dd",
+    firstDay: 0,
+    isRTL: false,
+    showMonthAfterYear: true,
+    yearSuffix: "년" };
+  datepicker.setDefaults( datepicker.regional.ko );
+
+  return datepicker.regional.ko;
+
+  } ) );
+  
+  </script>
+  
   <!-- /.container -->
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
