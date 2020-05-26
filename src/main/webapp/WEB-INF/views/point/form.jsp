@@ -55,8 +55,8 @@ console.log(e);
 
 document.querySelector("#point_withdraw_button").onclick = () => {
     if (confirm(" 보유하신 포인트에서 출금을 하시겠습니까? ") == true){    
-    	   sendPointData();
-    	   // sendUserPrice();
+         sendPointData();
+         // sendUserPrice();
      }else{ 
         console.log("error");
      }
@@ -68,18 +68,18 @@ function sendPointData() {
       if (xhr.readyState != 4 || xhr.status != 200){  
           console.log("withdraw send() 리턴함.");
         } else {
-        	console.log("withdraw 요청 완료");
+          console.log("withdraw 요청 완료");
         }
     };   
-	    xhr.open("GET", 
-	        "http://localhost:9999/Root_Project/app/point/add?userNo=" + a.value 
-	        + "&reviewUserNo=" + b.value
-	        + "&pointType=" + c.value
-	        + "&content=" + d.value
-	        + "&price=" + e.value, true);
-	    xhr.send("출금 요청에 성공했습니다.");
-	}
-	
+      xhr.open("GET", 
+          "<%=request.getContextPath()%>/app/point/add?userNo=" + a.value 
+          + "&reviewUserNo=" + b.value
+          + "&pointType=" + c.value
+          + "&content=" + d.value
+          + "&price=" + e.value, true);
+      xhr.send("출금 요청에 성공했습니다.");
+  }
+  
 </script>
 
 <!-- 

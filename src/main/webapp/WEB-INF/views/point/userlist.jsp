@@ -2,16 +2,14 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<meta content="[5eba455702f57e00291ee317]" name="bootpay-application-id" />
 
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
-
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.2.min.js" type="application/javascript"></script>
 
 <style>
 
@@ -72,6 +70,7 @@ div.point_no {
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
       <div class="col-lg-7">
+      
          <table border='1'>
             <tr>
               <th scope="col">포인트 번호</th>
@@ -110,7 +109,8 @@ div.point_no {
         <div class="info_lao">
          <img src="" alt="기본 이미지"><br>
                  현재 총 포인트는 <c:out value="${sum}"/> 입니다. <br>
-        <a class="btn btn-primary" href="#">충전하기</a>
+        <a id="withdraw_addform" class="btn btn-primary" href="#">충전하기</a>
+        <input type="button" id="naverPayBtn" value="네이버페이 결제 버튼">
         </div>
       </div>
     </div>
@@ -167,51 +167,69 @@ div.point_no {
 
     </div>
     <!-- /.row -->
-
   </div>
   
+<input  id='data-charge-name'  type="hidden" value='${loginUser.name}'/><br>
+<input  id='data-charge-tel'  type="hidden" value='${loginUser.tel}'/><br>
+<input  id='data-charge-bank'  type="hidden" value='${loginUser.bank}'/><br>
+<input  id='data-charge-account' type="hidden" value='${loginUser.account}'/><br>
+<input  id='data-charge-name'  type="hidden" value='${loginUser.name}'/><br>
+<input  id="data-charge-price"  type="hidden" /><br>
+<input id="data-user-no" type="hidden" value="${loginUser.no}">
+<input id="data-trader-no" type="hidden" value="0">
+<input id="data-pointType" type="hidden" value="0">
+<input id="data-content" type="hidden" value="3">
 
+
+<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+<script>
+"use strict"
+    var oPay = Naver.Pay.create({ //SDK Parameters를 참고 바랍니다.
+          "mode" : "production",
+          "clientId": "u86j4ripEt8LRfPGzQ8"
+          //"chainId" : "{그룹형일 경우 chainId를 넣어주세요}"
+    });
+
+    //직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요
+    var elNaverPayBtn = document.getElementById("naverPayBtn");
+
+    elNaverPayBtn.addEventListener("click", function() {
+        oPay.open({ // Pay Reserve Parameters를 참고 바랍니다.
+            "merchantUserKey": "가맹점 사용자 식별키",
+            "merchantPayKey": "가맹점 주문 번호",
+            "productName": "상품명을 입력하세요",
+            "totalPayAmount": "1000",
+            "taxScopeAmount": "1000",
+            "taxExScopeAmount": "0",
+            "returnUrl": "사용자 결제 완료 후 결제 결과를 받을 URL"
+        });
+    });
+
+ 
   
-  <script>
   $(function(){
-
      $("#date1").datepicker();
-
   });
   
   $(function(){
-
       $("#date2").datepicker({
-
           showOn: "both",
-
           buttonImage: "images/calendar.gif",
-
           buttonImageOnly: true,
-
           buttonText: "Select date"
-
       });
-
   });
   
   $(function(){
-
       $("#date3").datepicker({
-
           onSelect:function(dateText, inst) {
-
               console.log(dateText);
-
           }
-
       });
-
   });
   
   ( function( factory ) {
     if ( typeof define === "function" && define.amd ) {
-
       // AMD. Register as an anonymous module.
       define( [ "../widgets/datepicker" ], factory );
     } else {
@@ -241,7 +259,11 @@ div.point_no {
 
   return datepicker.regional.ko;
 
-  } ) );
+  }));
+  
+  $('#withdraw_addform').ready(function() {
+    BootPay.startTrace();
+  });
   
   </script>
   

@@ -15,7 +15,6 @@
  -->
 
 
-</script>
 <script>
 //실제 복사하여 사용시에는 모든 주석을 지운 후 사용하세요
 BootPay.request({
