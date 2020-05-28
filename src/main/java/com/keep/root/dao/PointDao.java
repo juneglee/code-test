@@ -17,6 +17,9 @@ public interface PointDao {
   // 입력 번호와 상대 번호를 비교하기 위함
   List<Point> findOutputByUserNo() throws Exception;
 
+  // 달력으로 날짜 조회
+  List<Point> findCalByUserNo(Map<String, Object> calendar) throws Exception;
+
   // detail - 포인트 내부설정
   Point find(int no) throws Exception;
 

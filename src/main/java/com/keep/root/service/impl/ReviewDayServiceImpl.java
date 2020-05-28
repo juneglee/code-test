@@ -8,7 +8,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.keep.root.dao.ReviewDayDao;
 import com.keep.root.dao.ReviewPlaceDao;
 import com.keep.root.dao.ReviewPlacePhotoDao;
-import com.keep.root.domain.Review;
 import com.keep.root.domain.ReviewDay;
 import com.keep.root.domain.ReviewPlace;
 import com.keep.root.domain.ReviewPlacePhoto;
@@ -27,7 +26,7 @@ public class ReviewDayServiceImpl implements ReviewDayService {
       ReviewDayDao reviewDayDao, //
       ReviewPlaceDao reviewPlaceDao, //
       ReviewPlacePhotoDao reviewPlacePhotoDao //
-  ) {
+      ) {
     this.transactionTemplate = new TransactionTemplate(txManager);
     this.reviewDayDao = reviewDayDao;
     this.reviewPlaceDao = reviewPlaceDao;
@@ -68,7 +67,7 @@ public class ReviewDayServiceImpl implements ReviewDayService {
       List<ReviewPlace> reviewPlaces = reviewPlaceDao.findAllByReviewDayNo(reviewDay.getNo());
       for (ReviewPlace reviewPlace : reviewPlaces) {
         reviewPlace
-            .setReviewPlacePhotos(reviewPlacePhotoDao.findAllByReviewPlaceNo(reviewPlace.getNo()));
+        .setReviewPlacePhotos(reviewPlacePhotoDao.findAllByReviewPlaceNo(reviewPlace.getNo()));
       }
       reviewDay.setReviewPlace(reviewPlaceDao.findAllByReviewDayNo(reviewDay.getNo()));
     }
@@ -82,7 +81,7 @@ public class ReviewDayServiceImpl implements ReviewDayService {
     List<ReviewPlace> reviewPlaces = reviewPlaceDao.findAllByReviewDayNo(reviewDay.getNo());
     for (ReviewPlace reviewPlace : reviewPlaces) {
       reviewPlace
-          .setReviewPlacePhotos(reviewPlacePhotoDao.findAllByReviewPlaceNo(reviewPlace.getNo()));
+      .setReviewPlacePhotos(reviewPlacePhotoDao.findAllByReviewPlaceNo(reviewPlace.getNo()));
     }
     return reviewDay;
   }
@@ -108,19 +107,19 @@ public class ReviewDayServiceImpl implements ReviewDayService {
     return reviewDayDao.delete(no);
   }
 
+  //search
   @Override
   public List<ReviewDay> search(String keyword) throws Exception {
     return reviewDayDao.findByKeyword(keyword);
   }
-  
+
   @Override
   public ReviewDay searchDayGet(int no) throws Exception {
     return reviewDayDao.find(no);
   }
 
-@Override
-public List<ReviewDay> list() throws Exception {
-	// TODO Auto-generated method stub
-	return null;
-}
+  @Override
+  public List<ReviewDay> list() throws Exception {
+    return null;
+  }
 }

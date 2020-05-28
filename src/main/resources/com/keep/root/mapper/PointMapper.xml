@@ -87,6 +87,32 @@
        -->
     </select>
    
+   
+	<!--
+	
+	<select id="findCalByUserNo" resultMap="PointMap"  parameterType="map">
+	select
+	p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date,
+	u.user_name, u.phone_number, u.user_no, u.account, u.bank
+	from
+	points p
+	inner join users u on (p.user_no=u.user_no)
+	where
+	p.create_date between ${startDate} and ${endDate}
+	and p.user_no=${userNo}
+	</select>
+
+	select
+	p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price,  p.create_date,
+	u.user_name, u.phone_number, u.user_no, u.account, u.bank
+	from
+	points p
+	inner join users u on (p.user_no=u.user_no)
+	where
+	p.create_date between "2010-05-10" and "2020-06-05"
+	and p.user_no=51;
+	-->
+	   
    <select id="findOutputByUserNo" resultMap="PointMap" parameterType="map">
      select 
       p.user_no,

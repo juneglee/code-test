@@ -2,6 +2,8 @@ package com.keep.root.web;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import com.keep.root.service.UserService;
 @RequestMapping("/point")
 // @RequestMapping("/point/*")
 public class PointServiceController {
+
+  static Logger logger = LogManager.getLogger(PointServiceController.class);
 
   @Autowired
   ServletContext servletContext;
@@ -75,22 +79,23 @@ public class PointServiceController {
     model.addAttribute("userlist", pointService.list(userNo));
   }
 
+  //  @GetMapping("calList")
+  //  public void calList(int userNo, Date startDate, Date endDate, HttpSession session, Model model) throws Exception {
+  //    User loginUser = (User) session.getAttribute("loginUser");
+  //    if (loginUser == null) {
+  //      throw new Exception("로그인이 필요합니다.");
+  //    }
+  //    model.addAttribute("calList", pointService.calList(userService.get(userNo), startDate, endDate));
+  //    logger.info(model);
+  //  }
+
+
   @GetMapping("detail")
   public void detail(int no, Model model) throws Exception {
     Point point = pointService.get(no);
     model.addAttribute("point", point);
   }
 
-
-  @GetMapping("output")
-  public void listOutput(Model model) throws Exception {
-    model.addAttribute("output", pointService.findOutputByUserNo());
-  }
-
-  @GetMapping("trader")
-  public void getTrader(Model model, int traderNo) throws Exception {
-    model.addAttribute("tarder", pointService.getTrader(traderNo));
-  }
 
   @PostMapping("update")
   public String update(Point point) throws Exception {
