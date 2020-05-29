@@ -2,6 +2,8 @@ package com.keep.root.service;
 
 import java.sql.Date;
 import java.util.List;
+
+import com.keep.root.domain.Paging;
 import com.keep.root.domain.Point;
 
 public interface PointService {
@@ -32,6 +34,12 @@ public interface PointService {
   int update(Point point) throws Exception;
 
   int delete(int no) throws Exception;
+  
+  // paging
+  
+  int countPoint()  throws Exception;
+	// 페이징 처리 게시글 조회
+  List<Point> selectPoint(Paging vo) throws Exception;
 
 }
 

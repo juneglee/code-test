@@ -2,6 +2,8 @@ package com.keep.root.dao;
 
 import java.util.List;
 import java.util.Map;
+
+import com.keep.root.domain.Paging;
 import com.keep.root.domain.Point;
 
 public interface PointDao {
@@ -32,4 +34,10 @@ public interface PointDao {
   int update(Point point) throws Exception;
 
   int delete(int no) throws Exception;
+  
+  // paing 
+  
+  int countPoint()  throws Exception;
+	// 페이징 처리 게시글 조회
+  List<Point> selectPoint(Paging vo) throws Exception;
 }

@@ -216,4 +216,23 @@
      -->
    </delete>
    
+   <!-- paging -->
+   
+   <select id="countPoint" resultType="int">
+       SELECT COUNT(*) FROM points
+    </select>
+    <!-- 
+    <select id="selectPoint" resultType="PointMap">
+		  SELECT * 
+		    FROM (
+		      SELECT ROWNUM RN, A.* 
+		        FROM (
+		            SELECT * 
+		            FROM points 
+		            ORDER BY SEQ DESC 
+		            ) A
+		        )
+		  WHERE RN BETWEEN #{start} AND #{end}
+		</select>
+     -->
    </mapper>

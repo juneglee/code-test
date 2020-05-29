@@ -3,8 +3,11 @@ package com.keep.root.service.impl;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 import com.keep.root.dao.PointDao;
+import com.keep.root.domain.Paging;
 import com.keep.root.domain.Point;
 import com.keep.root.service.PointService;
 
@@ -100,6 +103,17 @@ public class PointServiceImpl implements PointService {
   @Override
   public void withdraw(Point point) throws Exception {
   }
+  
+  // paging
+	@Override
+	public int countPoint() throws Exception {
+		return pointDao.countPoint();
+	}
+	
+	@Override
+	public List<Point> selectPoint(Paging vo) throws Exception {
+		return pointDao.selectPoint(vo);
+	}
 
 
 }

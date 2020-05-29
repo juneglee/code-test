@@ -134,7 +134,7 @@ function sendScrapDayData() {
 	           }
 	     };         
 	      xhr.open("GET", 
-	          "http://localhost:9999/Root_Project/app/scrap/addReviewPlace?userNo=" 
+	          "http://localhost:8080/Root_Project/app/scrap/addReviewPlace?userNo=" 
 	          + a.value + "&reviewPlaceNo="+ pa.value , true);
 	      xhr.send();
 	  }
@@ -150,7 +150,7 @@ function sendScrapDayData() {
            }
         };       
         xhr.open("GET", 
-            "http://localhost:9999/Root_Project/app/point/add?userNo=" + a.value 
+            "http://localhost:8080/Root_Project/app/point/add?userNo=" + a.value 
             + "&reviewUserNo=" + b.value
             + "&pointType=" + c.value
             + "&content=" + d.value

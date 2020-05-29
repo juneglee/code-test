@@ -2,6 +2,7 @@ package com.keep.root.web;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.keep.root.domain.Paging;
 import com.keep.root.domain.Point;
 import com.keep.root.domain.User;
 import com.keep.root.service.PointService;
@@ -74,7 +78,25 @@ public class PointServiceController {
   }
 
   @GetMapping("userlist")
-  public void list(int userNo, Model model) throws Exception {
+  public void list(int userNo, Paging vo, HttpSession session
+		, @RequestParam(value="nowPage", required=false)String nowPage
+		, @RequestParam(value="cntPerPage", required=false)String cntPerPage
+		, Model model) throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser == null) {
+	      throw new Exception("로그인이 필요합니다.");
+	    }
+		int total = pointService.countPoint();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
     model.addAttribute("user", userService.get(userNo));
     model.addAttribute("userlist", pointService.list(userNo));
   }

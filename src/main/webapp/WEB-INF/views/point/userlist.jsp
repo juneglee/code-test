@@ -144,8 +144,28 @@ div.point_no {
 
     <!-- Content Row -->
     <div class="row">
+      <form id="searchText">
+        <input type="hidden" name="viewCount" id="viewCount" value="0">
+        <input type="hidden" name="startCount" id="startCount" value="0">
       <div class = "dsk_sc">
+          <div style="float: right;">
+				    <select id="cntPerPage" name="sel" onchange="selChange()">
+				      <option value="5"
+				        <c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
+				      <option value="10"
+				        <c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
+				      <option value="15"
+				        <c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
+				      <option value="20"
+				        <c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+				    </select>
+				  </div>
+        
+        
+        <table id="more_list">
+          <thead>
               <c:forEach items="${userlist}" var="item">
+                <tr>
                 <div class="list_point">
                   <div class="list_margin">
                        <div class="userlist">
@@ -168,13 +188,13 @@ div.point_no {
                           <div class="userlist_price">
                              <a href="#" class="item_content">
                               <c:if test="${(item.pointType==0 && item.content == 1) || 
-								                   (item.pointType==0 && item.content == 3)}">
+                                   (item.pointType==0 && item.content == 3)}">
                                 <span class="point1">으로  <strong>${item.price}</strong>가 포인트 <strong>적립</strong>이 되었습니다.</span>
-								              </c:if>
-								             <c:if test="${(item.pointType==1 && item.content == 2) || 
-								                   (item.pointType==1 && item.content == 4)}">
-								                <span class="point2">으로  <strong>${item.price}</strong>가 포인트 <strong>사용</strong>이 되었습니다.</span>    
-								              </c:if>
+                              </c:if>
+                             <c:if test="${(item.pointType==1 && item.content == 2) || 
+                                   (item.pointType==1 && item.content == 4)}">
+                                <span class="point2">으로  <strong>${item.price}</strong>가 포인트 <strong>사용</strong>이 되었습니다.</span>    
+                              </c:if>
                             </a>
                           </div>   
                         </div>
@@ -185,9 +205,36 @@ div.point_no {
                         </div>
                      </div>
                  </div>
+                 </tr>
                 </c:forEach>
-              
+	                <div id="more_btn_div" align="center">
+	                  <hr>
+	                    <a id="more_btn_a" href="javascript:moreContent('more_list',10);"> 더보기
+	                    </a>
+	                  <hr>
+	                </div>
+	                
+             </table> 
+              <div style="display: block; text-align: center;">   
+    <c:if test="${paging.startPage != 1 }">
+      <a href="/userlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+    </c:if>
+    <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+      <c:choose>
+        <c:when test="${p == paging.nowPage }">
+          <b>${p }</b>
+        </c:when>
+        <c:when test="${p != paging.nowPage }">
+          <a href="/userlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+        </c:when>
+      </c:choose>
+    </c:forEach>
+    <c:if test="${paging.endPage != paging.lastPage}">
+      <a href="/userlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+    </c:if>
+  </div>
            </div>
+         </form>
     </div>
     <!-- /.row -->
   </div>
@@ -199,8 +246,6 @@ div.point_no {
 <input id='data-charge-tel'  type="hidden" value='${loginUser.tel}'/><br>
 <input id='data-charge-bank'  type="hidden" value='${loginUser.bank}'/><br>
 <input id='data-charge-account' type="hidden" value='${loginUser.account}'/><br>
-<input id='data-charge-name'  type="hidden" value='${loginUser.name}'/><br>
-
 
 <input id="data-user-no" type="hidden" value="${loginUser.no}">
 <input id="data-trader-no" type="hidden" value="0">
@@ -243,38 +288,13 @@ console.log(d2);
 console.log(d3);
 console.log(d4);
 
-// ------------- 더보기 ajax
-function moreList(){
-    $.ajax({
-        url :"/point/userlist",
-        type :"POST",
-        cache : false,
-        dataType:'json',
-        data :"userNo="+ a.value, //변경 
-        success :function(data){
-            console.log(data);
-            var userNo="";
-            for(var i=0; i<data.hashMapList.length; i++){
-                content +=
-                "<tr>"+
-                    "<td>"+data.hashMapList[i].area+"</td>"+
-                    "<td>"+data.hashMapList[i].name+"</td>"+
-                    "<td>"+data.hashMapList[i].gubun+"</td>"+
-                    "<td>"+data.hashMapList[i].cnt+"</td>"+
-                "</tr>";
-            }
-            content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";
-            $('#addbtn').remove();//remove btn
-            $(content).appendTo("#table");
-        }, error:function(request,status,error){
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
-    });
-};
-
-
-
-
+// ------------- paing
+  function selChange() {
+    var sel = document.getElementById('cntPerPage').value;
+    location.href="userlist?userNo=${loginUser.no}&nowPage=${paging.nowPage}&cntPerPage="+sel;
+  }
+  
+  
 //충전  function
 //-------------------  결제 시스템
 document.querySelector("#withdraw_addform").onclick = () => {
@@ -362,10 +382,64 @@ document.querySelector("#withdraw_addform").onclick = () => {
 // -------------------  팝업1
 
   function showPopup() { 
-	window.open(
-			"${pageContext.servletContext.contextPath}/WEB-INF/views/point/withdrawAddform.html", 
-			"a", "width=400, height=300, left=100, top=50"); 
-	}
+  window.open(
+      "${pageContext.servletContext.contextPath}/WEB-INF/views/point/withdrawAddform.html", 
+      "a", "width=400, height=300, left=100, top=50"); 
+  }
+// -------------------  팝업2
+
+$('#btn-example').click(function(){
+        var $href = $(this).attr('href');
+        layer_popup($href);
+    });
+    function layer_popup(el){
+
+        var $el = $(el);        //레이어의 id를 $el 변수에 저장
+        var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+        var $elWidth = ~~($el.outerWidth()),
+            $elHeight = ~~($el.outerHeight()),
+            docWidth = $(document).width(),
+            docHeight = $(document).height();
+
+        // 화면의 중앙에 레이어를 띄운다.
+        if ($elHeight < docHeight || $elWidth < docWidth) {
+            $el.css({
+                marginTop: -$elHeight /2,
+                marginLeft: -$elWidth/2
+            })
+        } else {
+            $el.css({top: 0, left: 0});
+        }
+
+        $el.find('a.btn-layerClose').click(function(){
+            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+            return false;
+        });
+
+        $('.layer .dimBg').click(function(){
+            $('.dim-layer').fadeOut();
+            return false;
+        });
+
+    }
+
+ // -------------------  팝업3
+    function popup(url, w, h, name, option) {
+    var pozX, pozY;
+    var sw = screen.availWidth;
+    var sh = screen.availHeight;
+    var scroll = 0;
+    if (option == 'scroll') {
+        scroll = 1;
+    }
+    pozX = (sw - w) / 2;
+    pozY = (sh - h) / 2;
+    window.open(url, name, "location=0,status=0,scrollbars=" + scroll + ",resizable=1,width=" + w + ",height=" + h + 
+    ",left=" + pozX + ",top=" + pozY);
+}
 
  // -------------------  달력
   $(function(){
@@ -420,3 +494,4 @@ document.querySelector("#withdraw_addform").onclick = () => {
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Footer -->
+
