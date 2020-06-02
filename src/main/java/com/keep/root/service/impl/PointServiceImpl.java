@@ -95,13 +95,20 @@ public class PointServiceImpl implements PointService {
   }
   
   @Override
-	public int getTotalCount(Criteria cri) throws Exception {
-		return pointDao.getTotalCount(cri);
+	public int getTotalCount(int userNo) throws Exception {
+		return pointDao.getTotalCount(userNo);
   }
   
   @Override
-  public List<Point> listPage(Criteria cri) throws Exception {
-	return pointDao.listPage(cri);
+  public List<Point> listPage(int userNo, Criteria cri) throws Exception {
+	  HashMap<String, Object> params = new HashMap<>();
+	  params.put("userNo", userNo);
+	    if (cri.getPage() > 0) {
+	        cri.setPage(cri.getPage());
+	      }
+	    params.put("pageStart", cri.getPage());
+	    params.put("perPageNum", cri.getPerPageNum());
+	  return pointDao.listPage(params) ;
   }
 
 }

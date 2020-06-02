@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.keep.root.domain.Criteria;
 import com.keep.root.domain.PageMaker;
@@ -89,24 +90,24 @@ public class PointServiceController {
     model.addAttribute("list", pointService.list());
   }
 
-  @GetMapping("userlist")
-  public void listPage(Criteria cri, Model model,  HttpSession session) throws Exception {
+  @RequestMapping("userlist")
+  public void listPage(@RequestParam(value = "page", defaultValue = "1") int page, 
+		  @RequestParam(value = "perPageNum") int perPageNum, 
+     Criteria cri, Model model,  HttpSession session) throws Exception {
 	 User loginUser = (User) session.getAttribute("loginUser");
 	 if (loginUser == null) {
 	   throw new Exception("로그인이 필요합니다.");
 	 }
-	  
 	logger.info("listPage");
 	
-	List<Point> points = pointService.listPage(cri);
-	model.addAttribute("list",points);
+	model.addAttribute("list", pointService.listPage(loginUser.getNo(), cri));
+	
 	PageMaker pageMaker = new PageMaker(cri);
-	int totalCount = pointService.getTotalCount(cri);
+	int totalCount = pointService.getTotalCount(loginUser.getNo());
 	pageMaker.setTotalCount(totalCount);
 	model.addAttribute("pageMaker", pageMaker);
 	
-    model.addAttribute("user", userService.get(loginUser.getNo()));
-    model.addAttribute("userlist", pointService.list(loginUser.getNo()));
+	logger.info(model);
   }
 
   @GetMapping("detail")

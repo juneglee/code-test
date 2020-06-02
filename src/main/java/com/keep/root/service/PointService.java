@@ -35,8 +35,8 @@ public interface PointService {
   int delete(int no) throws Exception;
   
   // paging
-  int getTotalCount(Criteria cri) throws Exception;
+  int getTotalCount(int userNo) throws Exception;
   
-  List<Point> listPage(Criteria cri) throws Exception;
+  List<Point> listPage(int userNo, Criteria cri) throws Exception;
 
 }

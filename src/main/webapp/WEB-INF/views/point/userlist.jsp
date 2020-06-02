@@ -67,7 +67,7 @@ div.point_no {
         <c:set var = "sum1" value = "0" />
         <c:set var = "sum2" value = "0" />
         <c:set var = "sum3" value = "0" />
-          <c:forEach items="${userlist}" var="item">
+          <c:forEach items="${list}" var="item">
              <c:if test="${(item.pointType==0 && item.content == 1) || 
                    (item.pointType==0 && item.content == 3)}">
                  <c:set var= "sum1" value="${sum1 + item.price}"/>
@@ -158,7 +158,7 @@ div.point_no {
                               <c:if test="${(item.pointType==1 && item.content == 2) || 
                                    (item.pointType==1 && item.content == 4)}">
                                     <span><img src="${pageContext.servletContext.contextPath}/img/point/userlist/useimg.jpg" alt="사용 이미지" style="width: 70px; height: 70px;"></span>    
-                              </c:if>    
+                              </c:if>   
                           </div>
                             <div class="userlist_titleName">
                             <strong>
@@ -201,37 +201,37 @@ div.point_no {
                   </div>
                    -->
              </table> 
-<div class="text-center">
-  <nav aria-label="pagination">
-    <ul class="pagination">
-    
-      <!-- prev 버튼 -->
-      <li id="page-prev">
-        <a href="userlist${pageMaker.makeQuery(pageMaker.startPage-1)}" aria-label="Prev">
-          <span aria-hidden="true">«</span>
-        </a>
-      </li>
-      
-      <!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
-      <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-          <li id="page${idx}">
-            <a href="userlist${pageMaker.makeQuery(idx)}">
-              <!-- 시각 장애인을 위한 추가 -->
-                <span>${idx}<span class="sr-only">(current)</span></span>
-            </a>
-          </li>
-      </c:forEach>
-      
-      <!-- next 버튼 -->
-      <li id="page-next">
-          <a href="userlist${pageMaker.makeQuery(pageMaker.endPage + 1)}" aria-label="Next">
-            <span aria-hidden="true">»</span>
-          </a>
-      </li>
-      
-    </ul>
-  </nav>
-</div>
+								<div class="text-center">
+								  <nav aria-label="pagination">
+								    <ul class="pagination">
+								    
+								      <!-- prev 버튼 -->
+								      <li id="page-prev">
+								        <a href="userlist${pageMaker.makeQuery(pageMaker.startPage-1)}" aria-label="Prev">
+								          <span aria-hidden="true">«</span>
+								        </a>
+								      </li>
+								      
+								      <!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
+								      <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+								          <li id="page${idx}">
+								            <a href="userlist${pageMaker.makeQuery(idx)}">
+								              <!-- 시각 장애인을 위한 추가 -->
+								                <span>${idx}<span class="sr-only">(current)</span></span>
+								            </a>
+								          </li>
+								      </c:forEach>
+								      
+								      <!-- next 버튼 -->
+								      <li id="page-next">
+								          <a href="userlist${pageMaker.makeQuery(pageMaker.endPage + 1)}" aria-label="Next">
+								            <span aria-hidden="true">»</span>
+								          </a>
+								      </li>
+									    </ul>
+									  </nav>
+									</div>
+									
            </div>
     </div>
     <!-- /.row -->

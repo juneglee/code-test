@@ -157,39 +157,40 @@
      -->
    </delete>
    
-   <select id="listPage" resultType="Point">
-		  select *
-		  from points
-		  where point_no > 0
-		  order by point_no desc, create_date desc
-		  limit #{pageStart}, #{perPageNum}
-		</select>
-		
-		<!--
-     select 
+   <select id="listPage" resultMap="PointMap" parameterType="int">
+		 select 
       p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date,
       u.user_name, u.phone_number, u.user_no, u.account, u.bank
      from
       points p
-      inner join users u on (p.user_no=u.user_no) , (select *
-																								      from points
-																								      where point_no > 0
-																								      order by point_no desc, create_date desc
-																								      limit #{pageStart}, #{perPageNum}
-																								      )
-	        
-     where
-      not p.user_no = p.trader_no
-      and p.user_no= 51;
-
+      inner join users u on (p.user_no=u.user_no)
+      where p.user_no=#{userNo}
+      order by p.create_date desc
+      limit #{pageStart}, #{perPageNum}
+	</select>
 		
-		
+		<!--
+      
+		 select 
+      p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date,
+      u.user_name, u.phone_number, u.user_no, u.account, u.bank
+     from
+      points p
+      inner join users u on (p.user_no=u.user_no)
+      where p.user_no=51
+      order by p.create_date desc
+      limit 1, 10; 
+      
+      select *
+      from points
+      where point_no > 0
 		 -->
 		
 		<select id="getTotalCount" resultType="int">
-		  select count(point_no)
+		  select count(*)
 		  from points
-		  where point_no > 0
+		  where 
+		  user_no=#{userNo}
 		</select>
    
    </mapper>
