@@ -1,5 +1,7 @@
 package com.keep.root.web;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -11,9 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.keep.root.domain.Paging;
+import com.keep.root.domain.Criteria;
+import com.keep.root.domain.PageMaker;
 import com.keep.root.domain.Point;
 import com.keep.root.domain.User;
 import com.keep.root.service.PointService;
@@ -23,8 +25,7 @@ import com.keep.root.service.UserService;
 @RequestMapping("/point")
 // @RequestMapping("/point/*")
 public class PointServiceController {
-
-  static Logger logger = LogManager.getLogger(PointServiceController.class);
+	  static Logger logger = LogManager.getLogger(PointServiceController.class);
 
   @Autowired
   ServletContext servletContext;
@@ -63,7 +64,7 @@ public class PointServiceController {
     if (loginUser == null) {
       throw new Exception("로그인이 필요합니다.");
     }
-    if (pointService.scrapAdd(loginUser.getNo(), reviewUserNo, pointType, content, price) > 0) {
+    if (pointService.scrapAdd(userNo, reviewUserNo, pointType, content, price) > 0) {
       return "redirect:userlist?userNo=" + loginUser.getNo();
     } else {
       throw new Exception("스크랩을 실패했습니다.");
@@ -72,32 +73,41 @@ public class PointServiceController {
 
   // http://localhost:8080/Root_Project/app/point/add?userNo=51&reviewUserNo=54&pointType=1&content=2&price=30
 
+  @GetMapping("outputdetail")
+  public void getUser(int userNo, Model model) throws Exception {
+    User user = userService.get(userNo);
+    if (user == null) {
+      throw new Exception("해당 번호의 정보가 없습니다.");
+    }
+    model.addAttribute("user", user);
+    model.addAttribute("outputdetail", pointService.getUser(userNo));
+  }
+
+
   @GetMapping("list")
   public void list(Model model) throws Exception {
     model.addAttribute("list", pointService.list());
   }
 
   @GetMapping("userlist")
-  public void list(int userNo,  HttpSession session
-		, Model model) throws Exception {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser == null) {
-	      throw new Exception("로그인이 필요합니다.");
-	    }
-    model.addAttribute("user", userService.get(userNo));
-    model.addAttribute("userlist", pointService.list(userNo));
+  public void listPage(Criteria cri, Model model,  HttpSession session) throws Exception {
+	 User loginUser = (User) session.getAttribute("loginUser");
+	 if (loginUser == null) {
+	   throw new Exception("로그인이 필요합니다.");
+	 }
+	  
+	logger.info("listPage");
+	
+	List<Point> points = pointService.listPage(cri);
+	model.addAttribute("list",points);
+	PageMaker pageMaker = new PageMaker(cri);
+	int totalCount = pointService.getTotalCount(cri);
+	pageMaker.setTotalCount(totalCount);
+	model.addAttribute("pageMaker", pageMaker);
+	
+    model.addAttribute("user", userService.get(loginUser.getNo()));
+    model.addAttribute("userlist", pointService.list(loginUser.getNo()));
   }
-
-  //  @GetMapping("calList")
-  //  public void calList(int userNo, Date startDate, Date endDate, HttpSession session, Model model) throws Exception {
-  //    User loginUser = (User) session.getAttribute("loginUser");
-  //    if (loginUser == null) {
-  //      throw new Exception("로그인이 필요합니다.");
-  //    }
-  //    model.addAttribute("calList", pointService.calList(userService.get(userNo), startDate, endDate));
-  //    logger.info(model);
-  //  }
-
 
   @GetMapping("detail")
   public void detail(int no, Model model) throws Exception {
@@ -105,6 +115,16 @@ public class PointServiceController {
     model.addAttribute("point", point);
   }
 
+
+  @GetMapping("output")
+  public void listOutput(Model model) throws Exception {
+    model.addAttribute("output", pointService.findOutputByUserNo());
+  }
+
+  @GetMapping("trader")
+  public void getTrader(Model model, int traderNo) throws Exception {
+    model.addAttribute("tarder", pointService.getTrader(traderNo));
+  }
 
   @PostMapping("update")
   public String update(Point point) throws Exception {

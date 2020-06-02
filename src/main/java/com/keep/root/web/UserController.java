@@ -31,13 +31,20 @@ public class UserController {
   UserService userService;
 
   @GetMapping("form")
-  public void form() {}
+  public void form() {
+  }
+
+  @GetMapping("passCheck")
+  public void passCheck() {
+  }
 
   @GetMapping("findinfoform")
-  public void findinfoform() {}
+  public void findinfoform() {
+  }
 
   @GetMapping("updateform")
-  public void updateform() {}
+  public void updateform() {
+  }
 
   @RequestMapping("add")
   public String add(//
@@ -47,13 +54,12 @@ public class UserController {
       String birth, //
       int gender, //
       String tel, //
-      int zipCode, //
+      String zipCode, //
       String basicAddr, //
       String detailAddr, //
       String nickName, //
       MultipartFile photoFile) throws Exception {
-    User user = new User(email, password, name, birth, gender, tel, zipCode, basicAddr, detailAddr,
-        nickName);
+    User user = new User(email, password, name, birth, gender, tel, zipCode, basicAddr, detailAddr, nickName);
 
     if (photoFile.getSize() > 0) {
       String dirPath = servletContext.getRealPath("/upload/user");
@@ -100,16 +106,21 @@ public class UserController {
   }
 
   @PostMapping("update")
-  public String update(User user, MultipartFile photoFile, HttpSession session) throws Exception {
+  public String update( //
+      User updateUser, //
+      MultipartFile photoFile, //
+      HttpSession session //
+      ) throws Exception {
+    session.getAttribute("loginUser");
     if (photoFile.getSize() > 0) {
       String dirPath = servletContext.getRealPath("/upload/user");
       String filename = UUID.randomUUID().toString();
       photoFile.transferTo(new File(dirPath + "/" + filename));
-      user.setPhoto(filename);
+      updateUser.setPhoto(filename);
     }
-    session.setAttribute("loginUser", user);
-    if (userService.update(user) > 0) {
-      return "redirect:../mypage/form";
+    if (userService.update(updateUser) > 0) {
+      session.setAttribute("loginUser", updateUser);
+      return "redirect:../mypage/form?no=" + updateUser.getNo();
     } else {
       throw new Exception("변경할 회원 번호가 유효하지 않습니다.");
     }
@@ -120,7 +131,6 @@ public class UserController {
     userService.updatePassword(user);
     return "redirect:../auth/form";
   }
-
 
   @ResponseBody
   @RequestMapping(value = "nickNameSearch", method = RequestMethod.POST)
@@ -148,6 +158,17 @@ public class UserController {
   public int nameSearch(String name) throws Exception {
     int count = userService.nameSearch(name);
     return count;
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "epSearch", method = RequestMethod.POST)
+  public int epSearch(String email, String password) throws Exception {
+    System.out.println("email:"+email);
+    System.out.println("password:" + password);
+    int count = userService.epSearch(email, password);
+    System.out.println("리턴 값" + count);
+    return count;
+
   }
 
   @ResponseBody

@@ -21,12 +21,12 @@ public class MyPageController {
 
   @GetMapping("form")
   public void form(int no, Model model, HttpSession session) throws Exception {
-	User loginUser = (User) session.getAttribute("loginUser");
-	 if (loginUser == null) {
-	  throw new Exception("로그인이 필요합니다.");
-	 }
+    User user = (User) session.getAttribute("loginUser");
+    if (user == null) {
+      throw new Exception("로그인이 필요합니다.");
+    }
 
-    model.addAttribute("user", userService.get(no));
     model.addAttribute("list", userService.list(no));
+    model.addAttribute("user", userService.get(no));
   }
 }

@@ -30,7 +30,7 @@ public class ReviewServiceImpl implements ReviewService {
       ReviewDayDao reviewDayDao, //
       ReviewPlaceDao reviewPlaceDao, //
       ReviewPlacePhotoDao reviewPlacePhotoDao //
-      ) {
+  ) {
     this.transactionTemplate = new TransactionTemplate(txManager);
     this.reviewDao = reviewDao;
     this.reviewDayDao = reviewDayDao;
@@ -136,16 +136,15 @@ public class ReviewServiceImpl implements ReviewService {
     return reviewDao.delete(no);
   }
 
-  //search
-  @Override
-  public List<Review> list() throws Exception {
-    return null;
-  }
+	@Override
+	public List<Review> list() throws Exception {
+		return null;
+	}
 
-  @Override
-  public Review getByPlaceNo(int no) throws Exception {
-    return reviewDao.find(no);
-  }
+	@Override
+	public Review getByPlaceNo(int no) throws Exception {
+		return reviewDao.find(no);
+	}
 
 
 }

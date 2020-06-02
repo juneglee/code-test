@@ -3,70 +3,158 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>데이 검색 상세 </h1>
+ <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+        <c:forEach items="${review.reviewDay}" var="reviewDay">
+        <!-- Title -->
+        <h1 class="mt-4"># 데이 스크랩 상세 </h1>
+        <!-- Author -->
+        <p class="lead"></p>
+        <hr>
+        <!-- Date/Time -->
+        <p>여행 일짜 : ${reviewDay.dayDate}</p>
+        <strong>${reviewDay.title}</strong> <br>
+        <td><button id="total_scrap_butoon" style="float: right;">전체 스크랩</button></td> <br>
+        <hr>
+        <!-- Preview Image -->
+        <img src='${pageContext.servletContext.contextPath}/img/search/testimg.jpg' style="width:750; "><br>
+        <hr>
+        <!-- Post Content -->
+        <p class="lead" style="font-size: 18px;">${reviewDay.mainReview}</p>
+         <input id="data-reviewDay-no" type="hidden" value="${reviewDay.no}">
+         <input id="data-trader-no" type="hidden" value="${review.user.no}">
+         <input id="data-reverse-user-no" type="hidden" value="${review.user.no}">
+         
+        <c:forEach items="${reviewDay.reviewPlace}" var="reviewPlace" varStatus="place_status">
+           <c:forEach items="${reviewPlace.reviewPlacePhotos}" var="reviewPlacePhoto" varStatus="status">
+           <c:if test="${status.first}">
+        <blockquote class="blockquote">
+        <div class="main_img" style="border-top: 3px solid gray; padding-top: 30px;">
+          <img src='${pageContext.servletContext.contextPath}/img/search/testimg.jpg' style='width:360px; margin-left: 160px; margin-top: 50px;'><br>
+        </div>
+          <footer class="blockquote-footer" style="margin-left: 160px;"> 
+                    대표 장소 : <cite title="Source Title">${reviewPlace.name}</cite> <br>
+           &nbsp;&nbsp;&nbsp;&nbsp; 주소   : <cite title="Source Title"> ${reviewPlace.basicAddr} ${reviewPlace.detailAddr}</cite>
+            <button id="place_scrap_butoon" style="float: right;">스크랩</button><br>
+          </footer>
+        </blockquote>
 
-  <td><button id="total_scrap_butoon" >전체 스크랩</button></td> <br>
-  <table border='1'>
-  <tr>
-    <th>제목</th>
-    <th>여행일</th>
-    <th>후기</th>
-    <th>장소명</th>
-    <th>기본주소</th>
-    <th>상세주소</th>
-    <th>장소후기</th>
-    <th>스크랩</th>
-  </tr>
-  
-  <c:forEach items="${review.reviewDay}" var="reviewDay">
-      메인사진 : <img src='${pageContext.servletContext.contextPath}/upload/review/${reviewDay.mainPhoto}' width='360'><br>
-       <input id="data-reviewDay-no" type="hidden" value="${reviewDay.no}">
-       <input id="data-trader-no" type="hidden" value="${review.user.no}">
-    <c:forEach items="${reviewDay.reviewPlace}" var="reviewPlace">
-      장소대표사진 : <img src='${pageContext.servletContext.contextPath}/upload/review/${reviewPlace.mainPhoto}' width='360'><br>
-      <c:forEach items="${reviewPlace.reviewPlacePhotos}" var="reviewPlacePhoto" varStatus="status">
-      <c:if test="${status.first}">
-      <tr>
-        <td>${reviewDay.title}</td> 
-        <td>${reviewDay.dayDate}</td>
-        <td>${reviewDay.mainReview}</td>  
-        <td>${reviewPlace.name}</td> 
-        <td>${reviewPlace.basicAddr}</td> 
-        <td>${reviewPlace.detailAddr}</td> 
-        <td>${reviewPlace.placeReview}</td>
-	      <input id="data-reviewPlace-no" type="hidden" value="${reviewPlace.no}">
-	      
-        
-        <td><button id="place_scrap_butoon">스크랩</button></td>
+        <p>${reviewPlace.placeReview}<br></p>
         </c:if>
-        장소사진 : <img src='${pageContext.servletContext.contextPath}/upload/review/${reviewPlacePhoto.photo}' width='360'><br>
-      </tr>
-     </c:forEach>
-   </c:forEach>
+        <hr>
+              장소사진 : <br> 
+        <img src='${pageContext.servletContext.contextPath}/img/search/testimg.jpg' style="width: 20ox;"><br>
+      </c:forEach>
+    </c:forEach>
   </c:forEach>
-</table>
-          <input id="data-user-no" type="hidden" value="${loginUser.no}">
-          <input id="data-pointType" type="hidden" value="1">
-          <input id="data-content" type="hidden" value="2">
-          <input id="data-DayPrice" type="hidden" value="150">
-          <input id="data-PlacePrice" type="hidden" value="30">
+  </div>
+   <input id="data-user-no" type="hidden" value="${loginUser.no}">
+   <input id="data-reverse-trader-no" type="hidden" value="${loginUser.no}">
+        <input id="data-pointType" type="hidden" value="1">
+        <input id="data-content" type="hidden" value="2">
+        
+        <input id="data-reverse-pointType" type="hidden" value="0">
+        <input id="data-reverse-content" type="hidden" value="1">
+        
+        <input id="data-DayPrice" type="hidden" value="150">
+        <input id="data-PlacePrice" type="hidden" value="30">
+              
+ 
+      <!-- Sidebar Widgets Column -->
+      <div class="float_sidebar col-md-4" style="width:200px; float: left">
+
+        <!-- Search Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <form action='http://localhost:9999/Root_Project/app/review/search' method='get'>
+              <input type="text" name="keyword" placeholder="Search for...">
+              <button class="btn btn-secondary">Go!</button>
+            </div>
+          </div>
+        </div>
+        <div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                <c:forEach items="${review.reviewDay}" var="reviewDay">
+                  <c:forEach items="${reviewDay.reviewPlace}" var="reviewPlace" varStatus="place_status">
+                  <li>
+                    <a href="#">${reviewPlace.name}</a>
+                  </li>
+                  </c:forEach>
+               </c:forEach>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+ </div>
+
+ <!--  -->
+
 
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script>
+$(function(){
+    var $win = $(window);
+    var top = $(window).scrollTop(); 
+    var speed          = "normal";    
+    var easing         = 'linear';
+    var $layer         = $('.float_sidebar'); 
+    var layerTopOffset = 0;   
+    $layer.css('position', 'relative').css('z-index', '1');
+    if (top > 0 )
+        $win.scrollTop(layerTopOffset+top);
+    else
+        $win.scrollTop(0);
+    $(window).scroll(function(){
+        yPosition = $win.scrollTop(); 
+        if (yPosition < 0)  {
+            yPosition = 0;  }
+        $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $(window).scroll(function() {
+        $(this).scrollTop() > 1000 ? $(".float_sidebar").fadeIn() : $(".float_sidebar").fadeOut()
+    })
+});
+</script>
+
+<script>
 "use strict"
+
 // scrap Day value
 var da = document.querySelector("#data-reviewDay-no");
-console.log(da);
 
 //scrap place value
 var pa = document.querySelector("#data-reviewPlace-no");
-console.log(pa);
 
 // point total Data value
 var a = document.querySelector("#data-user-no");
 var b = document.querySelector('#data-trader-no');
 var c = document.querySelector('#data-pointType');
 var d = document.querySelector('#data-content');
+
+// trader date value(reverse)
+
+var a1 = document.querySelector("#data-reverse-user-no");
+var b1 = document.querySelector("#data-reverse-trader-no");
+var c1 = document.querySelector('#data-reverse-pointType');
+var d1 = document.querySelector('#data-reverse-content');
+
 
 // point price value
 var e1 = document.querySelector('#data-DayPrice');
@@ -75,35 +163,31 @@ var e2 = document.querySelector('#data-PlacePrice');
 // tag data
 var button_tag1 = ${'total_scrap_butoon'};
 // var button_tag1 = ${'total_scrap_butoon'};
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
 
-console.log(e1);
-console.log(e2);
+console.log(a1);
+console.log(b1);
+
 
 // 동일 게시물 비교
 var co1 = document.querySelector("#data-reviewDay-no");
 var co2 = document.querySelector("#data-user-no");
 var co3 = document.querySelector('#data-trader-no');
-console.log(co1);
-console.log(co2);
-console.log(co3);
 
 document.querySelector("#total_scrap_butoon").onclick = () => {
-		 if (confirm(" 해당 게시물을 스크랩을 하시겠습니까? ") == true){    
-				sendScrapDayData();
-			  sendPointDayData();
-		 }else{ 
-			  console.log("error");
-		 }
+     if (confirm(" 해당 게시물을 스크랩을 하시겠습니까? ") == true){    
+        sendScrapDayData();
+        sendPointDayData();
+        reverseSendPointDayData();
+     }else{ 
+        console.log("error");
+     }
 }
 
 document.querySelector("#place_scrap_butoon").onclick = () => {
     if (confirm(" 해당 게시물을 스크랩을 하시겠습니까? ") == true){    
-    	  sendScrapPlaceData();
-    	  sendPointPlaceData();
+        sendScrapPlaceData();
+        sendPointPlaceData();
+        reverseSendPointPlaceData();
      }else{ 
         console.log("error");
      }
@@ -112,7 +196,7 @@ document.querySelector("#place_scrap_butoon").onclick = () => {
 function sendScrapDayData() {
      var xhr = new XMLHttpRequest();
      xhr.onreadystatechange = () => {
-    	 if (xhr.readyState != 4 || xhr.status != 200){  
+       if (xhr.readyState != 4 || xhr.status != 200){  
                console.log("scrapDay send() 리턴함.");
          } else {
              console.log("Scrap 요청 완료");
@@ -125,19 +209,20 @@ function sendScrapDayData() {
   }
   
   function sendScrapPlaceData() {
-	     var xhr = new XMLHttpRequest();
-	     xhr.onreadystatechange = () => {
-	    	 if (xhr.readyState != 4 || xhr.status != 200){  
-	               console.log("scrapPlace send() 리턴함.");
-	         } else {
-	             console.log("Scrap 요청 완료");
-	           }
-	     };         
-	      xhr.open("GET", 
-	          "http://localhost:9999/Root_Project/app/scrap/addReviewPlace?userNo=" 
-	          + a.value + "&reviewPlaceNo="+ pa.value , true);
-	      xhr.send();
-	  }
+       var xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = () => {
+         if (xhr.readyState != 4 || xhr.status != 200){  
+                 console.log("scrapPlace send() 리턴함.");
+           } else {
+               console.log("Scrap 요청 완료");
+             }
+       };         
+        xhr.open("GET", 
+            "http://localhost:9999/Root_Project/app/scrap/addReviewPlace?userNo=" 
+            + a.value + "&reviewPlaceNo="+ pa.value , true);
+        xhr.send();
+    }
+  
   
 
   function sendPointDayData() {
@@ -158,11 +243,31 @@ function sendScrapDayData() {
         xhr.send();
     }
 
+  
+  function reverseSendPointDayData() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState != 4 || xhr.status != 200){  
+                 console.log("reverseDayPoint send() 리턴함.");
+        } else {
+          console.log("reverse withdraw 요청");
+        }
+       };       
+       xhr.open("GET", 
+           "http://localhost:9999/Root_Project/app/point/add?userNo=" + a1.value 
+           + "&reviewUserNo=" + b1.value
+           + "&pointType=" + c1.value
+           + "&content=" + d1.value
+           + "&price=" + e1.value, true);
+       console.log(b.value);
+       console.log(a.value);
+       xhr.send();
+   }
 
   function sendPointPlaceData() {
        var xhr = new XMLHttpRequest();
        xhr.onreadystatechange = () => {
-    	   if (xhr.readyState != 4 || xhr.status != 200){  
+         if (xhr.readyState != 4 || xhr.status != 200){  
                   console.log("PlacePoint send() 리턴함.");
            } else {
                console.log("withdraw 요청 완료");
@@ -177,5 +282,29 @@ function sendScrapDayData() {
         xhr.send();
     }
   
+  
+  function reverseSendPointPlaceData() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState != 4 || xhr.status != 200){  
+                 console.log("reverseDayPoint send() 리턴함.");
+        } else {
+            console.log("withdraw 요청 완료");
+          }
+       };       
+       xhr.open("GET", 
+           "http://localhost:9999/Root_Project/app/point/add?userNo=" + a1.value 
+           + "&reviewUserNo=" + b1.value
+           + "&pointType=" + c1.value
+           + "&content=" + d1.value
+           + "&price=" + e2.value, true);
+       xhr.send();
+   }
+  
 
 </script>
+
+    <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  

@@ -5,8 +5,10 @@ import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.keep.root.domain.Review;
 import com.keep.root.domain.ReviewDay;
 import com.keep.root.domain.ReviewPlace;
@@ -47,12 +50,22 @@ public class ReviewController {
   @Autowired
   ReviewPlacePhotoService reviewPlacePhotoService;
 
-
   @Autowired
   UserService userService;
 
   @GetMapping("form")
-  public void form() {}
+  public void form(String no, HttpSession session, Model model) throws Exception {
+    User user = (User) session.getAttribute("loginUser");
+    if (user == null) {
+      throw new Exception("로그인이 필요합니다.");
+    }
+    if (!no.equals("newForm")) {
+      int reviewNo = Integer.parseInt(no);
+      session.setAttribute("review", reviewService.get(reviewNo));
+    } else {
+      session.removeAttribute("review");
+    }
+  }
 
   @RequestMapping("add")
   public String add(//
@@ -95,8 +108,7 @@ public class ReviewController {
       System.out.printf("저장 된 파일 이름이야 !! %s \n", reviewPlacePhoto.getPhoto());
     }
 
-    ReviewPlace reviewplace =
-        new ReviewPlace(name, basicAddr, detailAddr, placeReview, placeStatus, reviewPlacePhotos);
+    ReviewPlace reviewplace = new ReviewPlace(name, basicAddr, detailAddr, placeReview, placeStatus, reviewPlacePhotos);
     if (mainPlacePhoto.getSize() > 0) {
       String dirPath = servletContext.getRealPath("/upload/review");
       String filename = UUID.randomUUID().toString();
@@ -132,10 +144,10 @@ public class ReviewController {
     model.addAttribute("list", reviewService.list(user.getNo()));
   }
 
-  @GetMapping("detail")
-  public void detail(int no, Model model) throws Exception {
-    model.addAttribute("review", reviewService.get(no));
-  }
+  /*
+   * @GetMapping("detail") public void detail(int no, Model model) throws
+   * Exception { model.addAttribute("review", reviewService.get(no)); }
+   */
 
   @GetMapping("delete")
   public String delete(int no, int userNo) throws Exception {
@@ -159,7 +171,6 @@ public class ReviewController {
     if (loginUser == null) {
       throw new Exception("로그인이 필요합니다.");
     }
-    model.addAttribute("loginUser", loginUser);
     model.addAttribute("review", reviewService.get(no));
     logger.info(model);
     logger.debug(model);

@@ -3,7 +3,7 @@ package com.keep.root.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.keep.root.domain.Paging;
+import com.keep.root.domain.Criteria;
 import com.keep.root.domain.Point;
 
 public interface PointDao {
@@ -19,9 +19,6 @@ public interface PointDao {
   // 입력 번호와 상대 번호를 비교하기 위함
   List<Point> findOutputByUserNo() throws Exception;
 
-  // 달력으로 날짜 조회
-  List<Point> findCalByUserNo(Map<String, Object> calendar) throws Exception;
-
   // detail - 포인트 내부설정
   Point find(int no) throws Exception;
 
@@ -35,9 +32,8 @@ public interface PointDao {
 
   int delete(int no) throws Exception;
   
-  // paing 
+  // paging
+  int getTotalCount(Criteria cri) throws Exception;
   
-  int countPoint()  throws Exception;
-	// 페이징 처리 게시글 조회
-  List<Point> selectPoint(Paging vo) throws Exception;
+  List<Point> listPage(Criteria cri) throws Exception;
 }

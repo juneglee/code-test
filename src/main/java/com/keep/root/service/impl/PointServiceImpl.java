@@ -1,13 +1,12 @@
 package com.keep.root.service.impl;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.keep.root.dao.PointDao;
-import com.keep.root.domain.Paging;
+import com.keep.root.domain.Criteria;
 import com.keep.root.domain.Point;
 import com.keep.root.service.PointService;
 
@@ -61,16 +60,6 @@ public class PointServiceImpl implements PointService {
   }
 
   @Override
-  public List<Point> calendarList(int userNo, Date startDate, Date endDate) throws Exception {
-    HashMap<String, Object> params = new HashMap<String, Object>();
-    params.put("userNo", userNo);
-    params.put("startDate", startDate);
-    params.put("endDate", endDate);
-    return pointDao.findCalByUserNo(params);
-  }
-
-
-  @Override
   public List<Point> findOutputByUserNo() throws Exception {
     return pointDao.findOutputByUserNo();
   }
@@ -102,18 +91,17 @@ public class PointServiceImpl implements PointService {
 
   @Override
   public void withdraw(Point point) throws Exception {
+    // TODO Auto-generated method stub
   }
   
-  // paging
-	@Override
-	public int countPoint() throws Exception {
-		return pointDao.countPoint();
-	}
-	
-	@Override
-	public List<Point> selectPoint(Paging vo) throws Exception {
-		return pointDao.selectPoint(vo);
-	}
-
+  @Override
+	public int getTotalCount(Criteria cri) throws Exception {
+		return pointDao.getTotalCount(cri);
+  }
+  
+  @Override
+  public List<Point> listPage(Criteria cri) throws Exception {
+	return pointDao.listPage(cri);
+  }
 
 }

@@ -1,9 +1,8 @@
 package com.keep.root.service;
 
-import java.sql.Date;
 import java.util.List;
 
-import com.keep.root.domain.Paging;
+import com.keep.root.domain.Criteria;
 import com.keep.root.domain.Point;
 
 public interface PointService {
@@ -23,11 +22,11 @@ public interface PointService {
 
   List<Point> findOutputByUserNo() throws Exception;
 
-  List<Point> calendarList(int userNo, Date startDate, Date endDate) throws Exception;
-
   Point get(int no) throws Exception;
 
   Point getUser(int userNo) throws Exception;
+
+  // getUserNo() - list 연결
 
   Point getTrader(int traderNo) throws Exception;
 
@@ -36,11 +35,8 @@ public interface PointService {
   int delete(int no) throws Exception;
   
   // paging
+  int getTotalCount(Criteria cri) throws Exception;
   
-  int countPoint()  throws Exception;
-	// 페이징 처리 게시글 조회
-  List<Point> selectPoint(Paging vo) throws Exception;
+  List<Point> listPage(Criteria cri) throws Exception;
 
 }
-
-

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 import com.keep.root.dao.ReviewPlacePhotoDao;
+import com.keep.root.domain.ReviewPlace;
 import com.keep.root.domain.ReviewPlacePhoto;
 import com.keep.root.service.ReviewPlacePhotoService;
 
@@ -17,7 +18,7 @@ public class ReviewPlacePhotoServiceImpl implements ReviewPlacePhotoService {
   public ReviewPlacePhotoServiceImpl( //
       PlatformTransactionManager txManager, //
       ReviewPlacePhotoDao reviewPlacePhotoDao //
-      ) {
+  ) {
     this.transactionTemplate = new TransactionTemplate(txManager);
     this.reviewPlacePhotoDao = reviewPlacePhotoDao;
   }
@@ -47,14 +48,14 @@ public class ReviewPlacePhotoServiceImpl implements ReviewPlacePhotoService {
     return reviewPlacePhotoDao.delete(no);
   }
 
-  // search
+  // 
   @Override
   public List<ReviewPlacePhoto> listGet(int no) throws Exception {
-    return reviewPlacePhotoDao.findAll(no);
+	  return reviewPlacePhotoDao.findAll(no);
   }
 
-  @Override
-  public ReviewPlacePhoto searchPhotoGet(int no) throws Exception {
-    return reviewPlacePhotoDao.find(no);
-  }
+	@Override
+	public ReviewPlacePhoto searchPhotoGet(int no) throws Exception {
+		return reviewPlacePhotoDao.find(no);
+	}
 }

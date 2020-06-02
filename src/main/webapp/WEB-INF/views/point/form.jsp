@@ -29,19 +29,19 @@ console.log(e);
 
 document.querySelector("#point_withdraw_button").onclick = () => {
     if (confirm(" 보유하신 포인트에서 출금을 하시겠습니까? ") == true ){
-    	withdrwaCheck();
+      withdrwaCheck();
      }else{ 
-    		alert("포인트 출금은 5000p 부터 가능합니다.")
+        alert("포인트 출금은 5000p부터 가능합니다.")
         console.log("error");
      }
 }
 
 function withdrwaCheck(){
-	if( e.value >= 5000) {
-		return sendPointData();
-	} else ( e.value=="" || e.value < 5000)
-		document.getElementById("alert_withdraw").innerHTML=('<span style="color: red;">출금은 5000p 부터 가능합니다.</span>');
-	
+  if( e.value >= 5000) {
+    return sendPointData();
+  } else ( e.value=="" || e.value < 5000)
+    document.getElementById("alert_withdraw").innerHTML=('<span style="color: red;">출금은 5000p 부터 가능합니다.</span>');
+  
 }
 
 function sendPointData() {
