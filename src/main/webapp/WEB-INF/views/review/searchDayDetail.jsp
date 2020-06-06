@@ -192,7 +192,7 @@ function changeDayData() {
 }
 
 function changePlaceData() {
-	  document.getElementById("place_scrap_butoon").innerHTML = ('<button id="place_scrop_button" style="float: right; background-color: Lime;" disabled >스크랩 완료</button>');
+    document.getElementById("place_scrap_butoon").innerHTML = ('<button id="place_scrop_button" style="float: right; background-color: Lime;" disabled >스크랩 완료</button>');
 }
 
 function sendScrapDayData() {

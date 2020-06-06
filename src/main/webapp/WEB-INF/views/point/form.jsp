@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 
-
 <h1>출금</h1>
 예금주  <input  name='name'  type="text" value='${loginUser.name}' class="search-query form-control" placeholder="예금주" style="width :600px;"/><br>
 전화번호 <input  name='tel'  type="text" value='${loginUser.tel}' class="search-query form-control" placeholder="전화번호" style="width :600px;"/><br>
@@ -15,7 +14,7 @@
     <input id="data-trader-no" type="hidden" value="0">
     <input id="data-pointType" type="hidden" value="1">
     <input id="data-content" type="hidden" value="4">
-    <button id='point_withdraw_button' style="float: right; margin-right: 500px;">출금하기</button>
+    <button id='point_withdraw_button' style="float: right; margin-right: 600px;">출금하기</button>
 <script>
 "use strict"
 var a = document.querySelector("#data-user-no");
@@ -23,15 +22,10 @@ var b = document.querySelector('#data-trader-no');
 var c = document.querySelector('#data-pointType');
 var d = document.querySelector('#data-content');
 var e = document.querySelector('#data-price');
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
-console.log(e);
 
 document.querySelector("#point_withdraw_button").onclick = () => {
     if (confirm(" 보유하신 포인트에서 출금을 하시겠습니까? ") == true ){
-    	sendPointData();
+      sendPointData();
       withdrwaCheck();
      }else{ 
         alert("포인트 출금은 5000p부터 가능합니다.")
@@ -47,9 +41,9 @@ function withdrwaCheck(){
 }
 
 function changeData() {
-	  sucesss.sendPointData(
-	 document.getElementById("point_withdraw_button").innerHTML = ('<button id="point_withdraw_button" style="float: right; background-color: Lime;" disabled >출금 완료</button>');
-		);
+    sucesss.sendPointData(
+   document.getElementById("point_withdraw_button").innerHTML = ('<button id="point_withdraw_button" style="float: right; background-color: Lime;" disabled >출금 완료</button>');
+    );
 }
 
 function sendPointData() {

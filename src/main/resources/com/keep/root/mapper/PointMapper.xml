@@ -158,7 +158,7 @@
    </delete>
    
    <select id="listPage" resultMap="PointMap" parameterType="int">
-		 select 
+     select 
       p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date,
       u.user_name, u.phone_number, u.user_no, u.account, u.bank
      from
@@ -167,11 +167,11 @@
       where p.user_no=#{userNo}
       order by p.create_date desc
       limit #{pageStart}, #{perPageNum}
-	</select>
-		
-		<!--
+  </select>
+    
+    <!--
       
-		 select 
+     select 
       p.point_no, p.user_no, p.trader_no, p.point_type, p.content, p.price, p.create_date,
       u.user_name, u.phone_number, u.user_no, u.account, u.bank
      from
@@ -184,13 +184,13 @@
       select *
       from points
       where point_no > 0
-		 -->
-		
-		<select id="getTotalCount" resultType="int">
-		  select count(*)
-		  from points
-		  where 
-		  user_no=#{userNo}
-		</select>
+     -->
+    
+    <select id="getTotalCount" resultType="int">
+      select count(*)
+      from points
+      where 
+      user_no=#{userNo}
+    </select>
    
    </mapper>

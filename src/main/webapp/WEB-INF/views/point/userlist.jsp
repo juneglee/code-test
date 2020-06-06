@@ -96,40 +96,40 @@ div.point_no {
                   <span class="tab_won" style="font-size: 20px;">원</span>
                 <!-- modal -->
                   
-								 <!-- Button trigger modal -->
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"  style="float: right; margin-right: 100px;">
-								  충전하기
-								</button>
-								
-								<!-- Modal -->
-								<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h3 class="modal-title" id="staticBackdropLabel">충전 하기</h3>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
-								        </button>
-								      </div>
-											 <div class="modal-body">
-											  <p><strong>카드 결제</strong>, <strong>휴대폰 결제</strong> 및 <strong>계좌 이체</strong>가 가능합니다. </p>
-				                <input id="data-charge-price" type="text" placeholder="충전할 금액을 입력하세요."/>
-				                <span>원</span>           
-											  <hr>
-											  <h5>원하는 충전 가격을 선택해주세요</h5>
-											  <p>
-											  <button id="choice_price_3000">+ 3000</button>
-											  <button id="choice_price_5000">+ 5000</button>
-											  <button id="choice_price_10000">+ 10000</button>
-											  </p>
-											</div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								        <button id="withdraw_addform" type="button" class="btn btn-primary">충전 하기</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
+                 <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"  style="float: right; margin-right: 100px;">
+                  충전하기
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="staticBackdropLabel">충전 하기</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                       <div class="modal-body">
+                        <p><strong>카드 결제</strong>, <strong>휴대폰 결제</strong> 및 <strong>계좌 이체</strong>가 가능합니다. </p>
+                        <input id="data-charge-price" type="text" placeholder="충전할 금액을 입력하세요."/>
+                        <span>원</span>           
+                        <hr>
+                        <h5>원하는 충전 가격을 선택해주세요</h5>
+                        <p>
+                        <button id="choice_price_3000">+ 3000</button>
+                        <button id="choice_price_5000">+ 5000</button>
+                        <button id="choice_price_10000">+ 10000</button>
+                        </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="withdraw_addform" type="button" class="btn btn-primary">충전 하기</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                   <!-- /modal -->
              </div>
             </div>
@@ -224,37 +224,36 @@ div.point_no {
                  </tr>
                 </c:forEach>
              </table> 
-								<div class="text-center">
-								  <nav aria-label="pagination">
-								    <ul class="pagination">
-								    
-								      <!-- prev 버튼 -->
-								      <li id="page-prev">
-								        <a href="userlist${pageMaker.makeQuery(pageMaker.startPage-1)}" aria-label="Prev">
-								          <span aria-hidden="true">«</span>
-								        </a>
-								      </li>
-								      
-								      <!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
-								      <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								          <li id="page${idx}">
-								            <a href="userlist${pageMaker.makeQuery(idx)}">
-								              <!-- 시각 장애인을 위한 추가 -->
-								                <span>${idx}<span class="sr-only">(current)</span></span>
-								            </a>
-								          </li>
-								      </c:forEach>
-								      
-								      <!-- next 버튼 -->
-								      <li id="page-next">
-								          <a href="userlist${pageMaker.makeQuery(pageMaker.endPage + 1)}" aria-label="Next">
-								            <span aria-hidden="true">»</span>
-								          </a>
-								      </li>
-									    </ul>
-									  </nav>
-									</div>
-									
+                <div class="text-center">
+                  <nav aria-label="pagination">
+                    <ul class="pagination">
+                    
+                      <!-- prev 버튼 -->
+                      <li id="page-prev">
+                        <a href="userlist${pageMaker.makeQuery(pageMaker.startPage-1)}" aria-label="Prev">
+                          <span aria-hidden="true">«</span>
+                        </a>
+                      </li>
+                      
+                      <!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
+                      <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                          <li id="page${idx}">
+                            <a href="userlist${pageMaker.makeQuery(idx)}">
+                                <span>${idx}<span class="sr-only">(current)</span></span>
+                            </a>
+                          </li>
+                      </c:forEach>
+                      
+                      <!-- next 버튼 -->
+                      <li id="page-next">
+                          <a href="userlist${pageMaker.makeQuery(pageMaker.endPage + 1)}" aria-label="Next">
+                            <span aria-hidden="true">»</span>
+                          </a>
+                      </li>
+                      </ul>
+                    </nav>
+                  </div>
+                  
            </div>
     </div>
     <!-- /.row -->

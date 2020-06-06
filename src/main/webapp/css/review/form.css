@@ -2,8 +2,6 @@ div.content {
   position:relative;
 }
 
-div.reviewAddForm {
-}
 div.topAreaDiv {
 	width:100%;
   height:600px;
@@ -35,7 +33,7 @@ div.myCourseLoadText {
 	margin:10px 10px 10px 10px;
   float:right;
 }
-div.MainPictureUploadDiv {
+div.mainPictureUploadDiv {
 	margin:10px 10px 10px 10px;
   float:right;
 }
@@ -107,6 +105,9 @@ div.reviceBasicAddr {
   height: 60px;
   float:left;
 }
+div.reviewAddrSearchIcon {
+	float:right;
+}
 div.reviceDetailAddr {
 	padding: 10px 25px 10px 25px;
   width: 50%;
@@ -114,16 +115,70 @@ div.reviceDetailAddr {
   float:right;
 }
 
-div.reviewPlaceReview {
+.ck.ck-reset.ck-editor.ck-rounded-corners {
 	padding: 10px 25px 10px 25px;
   width: 100%;
-  height: 600px;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px;
 }
 
 div.reviewPlacePlusArea {
 	margin: 20px 0px 20px 0px;
   width: 100%;
   height: 600x;
+}
+
+div.datePlus {
+  padding:11px 16px;
+}
+div.myCourseContent {
+	margin: 0px 50px;
+}
+div.dayContent {
+  margin: 40px;
+}
+div.dayTopbar {
+  height: 20px;
+}
+div.dayLeftTopbar {
+	width:70%;
+	float:left;
+}
+div.myCourseTitle {
+  font-size: 20px;
+}
+div.dayRightTopbar {
+	width:30%;
+  float:right;
+}
+div.myCourseDayDate {
+  font-size: 20px;
+  float:left;
+}
+div.myCourseSelect {
+  float:right;
+}
+div.dayMainContent {
+	margin: 20px 50px;
+	font-size: 12px;
+}
+div.myCoursePlaceAddr {
+	margin: 10px 50px;
+}
+
+div.footerButton {
+	min-height: 60px;
+}
+
+#loadCourseModal {
+	max-height: calc(80vh - 0em);
+	margin: 8vh 0px;
+}
+
+#exitButton {
+	float:right;
 }
 
 #dropdown {
@@ -142,6 +197,7 @@ div.reviewPlacePlusArea {
 #placeMainPhoto {
 	float:right;
 }
+
 #placeRemoveMinusButtonIcon {
 	padding-left: 0px !important;
 	float:left;
@@ -150,9 +206,7 @@ div.reviewPlacePlusArea {
 .ui.button {
   height: 40px;
 }
-.dropdown.icon {
-	
-}
+
 .title {
   padding: 10px 10px 10px 10px;
   height: 60px;
@@ -176,7 +230,7 @@ div.reviewPlacePlusArea {
 .basicAddr {
   padding: 0 10px 0 10px;
   height: 40px;
-  width: 100%;
+  width: calc(100% - 35.53px);
 }
 
 .detailAddr {
@@ -198,4 +252,21 @@ div.reviewPlacePlusArea {
 .plus.icon {
   padding-left: calc(calc(100% - 16.52px) / 2);
   margin:0px;
+}
+
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.label {color:#333;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
+
+.modal {
+    height: auto;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    right: auto;
 }

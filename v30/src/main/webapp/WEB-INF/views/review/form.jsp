@@ -14,9 +14,7 @@
 		      <div id="dropdown" class="ui disabled dropdown">
 		        <input type="hidden" name="selectDate">
 		        <i class="dropdown icon"></i>
-		        <div class="default text">Day
-		          <div class="innerDate"></div>
-		        </div>
+		         <div class="default text">Day<div class="innerDate">2020-05-04</div></div>
 		          <div class="menu">
 		            <div class="item" draggable="true" ondragstart="courseDateDrag(event)" ondrop="courseDateDrop(event)" ondragover="allowDrop(event)" data-text="2020-05-02">
 		              <div class="innerline">

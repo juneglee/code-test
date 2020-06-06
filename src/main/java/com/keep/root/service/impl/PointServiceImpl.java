@@ -90,7 +90,7 @@ public class PointServiceImpl implements PointService {
     if (cri.getPage() > 0) {
       cri.setPage(cri.getPage());
     }
-    params.put("pageStart", cri.getPage());
+    params.put("pageStart", cri.getPageStart());
     params.put("perPageNum", cri.getPerPageNum());
     return pointDao.listPage(params) ;
   }

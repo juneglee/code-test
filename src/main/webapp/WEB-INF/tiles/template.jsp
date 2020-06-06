@@ -11,11 +11,6 @@
 <meta http-equiv="Refresh" content="${refreshUrl}">
 </c:if>
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>
-<link rel='stylesheet' href='${pageContext.getServletContext().getContextPath()}/semantic/dist/semantic.min.css'>
-<link rel='stylesheet' href='<tiles:getAsString name="css.common"/>'>
-<link rel='stylesheet' href='<tiles:getAsString name="css.page"/>'>
-
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
@@ -29,10 +24,18 @@
   -->
   <link href="${pageContext.getServletContext().getContextPath()}/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
+  />
   
   <!-- Template Main CSS File -->
   <link href="${pageContext.getServletContext().getContextPath()}/css/style.css" rel="stylesheet">
+  <link rel='stylesheet' href='${pageContext.getServletContext().getContextPath()}/semantic/dist/semantic.min.css'>
+<link rel='stylesheet' href='<tiles:getAsString name="css.common"/>'>
+<link rel='stylesheet' href='<tiles:getAsString name="css.page"/>'>
+  
+  
   
   <!-- Vendor JS Files -->
   <script src="${pageContext.getServletContext().getContextPath()}/vendor/jquery/jquery.min.js"></script>
@@ -47,6 +50,8 @@
   <!-- Template Main JS File -->
   <script src="${pageContext.getServletContext().getContextPath()}/js/main.js"></script>
   <script src='${pageContext.getServletContext().getContextPath()}/semantic/dist/semantic.min.js'></script>
+  
+  
   
 <title>나만의 루트를 만들다. 루트</title>
 </head>
