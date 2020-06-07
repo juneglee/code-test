@@ -20,7 +20,7 @@
         <td><button id="total_scrap_butoon" style="float: right;">전체 스크랩</button></td> <br>
         <hr>
         <!-- Preview Image -->
-        <img src='${pageContext.servletContext.contextPath}/img/search/testimg.jpg' style="width:750; "><br>
+        <img src="${pageContext.servletContext.contextPath}/upload/review/day/${reviewDay.mainPhoto}" style="width:750px; height: 400px; "><br>
         <hr>
         <!-- Post Content -->
         <p class="lead" style="font-size: 18px;">${reviewDay.mainReview}</p>
@@ -33,7 +33,7 @@
            <c:if test="${status.first}">
         <blockquote class="blockquote">
         <div class="main_img" style="border-top: 3px solid gray; padding-top: 30px;">
-          <img src='${pageContext.servletContext.contextPath}/img/search/testimg.jpg' style='width:360px; margin-left: 160px; margin-top: 50px;'><br>
+          <img src="${pageContext.servletContext.contextPath}/upload/review/place/${reviewPlace.mainPhoto}" style='width:360px; margin-left: 160px; margin-top: 50px;'><br>
         </div>
           <footer class="blockquote-footer" style="margin-left: 160px;"> 
                     대표 장소 : <cite title="Source Title">${reviewPlace.name}</cite> <br>
@@ -45,7 +45,7 @@
         <p>${reviewPlace.placeReview}<br></p>
         </c:if>
         <hr>
-        <img src='${pageContext.servletContext.contextPath}/img/search/testimg.jpg' style="width: 20ox;"><br>
+        <img src="${pageContext.servletContext.contextPath}/upload/review/photo/${reviewPlacePhoto.photo}" style="width: 20ox;"><br>
       </c:forEach>
     </c:forEach>
   </c:forEach>

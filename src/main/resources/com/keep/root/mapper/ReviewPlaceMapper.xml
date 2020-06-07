@@ -108,7 +108,7 @@
       select
       u.user_no,
       r.review_no, r.create_date, r.status, 
-      d.review_day_no, d.title, d.day_date, d.day_review, d.main_photo, d.status,
+      d.review_day_no, d.title, d.day_date, d.day_review, d.status,
       p.review_place_no, p.place_name, p.place_basic_address, p.place_detail_address,
       p.place_review, p.main_photo, p.status,
       t.photo_no, t.photo_file
@@ -124,13 +124,14 @@
       or p.place_basic_address like #{keywordPattern}
       or p.place_detail_address like #{keywordPattern}
       or p.place_review like #{keywordPattern}
+      limit 9
   </select>
   
    <select id="find" resultMap="ReviewPlaceMap" parameterType="int">
     select
       u.user_no,
       r.review_no, r.create_date, r.status, 
-      d.review_day_no, d.title, d.day_date, d.day_review, d.main_photo, d.status,
+      d.review_day_no, d.title, d.day_date, d.day_review, d.status,
       p.review_place_no, p.place_name, p.place_basic_address, p.place_detail_address,
       p.place_review, p.main_photo, p.status,
       t.photo_no, t.photo_file

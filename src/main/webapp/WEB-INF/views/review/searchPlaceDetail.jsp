@@ -20,7 +20,7 @@
          <td><button id='place_scrop_button' style="float: right;">스크랩</button></td> <br>
         <hr>
         <!-- Preview Image -->
-        <img alt="${placeDetail.mainPhoto}" src="${pageContext.servletContext.contextPath}/img/search/testimg.jpg">
+        <img alt="${placeDetail.mainPhoto}" src="${pageContext.servletContext.contextPath}/upload/review/place/${placeDetail.mainPhoto}" style="width:700px;">
         <!-- Post Content -->
           <p>${placeDetail.placeReview} <br></p>
 
@@ -41,7 +41,7 @@
               <input id="data-price" type="hidden" value="30">
           <hr>
          <c:forEach items="${placePhotoDetail}" var="placePhoto">
-            <img alt="${placePhoto.photo}" src="${pageContext.servletContext.contextPath}/img/search/testimg.jpg" style="width:600px; margin-left: 60px;"> 
+            <img alt="${placePhoto.photo}"  src="${pageContext.servletContext.contextPath}/upload/review/photo/${placePhoto.photo}" style="width:600px; margin-left: 60px;"> 
          </c:forEach>
        </div>
  
